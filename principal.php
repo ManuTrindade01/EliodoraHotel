@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -83,7 +84,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Categoria</h5>
-                        <a href="cadastrar]Tipo.php" class="btn"
+                        <a href="cadastrarTipo.php" class="btn"
                             style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
                     </div>
                 </div>

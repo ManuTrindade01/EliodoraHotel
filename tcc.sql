@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Set-2023 às 23:09
+-- Tempo de geração: 08-Set-2023 às 20:57
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -82,9 +82,7 @@ INSERT INTO `funcionario` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `est
 (3, 'Josefina Maria ', '123456789', '2003-01-20', 'F', 'PR', 'Alto Piquiri', 'Rua França', 453, '34556987', 'jose@gmail.com', '234567890', 'manu', '2007-07-07', 2345, 'Zeladora', '08:10:00', '17:00:00', NULL),
 (4, 'Maria do Carmo', '123.455.666-65', '2005-06-01', 'F', '22', '2211001', 'Rua Colômbia', 432, '75432-211', 'carmo@gmail.com', '(44) 98436-4532', '1234', '2001-03-02', 4.5, 'Gerente', '08:00:00', '17:00:00', NULL),
 (5, 'Maria Rita', '345.678.900-00', '2003-02-22', 'F', '11', '1100130', 'Rua D. Pedro', 234, '23456-789', 'rita@gmail.com', '(34) 56778-5444', '1234', '2032-02-23', 3.333, 'Faxina', '22:00:00', '07:30:00', NULL),
-(16, 'Maria de Fátima', '680.170.357-99', '2023-09-08', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 123, '12345-678', 'fatima@gmail.com', '(44) 97654-3234', '1234', '2023-09-08', 2.3, 'Faxina', '07:20:00', '13:00:00', NULL),
-(17, 'Teste', '245.677.654-34', '2023-09-04', 'F', 'AC', 'Acrelândia', 'tredfg', 543, '76543-676', 'manuifpr@gmail.com', '(44) 98447-6118', '1234', '2023-09-17', 5.654, 'hgfdg', '21:32:00', '04:03:00', NULL),
-(18, 'Sou Eufffufu', '456.543.234-56', '0004-03-01', 'F', 'SE', 'Amparo do São Francisco', 'giphg', 43456, '56754-567', 'maria@gmail.com', '(44) 98447-6118', '1234', '2023-09-17', 5.654, 'hgfdg', '02:03:00', '02:03:00', NULL);
+(16, 'Maria de Fátima', '680.170.357-99', '2023-09-08', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 123, '12345-678', 'fatima@gmail.com', '(44) 97654-3234', '1234', '2023-09-08', 2.3, 'Faxina', '07:20:00', '13:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,8 +121,7 @@ INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`
 (20, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
 (21, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
 (22, '3', '129.345.678-90', '2023-09-08', 'M', 'PB', 'Areial', 'wertgfd', 345, '23456-543', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(23, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(24, 'Emanuely Dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'SE', 'Divina Pastora', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 98447-6118', '(44) 98425-7053');
+(23, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432');
 
 -- --------------------------------------------------------
 
@@ -142,8 +139,7 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
-(1, 'rtyui'),
-(2, 'Prompt Keeps');
+(1, 'rtyui');
 
 -- --------------------------------------------------------
 
@@ -178,7 +174,7 @@ INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`
 
 CREATE TABLE `quarto` (
   `id` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `capacidade` int(45) NOT NULL,
   `valorDiaria` double NOT NULL
@@ -188,10 +184,9 @@ CREATE TABLE `quarto` (
 -- Extraindo dados da tabela `quarto`
 --
 
-INSERT INTO `quarto` (`id`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
-(1, 44, 'Simples', 3, 120),
-(2, 1, 'Simples', 2, 120),
-(10, 2, 'Master', 3, 300);
+INSERT INTO `quarto` (`id`, `nome`, `tipo`, `capacidade`, `valorDiaria`) VALUES
+(6, 'Flores', 'Suíte', 2, 200),
+(7, 'Orquídea', 'Suite', 2, 200);
 
 -- --------------------------------------------------------
 
@@ -201,10 +196,15 @@ INSERT INTO `quarto` (`id`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUE
 
 CREATE TABLE `reserva` (
   `id` int(11) NOT NULL,
+  `dataReserva` date NOT NULL,
   `dataEntrada` date NOT NULL,
   `dataSaida` date NOT NULL,
+  `valorTotalConsumo` double NOT NULL,
   `valorTotalReserva` double NOT NULL,
-  `observacao` varchar(200) NOT NULL,
+  `valorTotalReceber` double NOT NULL,
+  `dataRecebimento` date NOT NULL,
+  `valorRecebido` double NOT NULL,
+  `formaRecebimento` varchar(45) NOT NULL,
   `id_quarto` int(11) DEFAULT NULL,
   `id_funcionario` int(11) DEFAULT NULL,
   `id_hospede` int(11) DEFAULT NULL
@@ -214,9 +214,10 @@ CREATE TABLE `reserva` (
 -- Extraindo dados da tabela `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `observacao`, `id_quarto`, `id_funcionario`, `id_hospede`) VALUES
-(10, '2023-09-05', '2023-09-17', 1, 'Rochelle Aparecida Trindade', 10, NULL, 24),
-(11, '2005-06-01', '2005-06-20', 234, 'Teste', 10, NULL, 18);
+INSERT INTO `reserva` (`id`, `dataReserva`, `dataEntrada`, `dataSaida`, `valorTotalConsumo`, `valorTotalReserva`, `valorTotalReceber`, `dataRecebimento`, `valorRecebido`, `formaRecebimento`, `id_quarto`, `id_funcionario`, `id_hospede`) VALUES
+(2, '2023-09-07', '2023-09-11', '2023-09-12', 222, 222, 44444, '2023-09-12', 444, 'Dinheiro', 7, 3, 15),
+(3, '2023-09-07', '2023-09-07', '2023-09-07', 2, 123, 125, '2023-09-07', 125, 'Dinheiro', 6, 5, 13),
+(4, '2023-09-08', '2023-09-08', '2023-09-08', 1, 120, 122, '2023-09-08', 125, 'CartaoDebito', 7, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -306,19 +307,19 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
@@ -330,13 +331,13 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `quarto`
 --
 ALTER TABLE `quarto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`

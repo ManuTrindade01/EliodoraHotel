@@ -1,10 +1,8 @@
 <?php
-
 require_once("verificaAutenticacao.php");
 
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
-
 
 if (isset($_POST['cadastrar'])) {
   //2. Receber os dados para inserir no BD
@@ -21,25 +19,32 @@ if (isset($_POST['cadastrar'])) {
   $telefone = $_POST['telefone'];
   $contatoEmergencia = $_POST['contatoEmergencia'];
 
+  //3. Validar a data de nascimento para garantir que o hóspede seja maior de idade
+  $dataAtual = date('Y-m-d');
+  $idadeMinima = 18;
 
-  //3. Preparar a SQL
-  $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
+  $diff = date_diff(date_create($dataNascimento), date_create($dataAtual));
+  $idade = $diff->format('%y');
 
-  //4. Executar a SQL
-  mysqli_query($conexao, $sql);
+  if ($idade < $idadeMinima) {
+    $mensagem = "Desculpe, você é menor de idade. Acesso negado.";
+  } else {
+    //4. Preparar a SQL
+    $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
 
-  //5. Mostrar uma mensagem ao usuário
-  $mensagem = "Registro salvo com sucesso.";
+    //5. Executar a SQL
+    mysqli_query($conexao, $sql);
 
-
-
+    //6. Mostrar uma mensagem ao usuário
+    $mensagem = "Registro salvo com sucesso.";
+  }
 }
 ?>
 
 <?php require_once("cabecalho.php"); ?>
 
 <title>CadastrarHospede</title>
-<script src="validaCpf.js" defer></script>
+<script src="validaCpf.js"></script>
 </head>
 
 <body>
@@ -59,16 +64,17 @@ if (isset($_POST['cadastrar'])) {
 
 
 
-        <form method="post" name="formulario">
+        <form method="post" id="myForm">
           <div class="row">
             <div class="mb-3 col-8">
               <label for="nome" class="form-label">Nome Completo:</label>
-              <input type="text" class="form-control" name="nome" id="name" placeholder="Insira o nome completo" required minlength="10">
+              <input type="text" class="form-control" name="nome" id="name" placeholder="Insira o nome completo"
+                required minlength="10">
             </div>
             <div class="mb-3 col">
               <label for="cpf" class="form-label">CPF:</label>
               <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-          
+
             </div>
           </div>
           <div class="row">
@@ -124,25 +130,25 @@ if (isset($_POST['cadastrar'])) {
             </div>
             <div class="mb-3 col">
               <label for="telefone" class="form-label">Telefone:</label>
-              <input name="telefone" type="text" class="form-control" id="telefone"
-                required pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})">
+              <input name="telefone" type="text" class="form-control" id="telefone" required
+                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})">
             </div>
 
             <div class="mb-3 col">
               <label for="contatoEmergencia" class="form-label">Contato de Emergência:</label>
-              <input name="contatoEmergencia" type="text" class="form-control" id="contatoEmergencia"
-                required pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})">
+              <input name="contatoEmergencia" type="text" class="form-control" id="contatoEmergencia" required
+                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})">
             </div>
           </div>
-          <button name="cadastrar" type="submit" onclick="validaCpf()" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar 
+          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
             <i class="fa-solid fa-check"></i>
           </button>
-          </div>
-          
-
-        </form>
       </div>
+
+
+      </form>
     </div>
+  </div>
   </div>
   <script type="text/javascript" src="js/app.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -155,7 +161,7 @@ if (isset($_POST['cadastrar'])) {
     $('#contatoEmergencia').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
   </script>
-  
+
 
 
 

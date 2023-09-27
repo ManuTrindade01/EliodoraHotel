@@ -176,5 +176,5 @@ if (isset($_POST['cadastrar'])) {
         $('#salario').mask("#.##0,00", { reverse: true });
       </script>
 </body>
-
 </html>
+
