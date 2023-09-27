@@ -33,7 +33,7 @@ require_once("verificaAutenticacao.php");
             session_start();
             $nome = $_SESSION['nome'];
             ?>
-            Seja bem vindogtjrkryk(a),
+            Seja bem vindo(a),
             <?= $nome ?>.
             <br>
     </div>
