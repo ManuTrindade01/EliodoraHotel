@@ -1,6 +1,3 @@
-<?php
-require_once("verificaAutenticacao.php");
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
