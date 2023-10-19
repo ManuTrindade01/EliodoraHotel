@@ -99,18 +99,16 @@ $linha = mysqli_fetch_array($resultado);
     <option value="M" <?= ($linha['genero'] == "M") ? "selected" : "" ?>>Masculino</option>
   </select> 
   </div>
-  </div>  
-  <div class="row">
   <div class="mb-3 col">
-  <label for="estado">UF</label>
+  <label for="estado" class="form-label">UF</label>
         <input type="hidden" name="estadojs" value="41">
-        <select name="estado" id="uf">
+        <select name="estado" id="uf" class="form-select">
           <option>Selecione Estado</option>
         </select>
         </div>
         <div class="mb-3 col">
-        <label for="cidade">Cidade</label>
-        <select name="cidade" id="cidade">
+        <label for="cidade" class="form-label">Cidade</label>
+        <select name="cidade" id="cidade" class="form-select">
           <option>Selecione Cidade</option>
         </select>
         </div>

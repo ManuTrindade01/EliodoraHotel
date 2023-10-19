@@ -157,8 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="M">Masculino</option>
               </select>
             </div>
-          </div>
-          <div class="row">
+          
             <div class="mb-3 col">
               <label for="estado" class="form-label">UF</label>
               <select name="estado" id="uf" class="form-select" required>

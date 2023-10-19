@@ -18,68 +18,7 @@ $resultado = mysqli_query($conexao, $sql);
     <title>Reservas</title>
     <link href="style.css" rel="stylesheet">
 
-    <style>
-        .containercard {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-
-            .card {
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-                overflow: hidden;
-                margin: 10px;
-                height: 300px;
-
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .list-group-item {
-            border: none;
-            padding: 5px 0;
-        }
-
-        .card-link {
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-            color: #fff;
-            background-color: #a70162;
-            padding: 10px 0;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .card-link:hover {
-            background-color: #82044b;
-        }
-
-        .card-vermelho {
-            background-color: #ffcccc;
-            /* ou qualquer outra cor vermelha que desejar */
-        }
-
-        .card-verde {
-            background-color: #ccffcc;
-            /* ou qualquer outra cor verde que desejar */
-        }
-    </style>
+    
 </head>
 
 <?php require_once("cabecalho.php"); ?>
