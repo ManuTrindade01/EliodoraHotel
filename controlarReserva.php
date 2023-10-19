@@ -32,12 +32,13 @@ $resultado = mysqli_query($conexao, $sql);
             margin: 20px 0;
         }
 
-        .card {
+            .card {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+                margin: 10px;
+                height: 300px;
 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px;
         }
 
         .card-body {
@@ -95,7 +96,7 @@ $resultado = mysqli_query($conexao, $sql);
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" style="color: #a70162; font-family: 'Segoe UI'">QUARTO
-                                <?= $linha['quarto_numero'] ?> 
+                                <?= $linha['quarto_numero'] ?>
                             </h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Nome Hóspede:
@@ -107,13 +108,16 @@ $resultado = mysqli_query($conexao, $sql);
                                 <li class="list-group-item">Data saída:
                                     <?= date('d/m/Y', strtotime($linha['dataSaida'])) ?>
                                 </li>
+                                <li class="list-group-item">Valor Total:
+                                    <?= $linha['valorTotalReserva']?> R$
+                                </li>
                                 <li class="list-group-item">Ativo:
                                     <?= $linha['status'] ?>
                                 </li>
                             </ul>
 
                             <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
-                                <i class="fa-solid fa-pen-to-square"></i>Alterar
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                         </div>
                     </div>

@@ -9,11 +9,26 @@ if (isset($_POST['cadastrar'])) {
   // Receber os dados para inserir no BD
   $id_hospede = $_POST['id_hospede'];
   $id_quarto = $_POST['id_quarto'];
-  $dataEntrada = $_POST['dataEntrada'];
-  $dataSaida = $_POST['dataSaida'];
-  $valorTotalReserva = $_POST['valorTotalReserva'];
+  $dataEntrada = strtotime($_POST['dataEntrada']);
+  $dataSaida = strtotime($_POST['dataSaida']);
   $quantHospede = $_POST['quantHospede'];
   $observacao = $_POST['observacao'];
+
+  // Calcular a quantidade de dias da reserva
+  $diferencaDias = ($dataSaida - $dataEntrada) / (60 * 60 * 24); // 60 segundos * 60 minutos * 24 horas
+
+  // Obter o valor da diária do quarto
+  $sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = '$id_quarto'";
+  $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
+
+  $quarto = mysqli_fetch_assoc($resultadoQuarto);
+  $valorDiaria = $quarto['valorDiaria'];
+
+  // Calcular o valor total da reserva
+  $valorTotalReserva = $valorDiaria * $diferencaDias;
+
+
+
 
   // Preparar a SQL para inserir os dados da reserva
   $sql = "INSERT INTO reserva (id_hospede, id_quarto, dataEntrada, dataSaida, valorTotalReserva, quantHospede, observacao) VALUES ('$id_hospede', '$id_quarto', '$dataEntrada', '$dataSaida', '$valorTotalReserva', '$quantHospede', '$observacao')";
@@ -117,16 +132,11 @@ if (isset($_POST['cadastrar'])) {
             </div>
 
             <div class="mb-3 col">
-              <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
-              <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva">
-            </div>
-
-            <div class="mb-3 col">
               <label for="quantHospede" class="form-label">Número Hóspedes:</label>
               <input type="number" class="form-control" name="quantHospede" id="quantHospede">
             </div>
           </div>
-          
+
 
           <div class="mb-3">
             <label for="observacao" class="form-label">Observação:</label>
@@ -151,16 +161,16 @@ if (isset($_POST['cadastrar'])) {
       $('#valorR').mask("#.##0,00", { reverse: true });
     </script>
 
-<script>
-        // Função para exibir a mensagem de confirmação
-        window.onbeforeunload = function() {
-            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
-        };
-       
-        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
-        document.querySelector('form').addEventListener('submit', function() {
-            window.onbeforeunload = null;
-        });
+    <script>
+      // Função para exibir a mensagem de confirmação
+      window.onbeforeunload = function () {
+        return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+      };
+
+      // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+      document.querySelector('form').addEventListener('submit', function () {
+        window.onbeforeunload = null;
+      });
     </script>
 </body>
 
