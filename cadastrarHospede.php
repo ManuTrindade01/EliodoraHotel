@@ -1,6 +1,8 @@
 <?php
 require_once("verificaAutenticacao.php");
 
+require_once("conexao.php");
+
 function validarCPF($cpf)
 {
   // Remove caracteres não numéricos
@@ -44,8 +46,7 @@ function validarCPF($cpf)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-  //1. Conectar no BD (IP, usuario, senha, nome do banco)
-  $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
+  
 
   if (isset($_POST['cadastrar'])) {
 

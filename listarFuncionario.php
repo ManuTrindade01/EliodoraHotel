@@ -37,7 +37,7 @@ $resultado = mysqli_query($conexao, $sql);
      <?php } ?>
 
 
-
+<title>Listagem de Funcionário</title>
      <div class="card mt-3 mb-3">
   <div class="card-body">
     <h2 class="card-title">Listagem de Funcionários

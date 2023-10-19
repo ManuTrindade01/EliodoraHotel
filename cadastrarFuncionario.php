@@ -1,6 +1,23 @@
 <?php
-//DEIXAR SEM O VERIFICAR AUTENTICAÇÃO PARA PODER CADASTRAR OUTROS SEM LOGIN
-//1. Conectar no BD (IP, usuario, senha, nome do banco)
+require_once("verificaAutenticacao.php");
+
+require_once("conexao.php");
+
+function validarData($dataNascimento)
+      {
+        $dataObj = new DateTime($dataNascimento);
+
+        // Obtém o ano da data
+        $ano = $dataObj->format('Y');
+
+        if ($ano >= 1900 && $ano <= 2099) {
+          // A data é válida
+          return true;
+        } else {
+          // A data é inválida, retorna a mensagem de erro
+          return false;
+        }
+      }
 
 function validarCPF($cpf)
 {
@@ -43,13 +60,13 @@ function validarCPF($cpf)
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
-
+  require_once("conexao.php");
 
   if (isset($_POST['cadastrar'])) {
 
-    $cpf = $_POST["cpf"];
+
+  $cpf = $_POST['cpf'];
+  $dataNascimento = $_POST['dataNascimento'];  
 
     if (!validarCPF($cpf)) { //Se o CPF for inválido
       $mensagemErro = "CPF inválido.";
@@ -71,7 +88,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
-    } else {
+
+    }else if (!validarData($dataNascimento)){
+      $mensagemErro = "Data de Nascimento inválida.";
+      $nome = $_POST['nome'];
+      $cpf = $_POST['cpf'];
+      $dataNascimento = $_POST['dataNascimento'];
+      $genero = $_POST['genero'];
+      $estado = $_POST['estado'];
+      $cidade = $_POST['cidade'];
+      $endereco = $_POST['endereco'];
+      $numeroEndereco = $_POST['numeroEndereco'];
+      $cep = $_POST['cep'];
+      $email = $_POST['email'];
+      $telefone = $_POST['telefone'];
+      $senha = $_POST['senha'];
+      $confirma = $_POST['confirma'];
+      $dataAdmissao = $_POST['dataAdmissao'];
+      $salario = $_POST['salario'];
+      $cargo = $_POST['cargo'];
+      $horarioEntrada = $_POST['horarioEntrada'];
+      $horarioSaida = $_POST['horarioSaida'];
+    }else {
       //prossegue com o cadastro pq o CPF está válido
       $nome = $_POST['nome'];
       $cpf = $_POST['cpf'];
@@ -92,50 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
 
-      
-/*Verficação da data 
-
-function validarData($dataNascimento){
-
-
-// Converte a data para um objeto DateTime
-$dataObj = DateTime::createFromFormat('Y-m-d', $dataNascimento);
-
-// Obtém o ano da data
-$ano = $dataObj->format('Y');
-
-if ($ano < 1900 || $ano > 2099) {
-    echo "Ano inválido. Por favor, insira um ano entre 1900 e 2099.";
-} else {
-    // O ano está dentro do intervalo desejado, você pode prosseguir com o processamento dos dados.
-}
-}
-*/
-
-
-$dataNascimento = $_POST['dataNascimento'];
-
-// Converte a data para um objeto DateTime
-$dataObj = new DateTime($dataNascimento);
-
-// Obtém o ano da data
-$ano = $dataObj->format('Y');
-
-if ($ano < 1900 || $ano > 2099) {
-    echo "Ano inválido. Por favor, insira um ano entre 1900 e 2099.";
-} else {
-    // O ano está dentro do intervalo desejado, você pode prosseguir com o processamento dos dados.
-}
-
-
-
-
-
-
-
-
-
-
       //3. Preparar a SQL
       $sql = "INSERT INTO funcionario (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, senha, confirma, dataAdmissao, salario, cargo, horarioEntrada, horarioSaida) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$senha', '$confirma', '$dataAdmissao', '$salario', '$cargo', '$horarioEntrada', '$horarioSaida')";
 
@@ -145,8 +139,9 @@ if ($ano < 1900 || $ano > 2099) {
       //5. Mostrar uma mensagem ao usuário
       $mensagem = "Registro salvo com sucesso.";
     }
+    }
   }
-}
+
 
 ?>
 
