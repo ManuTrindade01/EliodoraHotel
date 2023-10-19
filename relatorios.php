@@ -25,7 +25,7 @@ require_once("verificaAutenticacao.php");
 
 <body style="background-color: ;">
     <?php require_once("menu.html"); ?>
-
+    <br> <br>
     <div class="container1">
         <div class="box">
             <div class="boxContent">
