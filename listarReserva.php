@@ -88,6 +88,7 @@ $resultado = mysqli_query($conexao, $sql);
       <th scope="col">Quarto</th>
       <th scope="col">Data Entrada</th>
       <th scope="col">Data Saída</th>
+      <th scope="col">Valor Total</th>
       <th scope="col">Ação</th>
     </tr>
   </thead>
@@ -112,6 +113,9 @@ $resultado = mysqli_query($conexao, $sql);
         </td>
         <td>
         <?= date('d/m/Y', strtotime($linha['dataSaida'])) ?>
+        </td>
+        <td>
+        <?= $linha['valorTotalReserva'] ?>
         </td>
         <td>
           <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
