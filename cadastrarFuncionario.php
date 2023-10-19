@@ -73,6 +73,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $horarioSaida = $_POST['horarioSaida'];
     } else {
       //prossegue com o cadastro pq o CPF está válido
+      $nome = $_POST['nome'];
+      $cpf = $_POST['cpf'];
+      $dataNascimento = $_POST['dataNascimento'];
+      $genero = $_POST['genero'];
+      $estado = $_POST['estado'];
+      $cidade = $_POST['cidade'];
+      $endereco = $_POST['endereco'];
+      $numeroEndereco = $_POST['numeroEndereco'];
+      $cep = $_POST['cep'];
+      $email = $_POST['email'];
+      $telefone = $_POST['telefone'];
+      $senha = $_POST['senha'];
+      $confirma = $_POST['confirma'];
+      $dataAdmissao = $_POST['dataAdmissao'];
+      $salario = $_POST['salario'];
+      $cargo = $_POST['cargo'];
+      $horarioEntrada = $_POST['horarioEntrada'];
+      $horarioSaida = $_POST['horarioSaida'];
+
+      
+/*Verficação da data 
+
+function validarData($dataNascimento){
+
+
+// Converte a data para um objeto DateTime
+$dataObj = DateTime::createFromFormat('Y-m-d', $dataNascimento);
+
+// Obtém o ano da data
+$ano = $dataObj->format('Y');
+
+if ($ano < 1900 || $ano > 2099) {
+    echo "Ano inválido. Por favor, insira um ano entre 1900 e 2099.";
+} else {
+    // O ano está dentro do intervalo desejado, você pode prosseguir com o processamento dos dados.
+}
+}
+*/
+
+
+$dataNascimento = $_POST['dataNascimento'];
+
+// Converte a data para um objeto DateTime
+$dataObj = new DateTime($dataNascimento);
+
+// Obtém o ano da data
+$ano = $dataObj->format('Y');
+
+if ($ano < 1900 || $ano > 2099) {
+    echo "Ano inválido. Por favor, insira um ano entre 1900 e 2099.";
+} else {
+    // O ano está dentro do intervalo desejado, você pode prosseguir com o processamento dos dados.
+}
+
+
+
+
 
 
 
