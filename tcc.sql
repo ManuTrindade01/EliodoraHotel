@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Set-2023 às 20:57
+-- Tempo de geração: 17-Out-2023 às 02:26
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -53,6 +53,7 @@ INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, 
 
 CREATE TABLE `funcionario` (
   `id` int(11) NOT NULL,
+  `status` varchar(3) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `cpf` varchar(15) NOT NULL,
   `dataNascimento` date NOT NULL,
@@ -65,6 +66,7 @@ CREATE TABLE `funcionario` (
   `email` varchar(45) NOT NULL,
   `telefone` varchar(45) NOT NULL,
   `senha` varchar(100) NOT NULL,
+  `confirma` varchar(100) NOT NULL,
   `dataAdmissao` date NOT NULL,
   `salario` double NOT NULL,
   `cargo` varchar(45) NOT NULL,
@@ -77,12 +79,11 @@ CREATE TABLE `funcionario` (
 -- Extraindo dados da tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataDemissao`) VALUES
-(1, 'Emanuely dos Santos Trindade', '124312312323', '0000-00-00', 'F', '0', 'Cafezal do Sul', 'Rua Argentina ', 561, '875650000', 'manuifpr@gmail.com', '12345678903', '123456789', '2009-04-23', 3000, 'Gerente ', '09:30:00', '17:00:00', NULL),
-(3, 'Josefina Maria ', '123456789', '2003-01-20', 'F', 'PR', 'Alto Piquiri', 'Rua França', 453, '34556987', 'jose@gmail.com', '234567890', 'manu', '2007-07-07', 2345, 'Zeladora', '08:10:00', '17:00:00', NULL),
-(4, 'Maria do Carmo', '123.455.666-65', '2005-06-01', 'F', '22', '2211001', 'Rua Colômbia', 432, '75432-211', 'carmo@gmail.com', '(44) 98436-4532', '1234', '2001-03-02', 4.5, 'Gerente', '08:00:00', '17:00:00', NULL),
-(5, 'Maria Rita', '345.678.900-00', '2003-02-22', 'F', '11', '1100130', 'Rua D. Pedro', 234, '23456-789', 'rita@gmail.com', '(34) 56778-5444', '1234', '2032-02-23', 3.333, 'Faxina', '22:00:00', '07:30:00', NULL),
-(16, 'Maria de Fátima', '680.170.357-99', '2023-09-08', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 123, '12345-678', 'fatima@gmail.com', '(44) 97654-3234', '1234', '2023-09-08', 2.3, 'Faxina', '07:20:00', '13:00:00', NULL);
+INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataDemissao`) VALUES
+(27, 'Sim', 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 4, 'Gerente', '08:00:00', '17:00:00', NULL),
+(28, '', '', '734.330.610-33', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '0000-00-00', 0, '', '00:00:00', '00:00:00', NULL),
+(29, '', '', '734.330.610-33', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '0000-00-00', 0, '', '00:00:00', '00:00:00', NULL),
+(30, '', '', '734.330.610-33', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '0000-00-00', 0, '', '00:00:00', '00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,17 +112,10 @@ CREATE TABLE `hospede` (
 --
 
 INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
-(13, 'Pamela Vitória', '345.678.923-45', '2023-08-07', 'F', 'Selecione Estado', 'Selecione Cidade', 'waesyuiioçs', 3456, '23456-789', 'pamela@gmail.com', '(23) 45678-9023', '(23) 45678-9579'),
-(14, 'Josefa', '2.345.678-90', '0005-04-23', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Princesa Isabel', 2345, '23456-78', 'manu@gmail.com', '(23) 45678-9099', '(34) 56789-0777'),
-(15, 'Elis Regina', '345.678.908-76', '2005-06-01', 'M', '11', '1100015', 'Rua D. Pedro', 3445, '23456-789', 'elis@gmail.com', '(45) 67865-4322', '3456444444'),
-(16, 'Elis Regina', '345.678.908-76', '2005-06-01', 'M', '11', '1100015', 'Rua D. Pedro', 3445, '23456-789', 'elis@gmail.com', '(45) 67865-4322', '3456444444'),
-(17, 'Elis Regina', '345.678.908-76', '2005-02-14', 'F', '11', '1100015', 'Rua D. Pedro', 765, '23456-789', 'elis@gmail.com', '(34) 56778-5444', '3456444444'),
-(18, 'Catarina ', '129.345.678-90', '2023-09-08', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 234, '23456-543', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(19, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(20, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(21, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(22, '3', '129.345.678-90', '2023-09-08', 'M', 'PB', 'Areial', 'wertgfd', 345, '23456-543', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432'),
-(23, 'Catarina ', '334.555.543-45', '2023-09-06', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Uruguai', 2345, '34565-432', 'teste@gmail.com', '(44) 97654-3234', '(44) 95676-5432');
+(51, 'Francisca da Silva', '628.332.410-03', '2001-04-23', 'F', 'MS', 'Água Clara', 'Contancia', 34567, '45676-543', 'xica@gmail.com', '(44) 98767-6567', '(44) 98765-4345'),
+(52, 'Maria das Graças ', '533.779.870-70', '2002-02-01', 'F', 'BA', 'Abaíra', 'Contancia', 23456, '23456-321', 'cont@gmail.com', '(44) 96543-4567', '(44) 93456-5434'),
+(53, 'Sandra Maria ', '540.223.360-80', '2000-10-01', 'F', 'MG', 'Abadia dos Dourados', 'Contancia', 765, '34567-654', 'sandra@gmail.com', '(44) 98767-6567', '(44) 93456-5434'),
+(54, 'Lucas Manoel dos Santos Trindade', '392.336.480-60', '2001-10-24', 'S', 'Selecione Estado', 'Selecione Cidade', 'Rua Argentina', 561, '87565-000', 'lucas@gmail.com', '(44) 98787-6545', '(44) 97756-5454');
 
 -- --------------------------------------------------------
 
@@ -139,7 +133,13 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
-(1, 'rtyui');
+(1, 'rtyui'),
+(2, 'Prompt Keeps'),
+(3, 'Coca-Cola'),
+(4, 'Cristal'),
+(5, 'Tampico'),
+(6, 'Garoto'),
+(7, 'Doritos');
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,8 @@ CREATE TABLE `produto` (
 INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`, `id_tipo`, `id_marca`) VALUES
 (2, 'Refrigerante', 100, 10, NULL, NULL, NULL),
 (3, 'Chocolate', 200, 10, NULL, NULL, NULL),
-(4, 'nome', 100, 2, NULL, 1, 1);
+(4, 'nome', 100, 2, NULL, 1, 1),
+(5, 'Garrafa 1L', 10, 5, NULL, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -174,8 +175,9 @@ INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`
 
 CREATE TABLE `quarto` (
   `id` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
-  `tipo` varchar(45) NOT NULL,
+  `status` varchar(3) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `tipo` varchar(8) NOT NULL,
   `capacidade` int(45) NOT NULL,
   `valorDiaria` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -184,9 +186,8 @@ CREATE TABLE `quarto` (
 -- Extraindo dados da tabela `quarto`
 --
 
-INSERT INTO `quarto` (`id`, `nome`, `tipo`, `capacidade`, `valorDiaria`) VALUES
-(6, 'Flores', 'Suíte', 2, 200),
-(7, 'Orquídea', 'Suite', 2, 200);
+INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
+(11, '', 3, 'Casal', 2, 200);
 
 -- --------------------------------------------------------
 
@@ -196,15 +197,12 @@ INSERT INTO `quarto` (`id`, `nome`, `tipo`, `capacidade`, `valorDiaria`) VALUES
 
 CREATE TABLE `reserva` (
   `id` int(11) NOT NULL,
-  `dataReserva` date NOT NULL,
+  `status` varchar(3) NOT NULL,
   `dataEntrada` date NOT NULL,
   `dataSaida` date NOT NULL,
-  `valorTotalConsumo` double NOT NULL,
   `valorTotalReserva` double NOT NULL,
-  `valorTotalReceber` double NOT NULL,
-  `dataRecebimento` date NOT NULL,
-  `valorRecebido` double NOT NULL,
-  `formaRecebimento` varchar(45) NOT NULL,
+  `quantHospede` int(1) NOT NULL,
+  `observacao` varchar(200) NOT NULL,
   `id_quarto` int(11) DEFAULT NULL,
   `id_funcionario` int(11) DEFAULT NULL,
   `id_hospede` int(11) DEFAULT NULL
@@ -214,10 +212,9 @@ CREATE TABLE `reserva` (
 -- Extraindo dados da tabela `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `dataReserva`, `dataEntrada`, `dataSaida`, `valorTotalConsumo`, `valorTotalReserva`, `valorTotalReceber`, `dataRecebimento`, `valorRecebido`, `formaRecebimento`, `id_quarto`, `id_funcionario`, `id_hospede`) VALUES
-(2, '2023-09-07', '2023-09-11', '2023-09-12', 222, 222, 44444, '2023-09-12', 444, 'Dinheiro', 7, 3, 15),
-(3, '2023-09-07', '2023-09-07', '2023-09-07', 2, 123, 125, '2023-09-07', 125, 'Dinheiro', 6, 5, 13),
-(4, '2023-09-08', '2023-09-08', '2023-09-08', 1, 120, 122, '2023-09-08', 125, 'CartaoDebito', 7, 1, 13);
+INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_quarto`, `id_funcionario`, `id_hospede`) VALUES
+(38, 'Sim', '2023-10-16', '2023-10-17', 2, 1, '', 11, NULL, 54),
+(39, '', '2003-02-21', '2003-02-22', 220, 2, '', 11, NULL, 53);
 
 -- --------------------------------------------------------
 
@@ -237,7 +234,9 @@ CREATE TABLE `tipo` (
 INSERT INTO `tipo` (`id`, `nome`) VALUES
 (1, 'Sabonete'),
 (2, 'Chocolate'),
-(3, 'Bebida');
+(3, 'Bebida'),
+(5, 'Bebida'),
+(6, 'Salgadinho');
 
 --
 -- Índices para tabelas despejadas
@@ -307,43 +306,43 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `quarto`
 --
 ALTER TABLE `quarto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas

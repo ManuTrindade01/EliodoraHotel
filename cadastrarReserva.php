@@ -1,7 +1,5 @@
 <?php
-
 require_once("verificaAutenticacao.php");
-
 // Conectar no BD (IP, usuário, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
 
@@ -14,17 +12,22 @@ if (isset($_POST['cadastrar'])) {
   $dataEntrada = $_POST['dataEntrada'];
   $dataSaida = $_POST['dataSaida'];
   $valorTotalReserva = $_POST['valorTotalReserva'];
+  $quantHospede = $_POST['quantHospede'];
   $observacao = $_POST['observacao'];
 
   // Preparar a SQL para inserir os dados da reserva
-  $sql = "INSERT INTO reserva (id_hospede, id_quarto, dataEntrada, dataSaida, valorTotalReserva, observacao) VALUES ('$id_hospede', '$id_quarto', '$dataEntrada', '$dataSaida', '$valorTotalReserva', '$observacao')";
+  $sql = "INSERT INTO reserva (id_hospede, id_quarto, dataEntrada, dataSaida, valorTotalReserva, quantHospede, observacao) VALUES ('$id_hospede', '$id_quarto', '$dataEntrada', '$dataSaida', '$valorTotalReserva', '$quantHospede', '$observacao')";
 
   // Executar a SQL para inserção
   mysqli_query($conexao, $sql);
 
+
+
+
   //5. Mostrar uma mensagem ao usuário
   $mensagem = "Registro salvo com sucesso.";
 }
+
 
 // Seu HTML e o restante do código devem continuar aqui
 ?>
@@ -59,10 +62,10 @@ if (isset($_POST['cadastrar'])) {
           </div>
         <?php } ?>
 
-        <form method="post">
+        <form method="post" id="form" name="form">
           <div class="row">
             <div class="mb-3 col">
-              <label for="id_hospede" class="form-label">Hóspede:</label>
+              <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
               <select name="id_hospede" id="id_hospede" class="form-select">
                 <option value="">-- Selecione--</option>
 
@@ -83,7 +86,7 @@ if (isset($_POST['cadastrar'])) {
 
             <div class="mb-3 col">
               <label for="dataEntrada" class="form-label">Data da Entrada:</label>
-              <input type="date" class="form-control" name="dataEntrada">
+              <input type="date" class="form-control" name="dataEntrada" id="dataEntrada" required>
             </div>
             <div class="mb-3 col">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
@@ -117,31 +120,48 @@ if (isset($_POST['cadastrar'])) {
               <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
               <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva">
             </div>
-          </div>
 
+            <div class="mb-3 col">
+              <label for="quantHospede" class="form-label">Número Hóspedes:</label>
+              <input type="number" class="form-control" name="quantHospede" id="quantHospede">
+            </div>
+          </div>
+          
 
           <div class="mb-3">
             <label for="observacao" class="form-label">Observação:</label>
             <input class="form-control" id="observacao" name="observacao" placeholder="Nome dos demais integrantes">
           </div>
-      <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
-        <i class="fa-solid fa-check"></i>
-      </button>
-      </form>
+          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </form>
+      </div>
     </div>
-    </div>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
-    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
-    integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    $('#valorConsumo').mask("#.##0,00", { reverse: true });
-    $('#valorReserva').mask("#.##0,00", { reverse: true });
-    $('#valorR').mask("#.##0,00", { reverse: true });
-  </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+      integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+      integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $('#valorConsumo').mask("#.##0,00", { reverse: true });
+      $('#valorReserva').mask("#.##0,00", { reverse: true });
+      $('#valorR').mask("#.##0,00", { reverse: true });
+    </script>
+
+<script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function() {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+       
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    </script>
 </body>
 
 </html>

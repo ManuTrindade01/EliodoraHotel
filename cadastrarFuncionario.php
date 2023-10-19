@@ -2,51 +2,100 @@
 //DEIXAR SEM O VERIFICAR AUTENTICAÇÃO PARA PODER CADASTRAR OUTROS SEM LOGIN
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 
-$conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
+function validarCPF($cpf)
+{
+  // Remove caracteres não numéricos
+  $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
+  // Verifica se o CPF possui 11 dígitos
+  if (strlen($cpf) != 11) {
+    return false;
+  }
 
-if (isset($_POST['cadastrar'])) {
-  //2. Receber os dados para inserir no BD
-  $nome = $_POST['nome'];
-  $cpf = $_POST['cpf'];
-  $dataNascimento = $_POST['dataNascimento'];
-  $genero = $_POST['genero'];
-  $estado = $_POST['estado'];
-  $cidade = $_POST['cidade'];
-  $endereco = $_POST['endereco'];
-  $numeroEndereco = $_POST['numeroEndereco'];
-  $cep = $_POST['cep'];
-  $email = $_POST['email'];
-  $telefone = $_POST['telefone'];
-  $senha = $_POST['senha'];
-  $dataAdmissao = $_POST['dataAdmissao'];
-  $salario = $_POST['salario'];
-  $cargo = $_POST['cargo'];
-  $horarioEntrada = $_POST['horarioEntrada'];
-  $horarioSaida = $_POST['horarioSaida'];
+  // Verifica se todos os dígitos são iguais
+  if (preg_match('/(\d)\1{10}/', $cpf)) {
+    return false;
+  }
 
+  // Calcula o primeiro dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 9; $i++) {
+    $soma += $cpf[$i] * (10 - $i);
+  }
+  $resto = $soma % 11;
+  $digito1 = ($resto < 2) ? 0 : 11 - $resto;
 
+  // Calcula o segundo dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 10; $i++) {
+    $soma += $cpf[$i] * (11 - $i);
+  }
+  $resto = $soma % 11;
+  $digito2 = ($resto < 2) ? 0 : 11 - $resto;
 
-  //3. Preparar a SQL
-  $sql = "INSERT INTO funcionario (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, senha, 
-    dataAdmissao, salario, cargo, horarioEntrada, horarioSaida) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$senha', '$dataAdmissao', '$salario', '$cargo', '$horarioEntrada', '$horarioSaida')";
-
-  //4. Executar a SQL
-  mysqli_query($conexao, $sql);
-
-  //5. Mostrar uma mensagem ao usuário
-  $mensagem = "Registro salvo com sucesso.";
-
-
-
+  // Verifica se os dígitos verificadores estão corretos
+  if ($cpf[9] == $digito1 && $cpf[10] == $digito2) {
+    return true;
+  } else {
+    return false;
+  }
 }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
+
+
+  if (isset($_POST['cadastrar'])) {
+
+    $cpf = $_POST["cpf"];
+
+    if (!validarCPF($cpf)) { //Se o CPF for inválido
+      $mensagemErro = "CPF inválido.";
+      $nome = $_POST['nome'];
+      $cpf = $_POST['cpf'];
+      $dataNascimento = $_POST['dataNascimento'];
+      $genero = $_POST['genero'];
+      $estado = $_POST['estado'];
+      $cidade = $_POST['cidade'];
+      $endereco = $_POST['endereco'];
+      $numeroEndereco = $_POST['numeroEndereco'];
+      $cep = $_POST['cep'];
+      $email = $_POST['email'];
+      $telefone = $_POST['telefone'];
+      $senha = $_POST['senha'];
+      $confirma = $_POST['confirma'];
+      $dataAdmissao = $_POST['dataAdmissao'];
+      $salario = $_POST['salario'];
+      $cargo = $_POST['cargo'];
+      $horarioEntrada = $_POST['horarioEntrada'];
+      $horarioSaida = $_POST['horarioSaida'];
+    } else {
+      //prossegue com o cadastro pq o CPF está válido
+
+
+
+
+
+
+      //3. Preparar a SQL
+      $sql = "INSERT INTO funcionario (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, senha, confirma, dataAdmissao, salario, cargo, horarioEntrada, horarioSaida) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$senha', '$confirma', '$dataAdmissao', '$salario', '$cargo', '$horarioEntrada', '$horarioSaida')";
+
+      //4. Executar a SQL
+      mysqli_query($conexao, $sql);
+
+      //5. Mostrar uma mensagem ao usuário
+      $mensagem = "Registro salvo com sucesso.";
+    }
+  }
+}
+
 ?>
 
 <?php require_once("cabecalho.php"); ?>
 <link rel="shortcut icon" href="barbara.ico" type="image/x-icon">
 <title>CadastrarFuncionário</title>
-<script src="validaCpf.js"></script>
-
 </head>
 
 <body>
@@ -64,7 +113,14 @@ if (isset($_POST['cadastrar'])) {
           </div>
         <?php } ?>
 
-        <form method="post" class="p-3" id="form">
+        <?php if (isset($mensagemErro)) { ?>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagemErro ?>
+          </div>
+        <?php } ?>
+
+        <form method="post" id="form" name="form">
 
           <div class="row">
             <div class="mb-3 col success">
@@ -87,7 +143,6 @@ if (isset($_POST['cadastrar'])) {
                 <option>Selecione</option>
                 <option value="F">Feminino</option>
                 <option value="M">Masculino</option>
-                <option value="X">Outro</option>
               </select>
             </div>
           </div>
@@ -130,7 +185,12 @@ if (isset($_POST['cadastrar'])) {
             </div>
             <div class="mb-3 col">
               <label for="senha" class="form-label">Senha:</label>
-              <input name="senha" type="password" class="form-control" id="senha" required>
+              <input name="senha" type="password" class="form-control" id="senha" required onchange='confereSenha();'>
+            </div>
+            <div class="mb-3 col">
+              <label for="confirma" class="form-label">Confirmar Senha:</label>
+              <input name="confirma" type="password" class="form-control" id="confirma" required
+                onchange='confereSenha();' placeholder="Repita sua senha" autofocus>
             </div>
           </div>
           <div class="row">
@@ -156,7 +216,7 @@ if (isset($_POST['cadastrar'])) {
             </div>
           </div>
 
-          <button onclick="validaCpf()"  name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;"> Cadastrar
+          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;"> Cadastrar
             <i class="fa-solid fa-check"></i>
           </button>
 
@@ -170,11 +230,45 @@ if (isset($_POST['cadastrar'])) {
         integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script>
-        $('#cpf').mask('000.000.000-00', { reverse: true });
+        $('#cpf').mask('000.000.000-00', {
+          reverse: true
+        });
         $('#telefone').mask('(00) 00000-0000');
         $('#cep').mask('00000-000');
-        $('#salario').mask("#.##0,00", { reverse: true });
+        $('#salario').mask("#.##0,00", {
+          reverse: true
+        });
       </script>
-</body>
-</html>
 
+      <script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function () {
+          return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function () {
+          window.onbeforeunload = null;
+        });
+      </script>
+
+
+      <script>
+        function confereSenha() {
+          const senha = document.querySelector('input[name=senha]');
+          const confirma = document.querySelector('input[name=confirma]');
+          if (confirma.value === senha.value) {
+            confirma.setCustomValidity('');
+          } else {
+            confirma.setCustomValidity('As senhas não conferem');
+          }
+        }
+        function senhaOK() {
+          alert("Senhas conferem!")
+        }
+      </script>
+
+
+</body>
+
+</html>

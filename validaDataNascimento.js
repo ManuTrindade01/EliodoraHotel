@@ -32,6 +32,7 @@ function calcularIdade(dataNascimento) {
   if (idade >= idadeMinima) {
     console.log("Você é maior de idade. Acesso permitido.");
   } else {
+    idade.setCustomValidity('ffdgddsfgdfsfd')
     console.log("Desculpe, você é menor de idade. Acesso negado.");
   }
   

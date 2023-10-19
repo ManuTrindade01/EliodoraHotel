@@ -66,11 +66,11 @@ $resultado = mysqli_query($conexao, $sql);
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
-      <th scope="col">Data Nascimento</th>
       <th scope="col">Email</th>
       <th scope="col">Telefone</th>
       <th scope="col">Horário Entrada</th>
       <th scope="col">Horário Saída</th>
+      <th scope="col">Ativo</th>
       <th scope="col">Ações</th>
     </tr>
   </thead>
@@ -79,11 +79,11 @@ $resultado = mysqli_query($conexao, $sql);
     <tr>
     <td><?= $linha['id'] ?></th>
       <td><?= $linha['nome'] ?></td>
-      <td><?= $linha['dataNascimento'] ?></td>
       <td><?= $linha['email'] ?></td>
       <td><?= $linha['telefone'] ?></td>
       <td><?= $linha['horarioEntrada'] ?></td>
       <td><?= $linha['horarioSaida'] ?></td>
+      <td><?= $linha['status'] ?></td>
       <td>
         
         <a href="alterarFuncionario.php?id=<?= $linha['id'] ?>" class="btn btn-warning">

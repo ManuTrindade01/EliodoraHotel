@@ -4,12 +4,13 @@
     margin: 0;
     font-family: 'Inter', sans-serif;
 }
-
+body {
+    background-color: #f4dde3;
+}
 header {
     background-color: #b97c8c;
-    box-shadow: 0px 3px 10px #f7f5f5;
+    box-shadow: 0px 3px 10px #120303;
 }
-
 .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -22,7 +23,7 @@ header {
     
 }
 
-.logo h1 {
+.logo h2 {
     color: #fff;
 }
 
@@ -44,9 +45,14 @@ header {
 .nav-link {
     text-decoration: none;
     font-size: 1.15rem;
-    color: #fff;
+    color: #ffffff;
     font-weight: 400;
 }
+
+.nav-link:hover {
+    color: #a70162;
+}
+
 
 .login-button button {
     border: none;
@@ -69,6 +75,12 @@ header {
 .mobile-menu {
     display: none;
 }
+
+.containercard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  } 
 
 @media screen and (max-width: 730px) {
     .nav-bar {
@@ -109,3 +121,18 @@ header {
         display: block;
     }
 }
+
+.containercard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .h5{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #a70162;
+  }
+
+  
+
+  

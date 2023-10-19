@@ -62,7 +62,9 @@ if (isset($_POST['cadastrar'])) {
                 while ($linha = mysqli_fetch_array($resultado)) {
                   ?>
 
-                  <option value="<?= $linha['id'] ?>"><?= $linha['nome'] ?></option>
+                  <option value="<?= $linha['id'] ?>">
+                    <?= $linha['nome'] ?>
+                  </option>
 
                 <?php } ?>
               </select>
@@ -80,7 +82,9 @@ if (isset($_POST['cadastrar'])) {
                 while ($linha = mysqli_fetch_array($resultado)) {
                   ?>
 
-                  <option value="<?= $linha['id'] ?>"><?= $linha['nome'] ?></option>
+                  <option value="<?= $linha['id'] ?>">
+                    <?= $linha['nome'] ?>
+                  </option>
 
                 <?php } ?>
               </select>

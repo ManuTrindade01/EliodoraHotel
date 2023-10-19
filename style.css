@@ -76,6 +76,12 @@ header {
     display: none;
 }
 
+.containercard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  } 
+
 @media screen and (max-width: 730px) {
     .nav-bar {
         padding: 1.5rem 4rem;
@@ -115,3 +121,18 @@ header {
         display: block;
     }
 }
+
+.containercard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .h5{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #a70162;
+  }
+
+  
+
+  

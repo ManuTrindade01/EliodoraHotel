@@ -16,6 +16,7 @@ if (isset($_POST['salvar'])) {
     $dataSaida = $_POST['dataSaida'];
     $valorTotalReserva = $_POST['valorTotalReserva'];
     $observacao = $_POST['observacao'];
+    $status = $_POST['status'];
 
     // Preparar a SQL para inserir os dados da reserva
     $sql = "update reserva
@@ -24,7 +25,8 @@ if (isset($_POST['salvar'])) {
                     dataEntrada = '$dataEntrada',
                     dataSaida = '$dataSaida',
                     valorTotalReserva = '$valorTotalReserva',
-                    observacao = '$observacao'
+                    observacao = '$observacao',
+                    status = '$status'
                 where id  = $id";
 
     // Executar a SQL para inserção
@@ -109,8 +111,8 @@ $linha = mysqli_fetch_array($resultado);
                     </div>
 
                     <div class="row">
-                    <div class="mb-3 col">
-                            <label for="id_quarto" class="form-label">Hóspede:</label>
+                        <div class="mb-3 col-4">
+                            <label for="id_quarto" class="form-label">Quarto:</label>
                             <select name="id_quarto" id="id_quarto" class="form-select">
                                 <option value="">-- Selecione--</option>
 
@@ -131,22 +133,35 @@ $linha = mysqli_fetch_array($resultado);
                             </select>
                         </div>
 
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-4">
                             <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
                             <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva"
                                 value="<?= $linha['valorTotalReserva'] ?>">
+                        </div>
+
+                        <div class="mb-3 col-4">
+                            <label for="status" class="form-label">Ativo</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
+                                <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="observacao" class="form-label">Observação:</label>
                         <input class="form-control" id="observacao" name="observacao"
-                         value="<?= $linha['observacao'] ?>">
+                            value="<?= $linha['observacao'] ?>">
                     </div>
+
                     <button name="salvar" type="submit" class="btn"
                         style="background-color: #a70162; color: #fff;">Salvar
                         <i class="fa-solid fa-check"></i>
                     </button>
+                    <a href="controlarReserva.php" type="submit" class="btn btn-warning"><i
+                            class="fa-solid fa-rotate-left"></i></i>
+                        Voltar</a>
+
                 </form>
             </div>
         </div>
@@ -162,6 +177,17 @@ $linha = mysqli_fetch_array($resultado);
             $('#valorReserva').mask("#.##0,00", { reverse: true });
             $('#valorR').mask("#.##0,00", { reverse: true });
         </script>
+        <script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function() {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+       
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    </script>
 </body>
 
 </html>

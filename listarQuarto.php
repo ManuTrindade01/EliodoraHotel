@@ -66,6 +66,7 @@ $resultado = mysqli_query($conexao, $sql);
       <th scope="col">Tipo</th>
       <th scope="col">Capacidade</th>
       <th scope="col">Diária</th>
+      <th scope="col">Ativo</th>
       <th scope="col">Ação</th>
     </tr>
   </thead>
@@ -77,6 +78,7 @@ $resultado = mysqli_query($conexao, $sql);
       <td><?= $linha['tipo'] ?></td>
       <td><?= $linha['capacidade'] ?></td> 
       <td><?= $linha['valorDiaria'] ?></td>
+      <td><?= $linha['status'] ?></td>
       <td>
         
         <a href="alterarQuarto.php?id=<?= $linha['id'] ?>" class="btn btn-warning">

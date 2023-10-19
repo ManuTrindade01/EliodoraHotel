@@ -97,7 +97,6 @@ $linha = mysqli_fetch_array($resultado);
   <select name="genero" class="form-select" aria-label="Default select example">
     <option value="F" <?= ($linha['genero'] == "F") ? "selected" : "" ?> >Feminino</option>
     <option value="M" <?= ($linha['genero'] == "M") ? "selected" : "" ?>>Masculino</option>
-    <option value="X" <?= ($linha['genero'] == "X") ? "selected" : "" ?>>Prefiro não dizer</option>
   </select> 
   </div>
   </div>  
@@ -168,5 +167,16 @@ $linha = mysqli_fetch_array($resultado);
   $('#contatoEmergencia').mask('(00) 00000-0000');
   $('#cep').mask('00000-000');
 </script>
+<script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function() {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+       
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    </script>
 </body>
 </html>

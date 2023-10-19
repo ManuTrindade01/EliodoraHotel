@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,16 +14,22 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b78968e6be.js" crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital@1&family=Sorts+Mill+Goudy&family=Unna:ital@1&display=swap"
+        rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b78968e6be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <link rel="stylesheet" href="Principal.css" type="text/css">
 
 </head>
 
-<body style="background-color: ;">
+<body>
     <?php require_once("menu.html"); ?>
-
-
     <div class="container">
         <h2 class="mt-3">
             <?php
@@ -33,73 +38,43 @@
             ?>
             Seja bem vindo(a),
             <?= $nome ?>.
-            <br>
+    <br><br>
     </div>
 
-    <div class="container">
-        <br>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Hóspede</h5>
-                        <a href="cadastrarHospede.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
+    <div class="container1">
+        <div class="box">
+            <div class="boxContent">
+                <i class="fa fa-user icon"></i>
+                <h1 class="title">Cadastrar Hóspede</h1>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Funcionário</h5>
-                        <a href="cadastrarFuncionario.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Marca</h5>
-                        <a href="cadastrarMarca.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
-            </div>
+            <a href="cadastrarHospede.php"></a>
+        </div>
+        <div class="box">
+            <div class="boxContent">
+                <i class="fa fa-bed icon"></i>
+                <h1 class="title">Cadastrar Quarto</h1>
 
+            </div>
+            <a href="cadastrarQuarto.php"></a>
+        </div>
+        <div class="box">
+            <div class="boxContent">
+                <i class="fa fa-calendar icon"></i>
+                <h1 class="title">Cadastrar Reserva</h1>
+            </div>
+            <a href="cadastrarReserva.php"></a>
         </div>
 
-        <br>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Produto</h5>
-                        <a href="cadastrarProduto.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
+        <div class="box">
+            <div class="boxContent">
+            <i class="fa fa-user-gear icon"></i>
+                <h1 class="title">Cadastrar Funcionário</h1>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Categoria</h5>
-                        <a href="cadastrarTipo.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Quarto</h5>
-                        <a href="cadastrarQuarto.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Cadastrar</a>
-                    </div>
-                </div>
-            </div>
-
+            <a href="cadastrarFuncionario.php"></a>
         </div>
+
+        
+        
     </div>
 
 </body>

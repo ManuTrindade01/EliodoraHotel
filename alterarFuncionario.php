@@ -24,6 +24,7 @@ if(isset($_POST['salvar'])){
     $cargo = $_POST['cargo'];
     $horarioEntrada = $_POST['horarioEntrada'];
     $horarioSaida = $_POST['horarioSaida'];
+    $status = $_POST['status'];
 
     //3. Preparar a SQL
     $sql = "UPDATE funcionario
@@ -43,7 +44,8 @@ if(isset($_POST['salvar'])){
                     salario = '$salario',
                     cargo = '$cargo',
                     horarioEntrada = '$horarioEntrada',
-                    horarioSaida = '$horarioSaida'
+                    horarioSaida = '$horarioSaida',
+                    status = '$status'
                 where id  = $id";
 
     //4. Executar a SQL
@@ -108,11 +110,8 @@ $linha = mysqli_fetch_array($resultado);
   <select name="genero" class="form-select" aria-label="Default select example">
     <option value="F" <?= ($linha['genero'] == "F") ? "selected" : "" ?> >Feminino</option>
     <option value="M" <?= ($linha['genero'] == "M") ? "selected" : "" ?>>Masculino</option>
-    <option value="X" <?= ($linha['genero'] == "X") ? "selected" : "" ?>>Prefiro não dizer</option>
   </select> 
   </div>
-  </div>
-  <div class="row">
   <div class="mb-3 col">
   <label for="estado">UF</label>
         <select name="estado" id="uf" value="<?= $linha['uf']?>">
@@ -157,12 +156,13 @@ $linha = mysqli_fetch_array($resultado);
     <label for="senha" class="form-label">Senha:</label>
     <input name="senha" type="password" class="form-control" value="<?= $linha['senha']?>">
   </div>
-  </div>
-  <div class="row">
   <div class="mb-3 col">
     <label for="dataAdmissao" class="form-label">Data Admissão:</label>
     <input name="dataAdmissao" type="date" class="form-control" value="<?= $linha['dataAdmissao']?>">
   </div>
+  </div>
+
+  <div class="row">
   <div class="mb-3 col">
     <label for="salario" class="form-label">Salário:</label>
     <input name="salario" type="text" class="form-control" value="<?= $linha['salario']?>">
@@ -178,6 +178,14 @@ $linha = mysqli_fetch_array($resultado);
   <div class="mb-3 col">
     <label for="horarioSaida" class="form-label">Horário de Saída:</label>
     <input name="horarioSaida" type="time" class="form-control" value="<?= $linha['horarioSaida']?>">
+  </div>
+
+  <div class="mb-3 col-3">
+    <label for="status" class="form-label">Ativo</label>
+    <select name="status" id="status" class="form-select">
+      <option value="Sim"<?= ($linha['status'] == 'Sim') ? 'selected' : '' ?> >Sim</option>
+      <option value="Não"<?= ($linha['status'] == 'Não') ? 'selected' : '' ?> >Não</option>
+    </select>
   </div>
   </div>
 
@@ -201,5 +209,16 @@ $linha = mysqli_fetch_array($resultado);
   $('#cep').mask('00000-000');
   $('#salario').mask("#.##0,00", {reverse: true});
 </script>
+<script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function() {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+       
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    </script>
 </body>
 </html>

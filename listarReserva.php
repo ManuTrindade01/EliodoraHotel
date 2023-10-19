@@ -2,6 +2,7 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
+
 //Exclusão //
 if (isset($_GET['id'])) { //Verifica se foi clicado no botão excluir
   $sql = "delete from reserva where id = " . $_GET['id'];
@@ -10,26 +11,22 @@ if (isset($_GET['id'])) { //Verifica se foi clicado no botão excluir
 
 }
 
+
+$V_WHERE = " ";
 //Geração SQL dinãmica para relatório
 
 if (isset($_POST['pesquisar'])) {
-  $V_WHERE = " and hospede_nome like '%" . $_POST['hospede_nome'] . "%' ";
+  $V_WHERE = " AND hospede.nome like '%" . $_POST['hospede_nome'] . "%' ";
 }
-$V_WHERE = '';
 //2. Preparar a SQL
-$sql = "select *, from reserva
-        where 1 = 1 " . $V_WHERE;
-      
+$sql = "SELECT * FROM reserva
+        WHERE 1 = 1 " . $V_WHERE;
+ 
 
-$sql = "select reserva.*, hospede.nome as hospede_nome
-from reserva
-left join hospede on hospede.id = reserva.id_hospede
-"
-;
-
-"select reserva.*, quarto.numero as quarto_numero
-from reserva
-left join quarto on quarto.id = reserva.id_quarto";
+ $sql = "select reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
+ from reserva
+ left join hospede on hospede.id = reserva.id_hospede
+ left join quarto on quarto.id = reserva.id_quarto";
 
 
 //3. Executar a SQL
@@ -59,7 +56,7 @@ $resultado = mysqli_query($conexao, $sql);
 
 <form method="post">
 <div class="input-group mb-3">
-  <input type="text" name="hospede_nome" id="id_hospede" class="form-control" placeholder="Pesquisar por nome" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <input type="text" name="hospede_nome" id="id_hospede" class="form-control" placeholder="Pesquisar por nome do hóspede" aria-label="Recipient's username" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit" ><i class="fa-solid fa-magnifying-glass"></i> </button>
     </form>
@@ -86,11 +83,11 @@ $resultado = mysqli_query($conexao, $sql);
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Ativo</th>
       <th scope="col">Hóspede</th>
       <th scope="col">Quarto</th>
       <th scope="col">Data Entrada</th>
       <th scope="col">Data Saída</th>
-
       <th scope="col">Ação</th>
     </tr>
   </thead>
@@ -100,20 +97,23 @@ $resultado = mysqli_query($conexao, $sql);
         <td>
           <?= $linha['id'] ?>
           </th>
+          
+        <td>
+          <?= $linha['status'] ?>
+        </td>
         <td>
           <?= $linha['hospede_nome'] ?>
         </td>
         <td>
-          <?= $linha['id_quarto'] ?>
+          <?= $linha['quarto_numero'] ?>
         </td> 
         <td>
-          <?= $linha['dataEntrada'] ?>
+        <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
         </td>
         <td>
-          <?= $linha['dataSaida'] ?>
+        <?= date('d/m/Y', strtotime($linha['dataSaida'])) ?>
         </td>
         <td>
-
           <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>

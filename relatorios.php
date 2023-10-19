@@ -8,7 +8,7 @@ require_once("verificaAutenticacao.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="barbara.ico" type="image/x-icon">
-    <title>Principal</title>
+    <title>Relatórios</title>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -20,76 +20,47 @@ require_once("verificaAutenticacao.php");
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="Principal.css">
 </head>
 
 <body style="background-color: ;">
     <?php require_once("menu.html"); ?>
 
-    <div class="container">
-        <br>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Hóspedes</h5>
-                        <a href="listarHospedes.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
+    <div class="container1">
+        <div class="box">
+            <div class="boxContent">
+            <i class="fa fa-user-group icon"></i>
+                <h1 class="title">Hóspedes Cadastrados</h1>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Funcionário</h5>
-                        <a href="listarFuncionario.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Quarto</h5>
-                        <a href="listarQuarto.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
-            </div>
+            <a href="listarHospedes.php"></a>
+        </div>
+        <div class="box">
+            <div class="boxContent">
+                <i class="fa fa-bed icon"></i>
+                <h1 class="title">Quartos Cadastrados</h1>
 
+            </div>
+            <a href="listarQuarto.php"></a>
+        </div>
+        <div class="box">
+            <div class="boxContent">
+                <i class="fa fa-calendar icon"></i>
+                <h1 class="title">Reservas cadastradas</h1>
+            </div>
+            <a href="listarReserva.php"></a>
         </div>
 
-        <br>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Reserva</h5>
-                        <a href="listarReserva.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
+        <div class="box">
+            <div class="boxContent">
+            <i class="fa fa-user-gear icon"></i>
+                <h1 class="title">Funcionários Cadastrados</h1>
             </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Categoria</h5>
-                        <a href="listarTipo.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Produto</h5>
-                        <a href="listarProduto.php" class="btn"
-                            style="background-color: #a70162; color: #ffffff;">Abrir</a>
-                    </div>
-                </div>
-            </div>
-
+            <a href="listarFuncionario.php"></a>
         </div>
+
+        
+        
+    </div>
     </div>
 
 </body>

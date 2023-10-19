@@ -44,9 +44,7 @@
       </div>
       <button name="entrar" type="submit" class="btn"
         style="background-color: #a70162; color: #fff;">Entrar</button>
-      <div class="text-center mt-3">
-        <a href="#" class="text-decoration-none" style="color: #a70162">Esqueceu a senha?</a> | <a
-          href="cadastrarFuncionario.php" style="color: #a70162" class="text-decoration-none">Cadastre-se</a>
+        <br>
       </div>
     </form>
   </div>

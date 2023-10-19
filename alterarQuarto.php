@@ -11,13 +11,15 @@ if (isset($_POST['salvar'])) {
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
   $valorDiaria = $_POST['valorDiaria'];
+  $status = $_POST['status'];
 
   //3. Preparar a SQL
   $sql = "UPDATE quarto
                 set numero  = '$numero',
                     tipo = '$tipo',
                     capacidade = '$capacidade',
-                    valorDiaria = '$valorDiaria'
+                    valorDiaria = '$valorDiaria', 
+                    status = '$status'
                 where id  = $id";
 
   //4. Executar a SQL
@@ -42,53 +44,57 @@ $linha = mysqli_fetch_array($resultado);
 
 
 <div class="container p-4">
-    <div class="card">
-      <div class="card-header">
-        <h2>Alterar Quarto</h2>
-      </div>
-      <div class="card-body">
-        <?php if (isset($mensagem)) { ?>
-          <div class="alert alert-success" role="alert">
-            <i class="fa-solid fa-square-check"></i>
-            <?= $mensagem ?>
-          </div>
-        <?php } ?>
+  <div class="card">
+    <div class="card-header">
+      <h2>Alterar Quarto</h2>
+    </div>
+    <div class="card-body">
+      <?php if (isset($mensagem)) { ?>
+        <div class="alert alert-success" role="alert">
+          <i class="fa-solid fa-square-check"></i>
+          <?= $mensagem ?>
+        </div>
+      <?php } ?>
 
 
-<form method="post">
-  <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+      <form method="post">
+        <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+
+        <div class="mb-3">
+          <label for="numero" class="form-label">Número:</label>
+          <input type="text" class="form-control" name="numero" value="<?= $linha['numero'] ?>">
+        </div>
+        <div class="mb-3">
+          <label for="tipo" class="form-label">Tipo:</label>
+          <input type="text" class="form-control" name="tipo" value="<?= $linha['tipo'] ?>">
+        </div>
+        <div class="mb-3">
+          <label for="capacidade" class="form-label">Capacidade:</label>
+          <input type="text" class="form-control" name="capacidade" id="capacidade" value="<?= $linha['capacidade'] ?>">
+
+        </div>
+        <div class="mb-3">
+          <label for="valorDiaria" class="form-label">Valor Diária:</label>
+          <input name="valorDiaria" type="text" class="form-control" id="valorDiaria"
+            value="<?= $linha['valorDiaria'] ?>">
+        </div>
+        <div class="mb-3">
+          <label for="status" class="form-label">Ativo</label>
+          <select name="status" id="status" class="form-select">
+            <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
+            <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
+          </select>
+        </div>
+        <button name="salvar" type="submit" style="background-color: #a70162; color: #fff" class="btn"><i
+            class="fa-solid fa-check"></i> Salvar</button>
+
+        <a href="listarQuarto.php" type="submit" class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></i>
+          Voltar</a>
 
 
-
-
-
-
-  <div class="mb-3">
-    <label for="numero" class="form-label">Número:</label>
-    <input type="text" class="form-control" name="numero" value="<?= $linha['numero'] ?>">
+      </form>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="tipo" class="form-label">Tipo:</label>
-    <input type="text" class="form-control" name="tipo" value="<?= $linha['tipo'] ?>">
-  </div>
-  <div class="mb-3">
-    <label for="capacidade" class="form-label">Capacidade:</label>
-    <input type="text" class="form-control" name="capacidade" id="capacidade" value="<?= $linha['capacidade'] ?>">
-
-  </div>
-  <div class="mb-3">
-    <label for="valorDiaria" class="form-label">Valor Diária:</label>
-    <input name="valorDiaria" type="text" class="form-control" id="valorDiaria" value="<?= $linha['valorDiaria'] ?>">
-  </div>
-  <button name="salvar" type="submit" style="background-color: #a70162; color: #fff" class="btn"><i class="fa-solid fa-check"></i> Salvar</button>
-
-  <a href="listarQuarto.php" type="submit" class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></i>
-    Voltar</a>
-  </button>
-
-</form>
-</div>
-</div>
 </div>
 <script type="text/javascript" src="js/app.js"></script>
 
@@ -102,6 +108,17 @@ $linha = mysqli_fetch_array($resultado);
 <script>
   $('#valorDiaria').mask("#.##0,00", { reverse: true }); 
 </script>
+<script>
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function() {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
+       
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function() {
+            window.onbeforeunload = null;
+        });
+    </script>
 </body>
 
 </html>
