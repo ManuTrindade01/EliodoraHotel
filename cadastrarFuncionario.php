@@ -200,14 +200,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div class="row">
             <div class="mb-3 col">
-              <label for="estado">UF</label>
-              <select name="estado" id="uf" required>
+              <label for="estado" class="form-label">UF</label>
+              <select name="estado" id="uf" class="form-select" required>
                 <option>Selecione Estado</option>
               </select>
             </div>
             <div class="mb-3 col">
-              <label for="cidade">Cidade</label>
-              <select name="cidade" id="cidade" required>
+              <label for="cidade" class="form-label">Cidade</label>
+              <select name="cidade" id="cidade" class="form-select" required>
                 <option>Selecione Cidade</option>
               </select>
             </div>
@@ -256,7 +256,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col">
               <label for="cargo" class="form-label">Cargo:</label>
-              <input name="cargo" type="text" class="form-control" required>
+              <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required>
+                <option>Selecione</option>
+                <option value="Admin">Administração</option>
+                <option value="Recep">Recepção</option>
+              </select>
             </div>
             <div class="mb-3 col">
               <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
