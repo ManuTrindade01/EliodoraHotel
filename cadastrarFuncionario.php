@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
-
+      
       //3. Preparar a SQL
       $sql = "INSERT INTO funcionario (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, senha, confirma, dataAdmissao, salario, cargo, horarioEntrada, horarioSaida) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$senha', '$confirma', '$dataAdmissao', '$salario', '$cargo', '$horarioEntrada', '$horarioSaida')";
 
@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="genero" required>
-                <option>Selecione</option>
+                <option value="" disabled selected>Selecione</option>
                 <option value="F">Feminino</option>
                 <option value="M">Masculino</option>
               </select>
@@ -257,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col">
               <label for="cargo" class="form-label">Cargo:</label>
               <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required>
-                <option>Selecione</option>
+              <option value="" disabled selected>Selecione</option>
                 <option value="Administração">Administração</option>
                 <option value="Recepção">Recepção</option>
               </select>

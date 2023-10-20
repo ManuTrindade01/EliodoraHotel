@@ -8,30 +8,14 @@ $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
 if (isset($_POST['cadastrar'])) {
   // Receber os dados para inserir no BD
   $id_hospede = $_POST['id_hospede'];
-  $id_quarto = $_POST['id_quarto'];
   $dataEntrada = strtotime($_POST['dataEntrada']);
   $dataSaida = strtotime($_POST['dataSaida']);
   $quantHospede = $_POST['quantHospede'];
   $observacao = $_POST['observacao'];
 
-  // Calcular a quantidade de dias da reserva
-  $diferencaDias = ($dataSaida - $dataEntrada) / (60 * 60 * 24); // 60 segundos * 60 minutos * 24 horas
-
-  // Obter o valor da diária do quarto
-  $sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = '$id_quarto'";
-  $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
-
-  $quarto = mysqli_fetch_assoc($resultadoQuarto);
-  $valorDiaria = $quarto['valorDiaria'];
-
-  // Calcular o valor total da reserva
-  $valorTotalReserva = $valorDiaria * $diferencaDias;
-
-
-
 
   // Preparar a SQL para inserir os dados da reserva
-  $sql = "INSERT INTO reserva (id_hospede, id_quarto, dataEntrada, dataSaida, valorTotalReserva, quantHospede, observacao) VALUES ('$id_hospede', '$id_quarto', '$dataEntrada', '$dataSaida', '$valorTotalReserva', '$quantHospede', '$observacao')";
+  $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
 
   // Executar a SQL para inserção
   mysqli_query($conexao, $sql);
@@ -108,15 +92,16 @@ if (isset($_POST['cadastrar'])) {
               <input type="date" class="form-control" name="dataSaida">
             </div>
           </div>
-
+                  <!--
           <div class="row">
             <div class="mb-3 col">
 
               <label for="id_quarto" class="form-label">Quarto:</label>
               <select name="id_quarto" id="id_quarto" class="form-select">
                 <option value="">-- Selecione--</option>
-
+                  
                 <?php
+                /*
                 $sql = "select * from quarto order by numero";
                 $resultado = mysqli_query($conexao, $sql);
 
@@ -126,11 +111,11 @@ if (isset($_POST['cadastrar'])) {
                   <option value="<?= $linha['id'] ?>">
                     <?= $linha['numero'] . " - " . $linha['tipo'] ?>
                   </option>
-
-                <?php } ?>
+               
+                <?php } */?>
               </select>
             </div>
-
+                -->
             <div class="mb-3 col">
               <label for="quantHospede" class="form-label">Número Hóspedes:</label>
               <input type="number" class="form-control" name="quantHospede" id="quantHospede">
@@ -142,9 +127,14 @@ if (isset($_POST['cadastrar'])) {
             <label for="observacao" class="form-label">Observação:</label>
             <input class="form-control" id="observacao" name="observacao" placeholder="Nome dos demais integrantes">
           </div>
-          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
-            <i class="fa-solid fa-check"></i>
-          </button>
+          <div>
+          <button>
+
+          <a name="cadastrar" href="cadastrarReserva2.php" type="submit" class="btn" style="background-color: #a70162; color: #fff;"><i
+                        class="fa-solid fa-rotate-left"></i></i>
+                    Voltar</a>
+                </button>
+
         </form>
       </div>
     </div>
