@@ -237,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col">
               <label for="senha" class="form-label">Senha:</label>
-              <input name="senha" type="password" class="form-control" id="senha" required onchange='confereSenha();'>
+              <input name="senha" type="password" class="form-control" id="senha" minlength="6" required onchange='confereSenha();'>
             </div>
             <div class="mb-3 col">
               <label for="confirma" class="form-label">Confirmar Senha:</label>
@@ -258,8 +258,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <label for="cargo" class="form-label">Cargo:</label>
               <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required>
                 <option>Selecione</option>
-                <option value="Admin">Administração</option>
-                <option value="Recep">Recepção</option>
+                <option value="Administração">Administração</option>
+                <option value="Recepção">Recepção</option>
               </select>
             </div>
             <div class="mb-3 col">

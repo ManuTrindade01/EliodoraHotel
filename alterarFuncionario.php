@@ -113,14 +113,14 @@ $linha = mysqli_fetch_array($resultado);
   </select> 
   </div>
   <div class="mb-3 col">
-  <label for="estado">UF</label>
-        <select name="estado" id="uf" value="<?= $linha['uf']?>">
+  <label for="estado" class="form-label">UF</label>
+        <select name="estado" id="uf" class="form-select" value="<?= $linha['uf']?>">
           <option>Selecione Estado</option>
         </select>
         </div>
         <div class="mb-3 col">
-        <label for="cidade">Cidade</label>
-        <select name="cidade" id="cidade" value="<?= $linha['cidade']?>">
+        <label for="cidade" class="form-label">Cidade</label>
+        <select name="cidade" id="cidade" value="<?= $linha['cidade']?>" class="form-select">
           <option>Selecione Cidade</option>
         </select>
         </div>
