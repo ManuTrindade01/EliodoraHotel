@@ -37,7 +37,7 @@
             $nome = $_SESSION['nome'];
             ?>
             Seja bem vindo(a),
-            <?= $nome ?>.
+            <?= $nome?>.
     <br><br>
     </div>
 
