@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col">
               <label for="confirma" class="form-label">Confirmar Senha:</label>
               <input name="confirma" type="password" class="form-control" id="confirma" required
-                onchange='confereSenha();' placeholder="Repita sua senha" autofocus>
+                onchange='confereSenha();' placeholder="Repita sua senha">
             </div>
           </div>
           <div class="row">

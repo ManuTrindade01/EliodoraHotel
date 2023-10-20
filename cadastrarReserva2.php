@@ -1,10 +1,12 @@
 <?php
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
+require_once("cadastrarReserva2.php");
+
 
 if (isset($_POST['cadastrar'])) {
     $id_quarto = $_POST['id_quarto'];
-
+    
     // Calcular a quantidade de dias da reserva
     $diferencaDias = ($dataSaida - $dataEntrada) / (60 * 60 * 24); // 60 segundos * 60 minutos * 24 horas
 
@@ -18,7 +20,8 @@ if (isset($_POST['cadastrar'])) {
     // Calcular o valor total da reserva
     $valorTotalReserva = $valorDiaria * $diferencaDias;
 
-    $sql = "INSERT INTO reserva (id_quarto, valorTotalReserva) VALUES ('$id_quarto', '$valorTotalReserva')";
+    
+    $sql = "INSERT INTO reserva (id_quarto) VALUES ('$id_quarto')";
 
     mysqli_query($conexao, $sql);
 
