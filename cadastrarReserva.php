@@ -3,7 +3,7 @@ require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
 
-
+/*
 if (isset($_POST['cadastrar'])) {
   // Receber os dados para inserir no BD
   $id_hospede = $_POST['id_hospede'];
@@ -25,8 +25,8 @@ if (isset($_POST['cadastrar'])) {
   header("location: cadastrarReserva2.php");
 }
 
+*/
 
-// Seu HTML e o restante do código devem continuar aqui
 ?>
 
 
@@ -59,7 +59,7 @@ if (isset($_POST['cadastrar'])) {
           </div>
         <?php } ?>
 
-        <form method="post" id="form" name="form">
+        <form method="post" id="form" name="form" action="cadastrarReserva2.php">
           <div class="row">
             <div class="mb-3 col">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>

@@ -4,6 +4,10 @@ require_once("conexao.php");
 require_once("cadastrarReserva2.php");
 
 
+var_dump($_POST);
+
+
+/*
 if (isset($_POST['cadastrar'])) {
     $id_quarto = $_POST['id_quarto'];
 
@@ -31,6 +35,7 @@ if (isset($_POST['cadastrar'])) {
     //5. Mostrar uma mensagem ao usuário
     $mensagem = "Registro salvo com sucesso.";
 }
+*/
 ?>
 
 <?php require_once("cabecalho.php"); ?>
@@ -69,7 +74,15 @@ if (isset($_POST['cadastrar'])) {
                 <option value="" disabled selected>-- Selecione--</option>
 
                 <?php
-                $sql = "select * from quarto order by numero";
+                $sql = "select quarto.* 
+                          from quarto
+                         where quarto.id not in (
+                                select reserva.id_quarto 
+                                  from reserva 
+                                 where dataEntrada BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
+                                    or dataSaida BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
+                                )
+                      order by quarto.numero";
                 $resultado = mysqli_query($conexao, $sql);
 
                 while ($linha = mysqli_fetch_array($resultado)) {
