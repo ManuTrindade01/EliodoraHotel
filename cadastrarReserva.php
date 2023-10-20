@@ -124,7 +124,7 @@ if (isset($_POST['cadastrar'])) {
                   ?>
 
                   <option value="<?= $linha['id'] ?>">
-                    <?= $linha['numero'] ?>
+                    <?= $linha['numero'] . " - " . $linha['tipo'] ?>
                   </option>
 
                 <?php } ?>
