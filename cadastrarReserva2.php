@@ -6,7 +6,7 @@ require_once("cadastrarReserva2.php");
 
 if (isset($_POST['cadastrar'])) {
     $id_quarto = $_POST['id_quarto'];
-    
+
     // Calcular a quantidade de dias da reserva
     $diferencaDias = ($dataSaida - $dataEntrada) / (60 * 60 * 24); // 60 segundos * 60 minutos * 24 horas
 
@@ -66,7 +66,7 @@ if (isset($_POST['cadastrar'])) {
 
               <label for="id_quarto" class="form-label">Quarto:</label>
               <select name="id_quarto" id="id_quarto" class="form-select">
-                <option value="">-- Selecione--</option>
+                <option value="" disabled selected>-- Selecione--</option>
 
                 <?php
                 $sql = "select * from quarto order by numero";
