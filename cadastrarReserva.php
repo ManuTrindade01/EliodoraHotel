@@ -1,7 +1,6 @@
 <?php
 require_once("verificaAutenticacao.php");
-// Conectar no BD (IP, usuário, senha, nome do banco)
-$conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
+require_once("conexao.php");
 
 
 
