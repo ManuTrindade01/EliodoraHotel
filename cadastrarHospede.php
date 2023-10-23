@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $genero = $_POST['genero'];
       $estado = $_POST['estado'];
       $cidade = $_POST['cidade'];
+      $bairro = $_POST['bairro'];
       $endereco = $_POST['endereco'];
       $numeroEndereco = $_POST['numeroEndereco'];
       $cep = $_POST['cep'];
@@ -76,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $genero = $_POST['genero'];
       $estado = $_POST['estado'];
       $cidade = $_POST['cidade'];
+      $bairro = $_POST['bairro'];
       $endereco = $_POST['endereco'];
       $numeroEndereco = $_POST['numeroEndereco'];
       $cep = $_POST['cep'];
@@ -87,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
       //3. Preparar a SQL
-      $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
+      $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, bairro, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$bairro', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
 
       //5. Executar a SQL
       mysqli_query($conexao, $sql);
@@ -172,6 +174,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
           <div class="row">
+          <div class="mb-3 col">
+              <label for="bairro" class="form-label">Bairro:</label>
+              <input name="bairro" type="text" class="form-control" required
+                value="<?php echo isset($bairro) ? $bairro : ''; ?>">
+            </div>
             <div class="mb-3 col">
               <label for="endereco" class="form-label">Endereço:</label>
               <input name="endereco" type="text" class="form-control" required
