@@ -2,31 +2,6 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
-
-/*
-if (isset($_POST['cadastrar'])) {
-  // Receber os dados para inserir no BD
-  $id_hospede = $_POST['id_hospede'];
-  $dataEntrada = strtotime($_POST['dataEntrada']);
-  $dataSaida = strtotime($_POST['dataSaida']);
-  $quantHospede = $_POST['quantHospede'];
-  $observacao = $_POST['observacao'];
-  // Preparar a SQL para inserir os dados da reserva
-  $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
-
-  // Executar a SQL para inserção
-  mysqli_query($conexao, $sql);
-
-
-
-
-  //5. Mostrar uma mensagem ao usuário
-  $mensagem = "Registro salvo com sucesso.";
-  header("location: cadastrarReserva2.php");
-}
-
-*/
-
 ?>
 
 
@@ -59,7 +34,7 @@ if (isset($_POST['cadastrar'])) {
           </div>
         <?php } ?>
 
-        <form method="post" id="form" name="form" action="cadastrarReserva2.php">
+        <form method="post" id="form" name="form" action="cadastrarReserva2.php" >
           <div class="row">
             <div class="mb-3 col">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
@@ -126,7 +101,7 @@ if (isset($_POST['cadastrar'])) {
 
 
 
-          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
+          <button type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
@@ -137,18 +112,7 @@ if (isset($_POST['cadastrar'])) {
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    $('#valorConsumo').mask("#.##0,00", {
-      reverse: true
-    });
-    $('#valorReserva').mask("#.##0,00", {
-      reverse: true
-    });
-    $('#valorR').mask("#.##0,00", {
-      reverse: true
-    });
-  </script>
-
+  
 
 </body>
 

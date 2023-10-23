@@ -1,10 +1,26 @@
 <?php
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
-require_once("cadastrarReserva2.php");
 
 
 var_dump($_POST);
+
+    
+
+if (isset($_POST['cadastrar'])) {
+  // Receber os dados para inserir no BD
+  $id_hospede = $_POST['id_hospede'];
+  $dataEntrada = ($_POST['dataEntrada']);
+  $dataSaida = ($_POST['dataSaida']);
+  $quantHospede = $_POST['quantHospede'];
+  $observacao = $_POST['observacao'];
+
+  
+    // Preparar a SQL para inserir os dados da reserva
+    $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
+    // Executar a SQL para inserção
+    mysqli_query($conexao, $sql);
+}
 
 
 /*
@@ -65,7 +81,7 @@ if (isset($_POST['cadastrar'])) {
                     </div>
                 <?php } ?>
 
-                <form method="post" id="form" name="form">
+                <form method="post" id="form" name="form" action="cadastrarReserva3.php">
 
                 <div class="mb-3 col">
 
