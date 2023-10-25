@@ -2,11 +2,27 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
+if (isset($_POST['cadastrar'])) {
+  // Receber os dados para inserir no BD
+  $id_hospede = $_POST['id_hospede'];
+  $dataEntrada = ($_POST['dataEntrada']);
+  $dataSaida = ($_POST['dataSaida']);
+  $quantHospede = $_POST['quantHospede'];
+  $observacao = $_POST['observacao'];
+
+  
+    // Preparar a SQL para inserir os dados da reserva
+    $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
+    // Executar a SQL para inserção
+    mysqli_query($conexao, $sql);
+
+    //6. Mostrar uma mensagem ao usuário
+    $mensagem = "Registro salvo com sucesso.";
+}
+
 ?>
 
-
 <?php require_once("cabecalho.php"); ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">

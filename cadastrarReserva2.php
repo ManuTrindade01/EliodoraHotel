@@ -5,8 +5,6 @@ require_once("conexao.php");
 
 var_dump($_POST);
 
-    
-
 if (isset($_POST['cadastrar'])) {
   // Receber os dados para inserir no BD
   $id_hospede = $_POST['id_hospede'];
