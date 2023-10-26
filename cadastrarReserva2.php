@@ -5,7 +5,25 @@ require_once("conexao.php");
 
 var_dump($_POST);
 
+<<<<<<< HEAD
     
+=======
+if (isset($_POST['cadastrar'])) {
+  // Receber os dados para inserir no BD
+  $id_hospede = $_POST['id_hospede'];
+  $dataEntrada = ($_POST['dataEntrada']);
+  $dataSaida = ($_POST['dataSaida']);
+  $quantHospede = $_POST['quantHospede'];
+  $observacao = $_POST['observacao'];
+
+  
+    // Preparar a SQL para inserir os dados da reserva
+    $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
+    // Executar a SQL para inserção
+    mysqli_query($conexao, $sql);
+}
+
+>>>>>>> 2d60ada7d5dfd6667ec9f8643bb8065a7a9adc8b
 
 /*
 if (isset($_POST['cadastrar'])) {

@@ -181,15 +181,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col-5">
               <label for="nome" class="form-label">Nome Completo:</label>
-              <input type="text" class="form-control" name="nome" id="nome" required required minlength="10">
+              <input type="text" class="form-control" name="nome" id="nome" required minlength="10" value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
             <div class="mb-3 col-4">
               <label for="cpf" class="form-label">CPF:</label>
-              <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+              <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="<?php echo isset($cpf) ? $cpf : ''; ?>">
             </div>
             <div class="mb-3 col">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento" required>
+              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento" required value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>">
             </div>
           </div>
           <div class="row">
@@ -217,29 +217,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="row">
         <div class="mb-3 col">
           <label for="bairro" class="form-label">Bairro:</label>
-          <input name="bairro" type="text" class="form-control" id="bairro" required>
+          <input name="bairro" type="text" class="form-control" id="bairro" required value="<?php echo isset($bairro) ? $bairro : ''; ?>">>
         </div>
-        <div class="mb-3 col-6">
+        <div class="mb-3 col">
           <label for="endereco" class="form-label">Endereço:</label>
-          <input name="endereco" type="text" class="form-control" id="endereco" required>
+          <input name="endereco" type="text" class="form-control" id="endereco" required value="<?php echo isset($endereco) ? $endereco : ''; ?>">
         </div>
-        <div class="mb-3 col">
+        <div class="mb-3 col-2">
           <label for="numeroEndereco" class="form-label">Número:</label>
-          <input name="numeroEndereco" type="number" class="form-control" id="numeroEndereco" required>
+          <input name="numeroEndereco" type="number" class="form-control" id="numeroEndereco" required value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
         </div>
-        <div class="mb-3 col">
+        <div class="mb-3 col-2">
           <label for="cep" class="form-label">CEP:</label>
-          <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}">
+          <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}" value="<?php echo isset($cep) ? $cep : ''; ?>">
         </div>
       </div>
       <div class="row">
         <div class="mb-3 col">
           <label for="email" class="form-label">Email:</label>
-          <input name="email" type="email" class="form-control" id="email" required>
+          <input name="email" type="email" class="form-control" id="email" required value="<?php echo isset($email) ? $email : ''; ?>">
         </div>
         <div class="mb-3 col">
           <label for="telefone" class="form-label">Telefone:</label>
-          <input name="telefone" type="text" class="form-control" id="telefone" required>
+          <input name="telefone" type="text" class="form-control" id="telefone" required value="<?php echo isset($telefone) ? $telefone : ''; ?>">
         </div>
         <div class="mb-3 col">
           <label for="senha" class="form-label">Senha:</label>
@@ -255,15 +255,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="row">
         <div class="mb-3 col">
           <label for="dataAdmissao" class="form-label">Data Admissão:</label>
-          <input name="dataAdmissao" type="date" class="form-control" required>
+          <input name="dataAdmissao" type="date" class="form-control" required value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
         </div>
         <div class="mb-3 col">
           <label for="salario" class="form-label">Salário:</label>
-          <input name="salario" type="text" class="form-control" id="salario" required>
+          <input name="salario" type="text" class="form-control" id="salario" required value="<?php echo isset($salario) ? $salario : ''; ?>">
         </div>
         <div class="mb-3 col">
           <label for="cargo" class="form-label">Cargo:</label>
-          <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required>
+          <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required value="<?php echo isset($cargo) ? $cargo : ''; ?>">
             <option value="" disabled selected>Selecione</option>
             <option value="Administração">Administração</option>
             <option value="Recepção">Recepção</option>
@@ -271,11 +271,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="mb-3 col">
           <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
-          <input name="horarioEntrada" type="time" class="form-control" required>
+          <input name="horarioEntrada" type="time" class="form-control" required value="<?php echo isset($horarioEntrada) ? $horarioEntrada : ''; ?>">
         </div>
         <div class="mb-3 col">
           <label for="horarioSaida" class="form-label">Horário de Saída:</label>
-          <input name="horarioSaida" type="time" class="form-control" required>
+          <input name="horarioSaida" type="time" class="form-control" required value="<?php echo isset($horarioSaida) ? $horarioSaida : ''; ?>">
         </div>
       </div>
 

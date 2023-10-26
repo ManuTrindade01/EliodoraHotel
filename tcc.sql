@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/10/2023 às 17:15
+-- Tempo de geração: 26/10/2023 às 15:40
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -60,6 +60,7 @@ CREATE TABLE `funcionario` (
   `genero` varchar(1) NOT NULL,
   `estado` varchar(100) NOT NULL,
   `cidade` varchar(100) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
   `endereco` varchar(100) NOT NULL,
   `numeroEndereco` int(11) NOT NULL,
   `cep` varchar(15) NOT NULL,
@@ -79,10 +80,10 @@ CREATE TABLE `funcionario` (
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataDemissao`) VALUES
-(27, 'Sim', 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 4, 'Gerente', '08:00:00', '17:00:00', NULL),
-(32, '', 'dfoghjcx frydtghh', '081.674.089-57', '2005-04-05', 'F', 'ES', 'Afonso Cláudio', 'ertyu', 554, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '123456', '123456', '0065-05-04', 4.567, 'Recepção', '05:06:00', '05:06:00', NULL),
-(33, '', 'Ana Paula ', '735.312.370-20', '2005-09-28', 'F', 'PR', 'Cruzeiro do Oeste', 'Rua das Oliveiras', 654, '87400-000', 'anapaula@gmail.com', '(44) 98765-4321', '123456', '123456', '0001-01-01', 4.567, 'Recepção', '14:00:00', '23:00:00', NULL);
+INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataDemissao`) VALUES
+(27, 'Sim', 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 4, 'Gerente', '08:00:00', '17:00:00', NULL),
+(32, '', 'dfoghjcx frydtghh', '081.674.089-57', '2005-04-05', 'F', 'ES', 'Afonso Cláudio', '', 'ertyu', 554, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '123456', '123456', '0065-05-04', 4.567, 'Recepção', '05:06:00', '05:06:00', NULL),
+(33, '', 'Ana Paula ', '735.312.370-20', '2005-09-28', 'F', 'PR', 'Cruzeiro do Oeste', '', 'Rua das Oliveiras', 654, '87400-000', 'anapaula@gmail.com', '(44) 98765-4321', '123456', '123456', '0001-01-01', 4.567, 'Recepção', '14:00:00', '23:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,6 +99,7 @@ CREATE TABLE `hospede` (
   `genero` varchar(1) NOT NULL,
   `estado` varchar(100) NOT NULL,
   `cidade` varchar(100) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
   `endereco` varchar(100) NOT NULL,
   `numeroEndereco` int(11) NOT NULL,
   `cep` varchar(15) NOT NULL,
@@ -110,12 +112,12 @@ CREATE TABLE `hospede` (
 -- Despejando dados para a tabela `hospede`
 --
 
-INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
-(51, 'Francisca da Silva', '628.332.410-03', '2001-04-23', 'F', 'MS', 'Água Clara', 'Contancia', 34567, '45676-543', 'xica@gmail.com', '(44) 98767-6567', '(44) 98765-4345'),
-(52, 'Maria das Graças ', '533.779.870-70', '2002-02-01', 'F', 'BA', 'Abaíra', 'Contancia', 23456, '23456-321', 'cont@gmail.com', '(44) 96543-4567', '(44) 93456-5434'),
-(53, 'Sandra Maria ', '540.223.360-80', '2000-10-01', 'F', 'MG', 'Abadia dos Dourados', 'Contancia', 765, '34567-654', 'sandra@gmail.com', '(44) 98767-6567', '(44) 93456-5434'),
-(54, 'Lucas Manoel dos Santos Trindade', '392.336.480-60', '2001-10-24', 'S', 'Selecione Estado', 'Selecione Cidade', 'Rua Argentina', 561, '87565-000', 'lucas@gmail.com', '(44) 98787-6545', '(44) 97756-5454'),
-(55, 'dfoghjcx frydtghh', '081.674.089-57', '2005-06-01', 'S', 'RN', 'Acari', 'ertyu', 45, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '(44) 98765-4345');
+INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
+(51, 'Francisca da Silva', '628.332.410-03', '2001-04-23', 'F', 'MS', 'Água Clara', '', 'Contancia', 34567, '45676-543', 'xica@gmail.com', '(44) 98767-6567', '(44) 98765-4345'),
+(52, 'Maria das Graças ', '533.779.870-70', '2002-02-01', 'F', 'BA', 'Abaíra', '', 'Contancia', 23456, '23456-321', 'cont@gmail.com', '(44) 96543-4567', '(44) 93456-5434'),
+(53, 'Sandra Maria ', '540.223.360-80', '2000-10-01', 'F', 'MG', 'Abadia dos Dourados', '', 'Contancia', 765, '34567-654', 'sandra@gmail.com', '(44) 98767-6567', '(44) 93456-5434'),
+(54, 'Lucas Manoel dos Santos Trindade', '392.336.480-60', '2001-10-24', 'S', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'lucas@gmail.com', '(44) 98787-6545', '(44) 97756-5454'),
+(55, 'dfoghjcx frydtghh', '081.674.089-57', '2005-06-01', 'S', 'RN', 'Acari', '', 'ertyu', 45, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '(44) 98765-4345');
 
 -- --------------------------------------------------------
 
