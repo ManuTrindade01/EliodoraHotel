@@ -159,24 +159,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="M">Masculino</option>
               </select>
             </div>
-          
+            <div class="mb-3 col-2">
+              <label for="cep" class="form-label">CEP:</label>
+              <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
+                value="<?php echo isset($cep) ? $cep : ''; ?>">
+            </div>
             <div class="mb-3 col">
               <label for="estado" class="form-label">UF</label>
-              <select name="estado" id="uf" class="form-select" required>
-                <option>Selecione Estado</option>
-              </select>
+              <input name="estado" type="text" id="uf" class="form-control" required>
             </div>
             <div class="mb-3 col">
               <label for="cidade" class="form-label">Cidade</label>
-              <select name="cidade" id="cidade" class="form-select" required>
-                <option>Selecione Cidade</option>
-              </select>
+              <input name="cidade" type="text" id="cidade" class="form-control" required>
             </div>
           </div>
           <div class="row">
           <div class="mb-3 col">
               <label for="bairro" class="form-label">Bairro:</label>
-              <input name="bairro" type="text" class="form-control" required
+              <input name="bairro" type="text" class="form-control" id="endereco" required
                 value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
             <div class="mb-3 col">
@@ -188,11 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <label for="numeroEndereco" class="form-label">Número:</label>
               <input name="numeroEndereco" type="number" class="form-control" required
                 value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
-            </div>
-            <div class="mb-3 col-2">
-              <label for="cep" class="form-label">CEP:</label>
-              <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
-                value="<?php echo isset($cep) ? $cep : ''; ?>">
             </div>
           </div>
 
@@ -226,7 +221,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
   </div>
-  <script type="text/javascript" src="js/app.js"></script>
+  
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>   
+            /*
+			 * Para efeito de demonstração, o JavaScript foi
+			 * incorporado no arquivo HTML.
+			 * O ideal é que você faça em um arquivo ".js" separado. Para mais informações
+			 * visite o endereço https://developer.yahoo.com/performance/rules.html#external
+			 */
+			
+			// Registra o evento blur do campo "cep", ou seja, a pesquisa será feita
+			// quando o usuário sair do campo "cep"
+			$("#cep").blur(function(){
+				// Remove tudo o que não é número para fazer a pesquisa
+				var cep = this.value.replace(/[^0-9]/, "");
+				
+				// Validação do CEP; caso o CEP não possua 8 números, então cancela
+				// a consulta
+				if(cep.length != 8){
+					return false;
+				}
+				
+				// A url de pesquisa consiste no endereço do webservice + o cep que
+				// o usuário informou + o tipo de retorno desejado (entre "json",
+				// "jsonp", "xml", "piped" ou "querty")
+				var url = "https://viacep.com.br/ws/"+cep+"/json/";
+				
+				// Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+				// caso ocorra algum erro (o cep pode não existir, por exemplo) a
+				// usabilidade não seja afetada, assim o usuário pode continuar//
+				// preenchendo os campos normalmente
+				$.getJSON(url, function(dadosRetorno){
+					try{
+						// Preenche os campos de acordo com o retorno da pesquisa
+						$("#endereco").val(dadosRetorno.logradouro);
+						$("#bairro").val(dadosRetorno.bairro);
+						$("#cidade").val(dadosRetorno.localidade);
+						$("#uf").val(dadosRetorno.uf);
+					}catch(ex){}
+				});
+			});
+      </script>
+  <script type="text/javascript" src="js/cep.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
     integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
@@ -237,7 +274,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
     $('#telefone').mask('(00) 00000-0000');
     $('#contatoEmergencia').mask('(00) 00000-0000');
-    $('#cep').mask('00000-000');
   </script>
 
 <script>

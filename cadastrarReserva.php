@@ -2,6 +2,24 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
+
+if (isset($_POST['cadastrar'])) {
+  // Receber os dados para inserir no BD
+  $id_hospede = $_POST['id_hospede'];
+  $dataEntrada = ($_POST['dataEntrada']);
+  $dataSaida = ($_POST['dataSaida']);
+  $quantHospede = $_POST['quantHospede'];
+  $observacao = $_POST['observacao'];
+
+  
+    // Preparar a SQL para inserir os dados da reserva
+    $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
+    // Executar a SQL para inserção
+    mysqli_query($conexao, $sql);
+
+    $mensagem = "Registro salvo com sucesso.";
+} 
+
 ?>
 
 
@@ -101,7 +119,7 @@ require_once("conexao.php");
 
 
 
-          <button type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
+          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>

@@ -126,6 +126,10 @@ $linha = mysqli_fetch_array($resultado);
         </div>
         </div>
         <div class="row">
+        <div class="mb-3 col">
+          <label for="bairro" class="form-label">Bairro:</label>
+          <input name="bairro" type="text" class="form-control" id="bairro" value="<?= $linha['bairro']?>" required>
+        </div>
   <div class="mb-3 col">
     <label for="endereco" class="form-label">Endereço:</label>
     <input name="endereco" type="text" class="form-control"
@@ -154,8 +158,16 @@ $linha = mysqli_fetch_array($resultado);
   
   <div class="mb-3 col">
     <label for="senha" class="form-label">Senha:</label>
-    <input name="senha" type="password" class="form-control" value="<?= $linha['senha']?>">
+    <input name="senha" type="password" class="form-control" value="<?= $linha['senha']?>"
+    onchange='confereSenha();'>
   </div>
+
+  <div class="mb-3 col">
+          <label for="confirma" class="form-label">Confirmar Senha:</label>
+          <input name="confirma" type="password" class="form-control" id="confirma" value="<?= $linha['senha']?>" onchange='confereSenha();'
+            placeholder="Repita sua senha">
+        </div>
+
   <div class="mb-3 col">
     <label for="dataAdmissao" class="form-label">Data Admissão:</label>
     <input name="dataAdmissao" type="date" class="form-control" value="<?= $linha['dataAdmissao']?>">
@@ -165,12 +177,16 @@ $linha = mysqli_fetch_array($resultado);
   <div class="row">
   <div class="mb-3 col">
     <label for="salario" class="form-label">Salário:</label>
-    <input name="salario" type="text" class="form-control" value="<?= $linha['salario']?>">
+    <input name="salario" type="text" class="form-control" id="salario" value="<?= $linha['salario']?>">
   </div>
   <div class="mb-3 col">
-    <label for="cargo" class="form-label">Cargo:</label>
-    <input name="cargo" type="text" class="form-control" value="<?= $linha['cargo']?>">
-  </div>
+          <label for="cargo" class="form-label">Cargo:</label>
+          <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" value="<?= $linha['cargo']?>">
+            <option value="" disabled selected>Selecione</option>
+            <option value="Administração" <?= ($linha['cargo'] == 'Administração') ? 'selected' : '' ?>>Administração</option>
+            <option value="Recepção" <?= ($linha['cargo'] == 'Recepção') ? 'selected' : '' ?>>Recepção</option>
+          </select>
+        </div>
   <div class="mb-3 col">
     <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
     <input name="horarioEntrada" type="time" class="form-control" value="<?= $linha['horarioEntrada']?>">
