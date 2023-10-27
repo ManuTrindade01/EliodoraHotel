@@ -3,9 +3,9 @@ require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
 
-var_dump($_POST);
+//var_dump($_POST);
 
-    
+/*
 if (isset($_POST['cadastrar'])) {
   // Receber os dados para inserir no BD
   $id_hospede = $_POST['id_hospede'];
@@ -19,7 +19,7 @@ if (isset($_POST['cadastrar'])) {
     $sql = "INSERT INTO reserva (id_hospede, dataEntrada, dataSaida, quantHospede, observacao) VALUES ('$id_hospede', '$dataEntrada', '$dataSaida', '$quantHospede', '$observacao')";
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);
-}
+}*/
 
 /*
 if (isset($_POST['cadastrar'])) {
@@ -79,12 +79,21 @@ if (isset($_POST['cadastrar'])) {
                     </div>
                 <?php } ?>
 
-                <form method="post" id="form" name="form">
+                <form method="post" id="form" name="form" action="cadastrarReserva3.php" >
+                  <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
+                  <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
+                  <input type="hidden" name="dataSaida" value="<?= $_POST['dataSaida'] ?>">
+                  <input type="hidden" name="quantHospede" value="<?= $_POST['quantHospede'] ?>">
+                  <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
+
+                  <label for="dataEntrada" class="form-label">Data da reserva:</label>
+                  <label for="dataEntrada" class="form-label"><?= $_POST['dataEntrada'] ?> até <?= $_POST['dataSaida'] ?></label>
 
                 <div class="mb-3 col">
+                
 
               <label for="id_quarto" class="form-label">Quarto:</label>
-              <select name="id_quarto" id="id_quarto" class="form-select">
+              <select name="id_quarto" id="id_quarto" class="form-select" required>
                 <option value="" disabled selected>-- Selecione--</option>
 
                 <?php
@@ -97,6 +106,7 @@ if (isset($_POST['cadastrar'])) {
                                     or dataSaida BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
                                 )
                       order by quarto.numero";
+                
                 $resultado = mysqli_query($conexao, $sql);
 
                 while ($linha = mysqli_fetch_array($resultado)) {
@@ -109,7 +119,7 @@ if (isset($_POST['cadastrar'])) {
                 <?php } ?>
               </select>
             </div>
-            <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
+            <button name="proximo" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
             <i class="fa-solid fa-check"></i>
           </button>
         </form>
