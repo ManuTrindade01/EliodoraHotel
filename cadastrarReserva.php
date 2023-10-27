@@ -94,6 +94,17 @@ require_once("conexao.php");
             <input type="number" class="form-control" name="quantHospede" id="quantHospede" required>
           </div>
 
+
+          <div class="mb-3 col-3">
+              <label for="quantHospede" class="form-label">Gênero:</label>
+              <select name="quantHospede" class="form-select" aria-label="Default select example" id="quantHospede" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
+              </select>
+            </div>
+
+
           <div class="mb-3 col">
             <label for="observacao" class="form-label">Observação:</label>
             <input class="form-control" id="observacao" name="observacao" placeholder="Nome dos demais integrantes">
