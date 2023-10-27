@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/10/2023 às 15:40
+-- Tempo de geração: 27/10/2023 às 16:32
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -82,8 +82,8 @@ CREATE TABLE `funcionario` (
 
 INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataDemissao`) VALUES
 (27, 'Sim', 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 4, 'Gerente', '08:00:00', '17:00:00', NULL),
-(32, '', 'dfoghjcx frydtghh', '081.674.089-57', '2005-04-05', 'F', 'ES', 'Afonso Cláudio', '', 'ertyu', 554, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '123456', '123456', '0065-05-04', 4.567, 'Recepção', '05:06:00', '05:06:00', NULL),
-(33, '', 'Ana Paula ', '735.312.370-20', '2005-09-28', 'F', 'PR', 'Cruzeiro do Oeste', '', 'Rua das Oliveiras', 654, '87400-000', 'anapaula@gmail.com', '(44) 98765-4321', '123456', '123456', '0001-01-01', 4.567, 'Recepção', '14:00:00', '23:00:00', NULL);
+(32, 'Sim', 'dfoghjcx frydtghh', '081.674.089-57', '2005-04-05', 'F', 'ES', 'Afonso Cláudio', '', 'ertyu', 554, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '123456', '123456', '0065-05-04', 45, 'Recepção', '05:06:00', '05:06:00', NULL),
+(33, '', 'Ana Paula ', '735.312.370-20', '2005-09-28', 'F', 'PR', 'Cruzeiro do Oeste', 'Centro', 'Rua das Oliveiras', 654, '87400-000', 'anapaula@gmail.com', '(44) 98765-4321', '123456', '123456', '0001-01-01', 4.567, 'Recepção', '14:00:00', '23:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,7 @@ CREATE TABLE `quarto` (
   `numero` int(11) NOT NULL,
   `tipo` varchar(8) NOT NULL,
   `capacidade` int(45) NOT NULL,
-  `valorDiaria` double NOT NULL
+  `valorDiaria` double(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -189,8 +189,8 @@ CREATE TABLE `quarto` (
 --
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
-(11, '', 11, 'Casal', 2, 200),
-(12, '', 12, 'Solteiro', 1, 100);
+(11, '', 11, 'Casal', 2, 200.00),
+(12, '', 12, 'Solteiro', 1, 100.00);
 
 -- --------------------------------------------------------
 
@@ -210,32 +210,6 @@ CREATE TABLE `reserva` (
   `id_funcionario` int(11) DEFAULT NULL,
   `id_hospede` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `reserva`
---
-
-INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_quarto`, `id_funcionario`, `id_hospede`) VALUES
-(38, 'Sim', '2023-10-23', '2023-10-27', 2, 1, '', 11, NULL, 54),
-(39, '', '2023-12-01', '2023-12-02', 220, 2, '', 12, NULL, 53),
-(40, '', '0000-00-00', '0000-00-00', 0, 3, '', NULL, NULL, 51),
-(41, '', '0000-00-00', '0000-00-00', 0, 3, '', NULL, NULL, 51),
-(42, '', '0000-00-00', '0000-00-00', 0, 3, '', NULL, NULL, 51),
-(43, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 51),
-(44, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(46, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(47, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(48, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(49, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 55),
-(50, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 55),
-(51, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 54),
-(52, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 53),
-(53, '', '0000-00-00', '0000-00-00', 0, 2, '', NULL, NULL, 53),
-(54, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(55, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(56, '', '0000-00-00', '0000-00-00', 0, 0, '', NULL, NULL, 52),
-(57, '', '0000-00-00', '0000-00-00', 0, 0, '', 11, NULL, NULL),
-(58, '', '0000-00-00', '0000-00-00', 0, 1, 'a', NULL, NULL, 54);
 
 -- --------------------------------------------------------
 
@@ -357,7 +331,7 @@ ALTER TABLE `quarto`
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`
