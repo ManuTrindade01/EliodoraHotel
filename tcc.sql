@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/10/2023 às 16:32
+-- Tempo de geração: 27/10/2023 às 17:05
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -117,7 +117,8 @@ INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`
 (52, 'Maria das Graças ', '533.779.870-70', '2002-02-01', 'F', 'BA', 'Abaíra', '', 'Contancia', 23456, '23456-321', 'cont@gmail.com', '(44) 96543-4567', '(44) 93456-5434'),
 (53, 'Sandra Maria ', '540.223.360-80', '2000-10-01', 'F', 'MG', 'Abadia dos Dourados', '', 'Contancia', 765, '34567-654', 'sandra@gmail.com', '(44) 98767-6567', '(44) 93456-5434'),
 (54, 'Lucas Manoel dos Santos Trindade', '392.336.480-60', '2001-10-24', 'S', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'lucas@gmail.com', '(44) 98787-6545', '(44) 97756-5454'),
-(55, 'dfoghjcx frydtghh', '081.674.089-57', '2005-06-01', 'S', 'RN', 'Acari', '', 'ertyu', 45, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '(44) 98765-4345');
+(55, 'dfoghjcx frydtghh', '081.674.089-57', '2005-06-01', 'S', 'RN', 'Acari', '', 'ertyu', 45, '45676-543', 'manuifpr@gmail.com', '(44) 98765-4321', '(44) 98765-4345'),
+(56, 'Maria Celeste', '277.753.490-00', '2002-02-02', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua França', 577, '87565-000', 'manuifpr@gmail.com', '(55) 97567-5465', '(44) 97567-3453');
 
 -- --------------------------------------------------------
 
@@ -206,10 +207,19 @@ CREATE TABLE `reserva` (
   `valorTotalReserva` double NOT NULL,
   `quantHospede` int(1) NOT NULL,
   `observacao` varchar(200) NOT NULL,
+  `id_hospede` int(11) DEFAULT NULL,
   `id_quarto` int(11) DEFAULT NULL,
   `id_funcionario` int(11) DEFAULT NULL,
-  `id_hospede` int(11) DEFAULT NULL
+  `datacadastro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `reserva`
+--
+
+INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
+(90, '', '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:00:10'),
+(91, '', '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:02:30');
 
 -- --------------------------------------------------------
 
@@ -307,7 +317,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
@@ -331,7 +341,7 @@ ALTER TABLE `quarto`
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`
