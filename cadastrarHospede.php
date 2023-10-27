@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col">
               <label for="bairro" class="form-label">Bairro:</label>
-              <input name="bairro" type="text" class="form-control" id="endereco" required
+              <input name="bairro" type="text" class="form-control" id="bairro" required
                 value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
             <div class="mb-3 col">
@@ -224,7 +224,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script>
-    /
     $("#cep").blur(function () {
       // Remove tudo o que não é número para fazer a pesquisa
       var cep = this.value.replace(/[^0-9]/, "");
