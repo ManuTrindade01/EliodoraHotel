@@ -37,7 +37,7 @@ require_once("conexao.php");
           <div class="row">
             <div class="mb-3 col">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
-              <select name="id_hospede" id="id_hospede" class="form-select">
+              <select name="id_hospede" id="id_hospede" class="form-select" requered>
                 <option value="">-- Selecione--</option>
 
                 <?php
