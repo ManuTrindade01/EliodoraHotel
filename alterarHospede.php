@@ -97,12 +97,16 @@ $linha = mysqli_fetch_array($resultado);
         </div>
         <div class="row">
           <div class="mb-3 col">
-            <label for="estado" class="form-label">UF</label>
+            <label for="estado" class="form-label">UF:</label>
             <input name="estado" type="text" id="uf" class="form-control" value="<?= $linha['estado'] ?>">
           </div>
           <div class="mb-3 col">
-            <label for="cidade" class="form-label">Cidade</label>
+            <label for="cidade" class="form-label">Cidade:</label>
             <input name="cidade" type="text" class="form-control" value="<?= $linha['cidade'] ?>">
+          </div>
+          <div class="mb-3 col">
+            <label for="bairro" class="form-label">Bairro:</label>
+            <input name="bairro" type="text" class="form-control" value="<?= $linha['bairro'] ?>">
           </div>
           <div class="mb-3 col-4">
             <label for="endereco" class="form-label">Endereço:</label>
