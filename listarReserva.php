@@ -44,7 +44,7 @@ $resultado = mysqli_query($conexao, $sql);
     <?= $mensagem ?>
   </div>
 <?php } ?>
-
+<title>Listar Reservas</title>
 <div class="card mt-3 mb-3">
   <div class="card-body">
     <h2 class="card-title">Reservas

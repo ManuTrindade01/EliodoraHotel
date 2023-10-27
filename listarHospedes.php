@@ -34,7 +34,7 @@ $resultado = mysqli_query($conexao, $sql);
     <?= $mensagem ?>
   </div>
 <?php } ?>
-
+<title>Listar Hóspedes</title>
 <div class="card mt-3 mb-3">
   <div class="card-body">
     <h2 class="card-title">Hóspedes cadastrados
