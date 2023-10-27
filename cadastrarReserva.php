@@ -37,7 +37,7 @@ require_once("conexao.php");
           <div class="row">
             <div class="mb-3 col">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
-              <select name="id_hospede" id="id_hospede" class="form-select" requered>
+              <select name="id_hospede" id="id_hospede" class="form-select" required>
                 <option value="">-- Selecione--</option>
 
                 <?php
@@ -61,7 +61,7 @@ require_once("conexao.php");
             </div>
             <div class="mb-3 col">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
-              <input type="date" class="form-control" name="dataSaida">
+              <input type="date" class="form-control" name="dataSaida" required>
             </div>
           </div>
           <!--
@@ -88,16 +88,17 @@ require_once("conexao.php");
               </select>
             </div>
                 -->
-          <div class="mb-3 col">
+                <div class="row">
+          <div class="mb-3 col-2">
             <label for="quantHospede" class="form-label">Número Hóspedes:</label>
-            <input type="number" class="form-control" name="quantHospede" id="quantHospede">
+            <input type="number" class="form-control" name="quantHospede" id="quantHospede" required>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 col">
             <label for="observacao" class="form-label">Observação:</label>
             <input class="form-control" id="observacao" name="observacao" placeholder="Nome dos demais integrantes">
           </div>
-
+          </div>
 
 
           <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo

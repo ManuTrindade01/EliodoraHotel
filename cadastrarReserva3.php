@@ -6,7 +6,11 @@ require_once("conexao.php");
 
 // Calcular a quantidade de dias da reserva
 //Arrumar só a diferença de dias
-$diferencaDias = ($_POST['dataSaida'] - $_POST['dataEntrada']) / (60 * 60 * 24); // 60 segundos * 60 minutos * 24 horas
+
+$dataEntrada = strtotime($_POST['dataEntrada']);
+$dataSaida = strtotime($_POST['dataSaida']);
+$diferencaSegundos = $dataSaida - $dataEntrada;
+$diferencaDias = intval($diferencaSegundos / (60 * 60 * 24)); 
 
 // Obter o valor da diária do quarto
 $sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = ". $_POST['id_quarto'];
@@ -17,6 +21,8 @@ $valorDiaria = $quarto['valorDiaria'];
 
 // Calcular o valor total da reserva
 $valorTotalReserva = $valorDiaria * $diferencaDias;
+
+
 
 if (isset($_POST['cadastrar'])) {
     // Receber os dados para inserir no BD
@@ -30,8 +36,8 @@ if (isset($_POST['cadastrar'])) {
 
     // Preparar a SQL para inserir os dados da reserva
     $sql = "INSERT INTO reserva 
-    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto) VALUES 
-    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto')";
+    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva) VALUES 
+    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva')";
     
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);
@@ -56,14 +62,20 @@ if (isset($_POST['cadastrar'])) {
 <body>
     <div class="container p-4">
 
-        <!-- mensagem em bootstrap -->
+        
+    <?php if (isset($mensagem)) { ?>
+          <div class="alert alert-success" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagem ?>
+          </div>
 
+          <?php } ?>
         <div class="card">
             <div class="card-header">
                 <h2>Cadastrar Reserva</h2>
             </div>
             <div class="card-body">
-                <form method="post" id="form" name="form" action="cadastrarReserva4.php">
+                <form method="post" id="form" name="form">
                     <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
                     <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
                     <input type="hidden" name="dataSaida" value="<?= $_POST['dataSaida'] ?>">

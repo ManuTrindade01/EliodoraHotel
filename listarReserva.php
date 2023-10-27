@@ -46,6 +46,7 @@ $resultado = mysqli_query($conexao, $sql);
 <?php } ?>
 <title>Listar Reservas</title>
 <div class="card mt-3 mb-3">
+  
   <div class="card-body">
     <h2 class="card-title">Reservas
       <a href="cadastrarReserva.php" class="btn btn-sn" style="background-color: #a70162; color: #fff;"><i class="fa-solid fa-plus"></i>
