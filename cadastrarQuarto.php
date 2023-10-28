@@ -52,29 +52,36 @@ if (isset($_POST['cadastrar'])) {
 
         <form method="post" id="form" name="form">
           <div class="row">
-            <div class="mb-3 col-3">
+            <div class="mb-3 col">
               <label for="numero" class="form-label">Número:</label>
-              <input type="number" class="form-control" name="numero">
+              <input type="number" class="form-control" name="numero" required>
             </div>
 
 
-            <div class="mb-3 col-3">
+            <div class="mb-3 col">
               <label for="tipo" class="form-label">Tipo:</label>
               <select name="tipo" class="form-select" aria-label="Default select example" id="generoSelect" required>
-                <option>Selecione</option>
+                <option value="" disabled selected>Selecione</option>
                 <option value="Solteiro">Solteiro</option>
                 <option value="Casal">Casal</option>
               </select>
             </div>
 
-
-            <div class="mb-3 col-3">
+            <div class="mb-3 col">
               <label for="capacidade" class="form-label">Capacidade:</label>
-              <input type="number" class="form-control" name="capacidade">
+              <select name="capacidade" class="form-select" aria-label="Default select example" id="capacidade" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
-            <div class="mb-3 col-3">
+
+            <div class="mb-3 col">
               <label for="valorDiaria" class="form-label">Valor da Diária:</label>
-              <input type="text" class="form-control" name="valorDiaria" id="valorDiaria">
+              <input type="text" class="form-control" name="valorDiaria" id="valorDiaria" required>
             </div>
           </div>
           <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar

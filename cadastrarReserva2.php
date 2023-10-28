@@ -120,7 +120,7 @@ if (isset($_POST['cadastrar'])) {
               </select>
             </div>
             <button name="proximo" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
-            <i class="fa-solid fa-check"></i>
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
         </div>

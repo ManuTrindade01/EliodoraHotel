@@ -57,11 +57,11 @@ require_once("conexao.php");
 
             <div class="mb-3 col">
               <label for="dataEntrada" class="form-label">Data da Entrada:</label>
-              <input type="date" class="form-control" name="dataEntrada" id="dataEntrada" required>
+              <input type="date" class="form-control" name="dataEntrada" id="dataEntrada" min="<?php echo date('Y-m-d') ?>" max="9999-12-31" required>
             </div>
             <div class="mb-3 col">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
-              <input type="date" class="form-control" name="dataSaida" required>
+              <input type="date" class="form-control" name="dataSaida" min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" max="9999-12-31" required>
             </div>
           </div>
           <!--
@@ -90,17 +90,14 @@ require_once("conexao.php");
                 -->
                 <div class="row">
           <div class="mb-3 col-2">
-            <label for="quantHospede" class="form-label">Número Hóspedes:</label>
-            <input type="number" class="form-control" name="quantHospede" id="quantHospede" required>
-          </div>
-
-
-          <div class="mb-3 col-3">
-              <label for="quantHospede" class="form-label">Gênero:</label>
+              <label for="quantHospede" class="form-label">Número Hóspedes:</label>
               <select name="quantHospede" class="form-select" aria-label="Default select example" id="quantHospede" required>
                 <option value="" disabled selected>Selecione</option>
-                <option value="F">Feminino</option>
-                <option value="M">Masculino</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </select>
             </div>
 
