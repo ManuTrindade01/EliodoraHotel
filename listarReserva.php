@@ -110,10 +110,10 @@ $resultado = mysqli_query($conexao, $sql);
           <?= $linha['quarto_numero'] ?>
         </td> 
         <td>
-        <?= ($linha['dataEntrada']) ?>
+        <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
         </td>
         <td>
-        <?= ($linha['dataSaida']) ?>
+        <?= date('d/m/Y', strtotime($linha['dataSaida'])) ?>
         </td>
         <td>
         <?= $linha['valorTotalReserva'] ?>
