@@ -3,10 +3,11 @@ require_once("conexao.php");
 
 $sql = "SELECT * from reserva where 1 = 1";
 
-$sql = "select reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
- from reserva
- left join hospede on hospede.id = reserva.id_hospede
- left join quarto on quarto.id = reserva.id_quarto";
+$sql = "SELECT reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
+FROM reserva
+LEFT JOIN hospede ON hospede.id = reserva.id_hospede
+LEFT JOIN quarto ON quarto.id = reserva.id_quarto
+ORDER BY reserva.dataEntrada ASC";
 
 $resultado = mysqli_query($conexao, $sql);
 

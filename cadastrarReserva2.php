@@ -59,45 +59,73 @@ if (isset($_POST['cadastrar'])) {
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Reserva</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Reserva</title>
 </head>
 
 <body>
 
-    <div class="container p-4">
-        <div class="card">
-            <div class="card-header">
-                <h2>Cadastrar Reserva</h2>
-            </div>
-            <div class="card-body">
-                <?php if (isset($mensagem)) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <i class="fa-solid fa-square-check"></i>
-                        <?= $mensagem ?>
-                    </div>
-                <?php } ?>
+  <div class="container p-4">
+    <div class="card">
+      <div class="card-header">
+        <h2>Cadastrar Reserva</h2>
+      </div>
+      <div class="card-body">
+        <?php if (isset($mensagem)) { ?>
+          <div class="alert alert-success" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagem ?>
+          </div>
+        <?php } ?>
 
-                <form method="post" id="form" name="form" action="cadastrarReserva3.php" >
-                  <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
-                  <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
-                  <input type="hidden" name="dataSaida" value="<?= $_POST['dataSaida'] ?>">
-                  <input type="hidden" name="quantHospede" value="<?= $_POST['quantHospede'] ?>">
-                  <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
-
-                  <label for="dataEntrada" class="form-label">Data da reserva:</label>
-                  <label for="dataEntrada" class="form-label"><?= $_POST['dataEntrada'] ?> até <?= $_POST['dataSaida'] ?></label>
-
-                <div class="mb-3 col">
-                
-
-              <label for="id_quarto" class="form-label">Quarto:</label>
-              <select name="id_quarto" id="id_quarto" class="form-select" required>
-                <option value="" disabled selected>-- Selecione--</option>
-
+        <form method="post" id="form" name="form" action="cadastrarReserva3.php">
+          <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
+          <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
+          <input type="hidden" name="dataSaida" value="<?= $_POST['dataSaida'] ?>">
+          <input type="hidden" name="quantHospede" value="<?= $_POST['quantHospede'] ?>">
+          <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
+          <div class="row">
+            <div class="mb-3 col">
+              <label for="dataEntrada" class="form-label">Data da Entrada:</label>
+              <label for="dataEntrada" class="form-control">
                 <?php
-                $sql = "select quarto.* 
+                // Obtém a data do formulário
+                $dataEntrada = $_POST['dataEntrada'];
+
+                // Converte a data para o formato desejado (dd/mm/ano)
+                $dataFormatada = date('d/m/Y', strtotime($dataEntrada));
+
+                // Exibe a data formatada
+                echo $dataFormatada;
+                ?>
+              </label>
+            </div>
+            <div class="mb-3 col">
+              <label for="dataSaida" class="form-label">Data da Saída:</label>
+              <label for="dataSaida" class="form-control">
+                <?php
+                // Obtém a data do formulário
+                $dataSaida = $_POST['dataSaida'];
+
+                // Converte a data para o formato desejado (dd/mm/ano)
+                $dataFormatada = date('d/m/Y', strtotime($dataSaida));
+
+                // Exibe a data formatada
+                echo $dataFormatada;
+                ?>
+              </label>
+            </div>
+          
+          <div class="mb-3 col">
+
+
+            <label for="id_quarto" class="form-label">Quarto:</label>
+            <select name="id_quarto" id="id_quarto" class="form-select" required>
+              <option value="" disabled selected>-- Selecione--</option>
+
+              <?php
+              $sql = "select quarto.* 
                           from quarto
                          where quarto.id not in (
                                 select reserva.id_quarto 
@@ -106,24 +134,25 @@ if (isset($_POST['cadastrar'])) {
                                     or dataSaida BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
                                 )
                       order by quarto.numero";
-                
-                $resultado = mysqli_query($conexao, $sql);
 
-                while ($linha = mysqli_fetch_array($resultado)) {
-                  ?>
+              $resultado = mysqli_query($conexao, $sql);
 
-                  <option value="<?= $linha['id'] ?>">
-                    <?= $linha['numero'] . " - " . $linha['tipo'] ?>
-                  </option>
+              while ($linha = mysqli_fetch_array($resultado)) {
+                ?>
 
-                <?php } ?>
-              </select>
-            </div>
-            <button name="proximo" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
+                <option value="<?= $linha['id'] ?>">
+                  <?= $linha['numero'] . " - " . $linha['tipo'] ?>
+                </option>
+
+              <?php } ?>
+            </select>
+          </div>
+          </div>
+          <button name="proximo" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
-        </div>
+      </div>
     </div>
 
     <script>
@@ -138,4 +167,4 @@ if (isset($_POST['cadastrar'])) {
       });
     </script>
 
-    </html>
+</html>
