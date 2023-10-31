@@ -33,7 +33,7 @@ require_once("conexao.php");
           </div>
         <?php } ?>
 
-        <form method="post" id="form" name="form" action="cadastrarReserva2.php" onsubmit="return validaForm(this)">
+        <form method="post" id="form" name="form" action="cadastrarReserva2.php" onsubmit="return validaForm(form)">
           <div class="row">
             <div class="mb-3 col">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
@@ -62,7 +62,7 @@ require_once("conexao.php");
             </div>
             <div class="mb-3 col">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
-              <input type="date" class="form-control" name="dataSaida"
+              <input type="date" class="form-control" name="dataSaida" id="dataSaida"
               min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" max="9999-12-31" required>
             </div>
           </div>
@@ -130,18 +130,27 @@ require_once("conexao.php");
 
     <script>
     function validaForm(form) {
-      console.log("Validação do formulário acionada!");
-      var dataEntrada = document.getElementById("dataEntrada").value;
-            var dataSaida = document.getElementById("dataSaida").value;
+    console.log("Validação do formulário acionada!");
+    var dataEntrada = new Date(document.getElementById("dataEntrada").value);
+    var dataSaida = new Date(document.getElementById("dataSaida").value);
 
-            if (dataSaida <= dataEntrada) {
-                alert("A data de saída deve ser posterior à data de entrada.");
-                return false; // Impede o envio do formulário
-            }
+    // Verifica se as datas são válidas
+    if (isNaN(dataEntrada.getTime()) || isNaN(dataSaida.getTime())) {
+        alert("Por favor, insira datas válidas no formato correto.");
+        return false;
+    }
 
-            // Continue com o envio do formulário se a validação passar
-            return true;
-        }
+    // Compara as datas
+    if (dataSaida <= dataEntrada) {
+        alert("A data de saída deve ser posterior à data de entrada.");
+        return false; // Impede o envio do formulário
+    }
+
+    // Continue com o envio do formulário se a validação passar
+    return true;
+}
+
+
   </script>
 
 </body>

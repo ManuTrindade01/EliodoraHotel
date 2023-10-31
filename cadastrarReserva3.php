@@ -2,7 +2,7 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
-    
+
 
 // Calcular a quantidade de dias da reserva
 //Arrumar só a diferença de dias
@@ -10,10 +10,10 @@ require_once("conexao.php");
 $dataEntrada = strtotime($_POST['dataEntrada']);
 $dataSaida = strtotime($_POST['dataSaida']);
 $diferencaSegundos = $dataSaida - $dataEntrada;
-$diferencaDias = intval($diferencaSegundos / (60 * 60 * 24)); 
+$diferencaDias = intval($diferencaSegundos / (60 * 60 * 24));
 
 // Obter o valor da diária do quarto
-$sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = ". $_POST['id_quarto'];
+$sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = " . $_POST['id_quarto'];
 $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
@@ -38,7 +38,7 @@ if (isset($_POST['cadastrar'])) {
     $sql = "INSERT INTO reserva 
     (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva) VALUES 
     ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva')";
-    
+
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);
 
@@ -61,19 +61,20 @@ if (isset($_POST['cadastrar'])) {
 
 <body>
     <div class="container p-4">
-
-        
-    <?php if (isset($mensagem)) { ?>
-          <div class="alert alert-success" role="alert">
-            <i class="fa-solid fa-square-check"></i>
-            <?= $mensagem ?>
-          </div>
-
-          <?php } ?>
         <div class="card">
+
+
             <div class="card-header">
                 <h2>Cadastrar Reserva</h2>
+
             </div>
+            <?php if (isset($mensagem)) { ?>
+                <div class="alert alert-success" role="alert">
+                    <i class="fa-solid fa-square-check"></i>
+                    <?= $mensagem ?>
+                </div>
+
+            <?php } ?>
             <div class="card-body">
                 <form method="post" id="form" name="form">
                     <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
@@ -82,26 +83,61 @@ if (isset($_POST['cadastrar'])) {
                     <input type="hidden" name="quantHospede" value="<?= $_POST['quantHospede'] ?>">
                     <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
                     <input type="hidden" name="id_quarto" value="<?= $_POST['id_quarto'] ?>">
-                    <div>
-                        <label for="dataEntrada" class="form-label">Data da reserva:</label>
-                        <label for="dataEntrada" class="form-label">
-                            <?= $_POST['dataEntrada'] ?> até
-                            <?= $_POST['dataSaida'] ?>
-                        </label>
+                    <div class="row">
+                        <div class="col">
+                            Data de Entrada:
+                            <label for="dataEntrada" class="form-control">
+                                <?php
+                                // Obtém a data do formulário
+                                $dataEntrada = $_POST['dataEntrada'];
+
+                                // Converte a data para o formato desejado (dd/mm/ano)
+                                $dataFormatada = date('d/m/Y', strtotime($dataEntrada));
+
+                                // Exibe a data formatada
+                                echo $dataFormatada;
+                                ?>
+                            </label>
+                        </div>
+                        <div class="col">
+                            Data de Saída:
+                            <label for="dataSaida" class="form-control">
+                                <?php
+                                // Obtém a data do formulário
+                                $dataSaida = $_POST['dataSaida'];
+
+                                // Converte a data para o formato desejado (dd/mm/ano)
+                                $dataFormatada = date('d/m/Y', strtotime($dataSaida));
+
+                                // Exibe a data formatada
+                                echo $dataFormatada;
+                                ?>
+                        </div>
                         <br>
-                        <label for="id_quarto" class="form-label">Quarto:</label>
-                        <?= $_POST['id_quarto'] ?>
                         <br>
-                        Valor total da reserva: <?=$valorTotalReserva?>
+                        <div class="col">
+                            Quarto:
+                            <label for="id_quarto" class="form-control">
+                                <?= $_POST['id_quarto'] ?>
+                            </label>
+                            <br>
+                        </div>
+                        <div class="col">
+                            Valor total da reserva:
+                            <label for="" class="form-control">
+                                <?= $valorTotalReserva ?>
+                            </label>
+                        </div>
                         <br>
-                        <button name="cadastrar" type="submit" class="btn"
-                            style="background-color: #a70162; color: #fff;">Confirmar reserva
-                            <i class="fa-solid fa-check"></i>
-                        </button>
                     </div>
-                </form>
+                    <button name="cadastrar" type="submit" class="btn"
+                        style="background-color: #a70162; color: #fff;">Confirmar reserva
+                        <i class="fa-solid fa-check"></i>
+                    </button>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
 </html>
