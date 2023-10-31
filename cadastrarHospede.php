@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
                 value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>">
             </div>
-            <div class="mb-3 col-3">
+            <div class="mb-3 col-2">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
                 <option value="" disabled selected>Selecione</option>
@@ -164,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
                 value="<?php echo isset($cep) ? $cep : ''; ?>">
             </div>
-            <div class="mb-3 col">
+            <div class="mb-3 col-1">
               <label for="estado" class="form-label">UF</label>
               <input name="estado" type="text" id="uf" class="form-control" required>
             </div>

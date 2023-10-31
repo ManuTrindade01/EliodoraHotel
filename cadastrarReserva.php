@@ -2,7 +2,6 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
-
 ?>
 
 <?php require_once("cabecalho.php"); ?>
