@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col-4">
               <label for="nome" class="form-label">Nome Completo:</label>
               <input type="text" class="form-control" name="nome" id="nome" required minlength="10"
-                value="<?php echo isset($nome) ? $nome : ''; ?>">
+                pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
             <div class="mb-3 col-3">
               <label for="cpf" class="form-label">CPF:</label>
@@ -196,14 +196,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col">
               <label for="genero" class="form-label">Gênero:</label>
-              <select name="genero" class="form-select" aria-label="Default select example" id="genero" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="F">Feminino</option>
-                <option value="M">Masculino</option>
+              <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
+                <option value="" disabled>Selecione</option>
+                <option value="F" <?php echo (isset($genero) && $genero == "F") ? "selected" : ""; ?>>Feminino</option>
+                <option value="M" <?php echo (isset($genero) && $genero == "M") ? "selected" : ""; ?>>Masculino</option>
               </select>
             </div>
-            </div>
-            <div class="row">
+          </div>
+          <div class="row">
             <div class="mb-3 col-2">
               <label for="cep" class="form-label">CEP:</label>
               <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
@@ -219,80 +219,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="cidade" id="cidade" class="form-control" required
                 value="<?php echo isset($cidade) ? $cidade : ''; ?>">
             </div>
-              <div class="mb-3 col">
-                <label for="bairro" class="form-label">Bairro:</label>
-                <input name="bairro" type="text" class="form-control" id="bairro" required
-                  value="<?php echo isset($bairro) ? $bairro : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="endereco" class="form-label">Endereço:</label>
-                <input name="endereco" type="text" class="form-control" id="endereco" required
-                  value="<?php echo isset($endereco) ? $endereco : ''; ?>">
-              </div>
-              <div class="mb-3 col-2">
-                <label for="numeroEndereco" class="form-label">Número:</label>
-                <input name="numeroEndereco" type="number" class="form-control" id="numeroEndereco" required
-                  value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
-              </div>
+            <div class="mb-3 col">
+              <label for="bairro" class="form-label">Bairro:</label>
+              <input name="bairro" type="text" class="form-control" id="bairro" required
+                value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
-            <div class="row">
-              <div class="mb-3 col">
-                <label for="email" class="form-label">Email:</label>
-                <input name="email" type="email" class="form-control" id="email" required
-                  value="<?php echo isset($email) ? $email : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="telefone" class="form-label">Telefone:</label>
-                <input name="telefone" type="text" class="form-control" id="telefone" required
-                  value="<?php echo isset($telefone) ? $telefone : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="senha" class="form-label">Senha:</label>
-                <input name="senha" type="password" class="form-control" id="senha" minlength="6" required
-                  onchange='confereSenha();'>
-              </div>
-              <div class="mb-3 col">
-                <label for="confirma" class="form-label">Confirmar Senha:</label>
-                <input name="confirma" type="password" class="form-control" id="confirma" required
-                  onchange='confereSenha();' placeholder="Repita sua senha">
-              </div>
+            <div class="mb-3 col">
+              <label for="endereco" class="form-label">Endereço:</label>
+              <input name="endereco" type="text" class="form-control" id="endereco" required
+                value="<?php echo isset($endereco) ? $endereco : ''; ?>">
             </div>
-            <div class="row">
-              <div class="mb-3 col">
-                <label for="dataAdmissao" class="form-label">Data Admissão:</label>
-                <input name="dataAdmissao" type="date" class="form-control" required
-                  value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="salario" class="form-label">Salário:</label>
-                <input name="salario" type="text" class="form-control" id="salario" required
-                  value="<?php echo isset($salario) ? $salario : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="cargo" class="form-label">Cargo:</label>
-                <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required
-                  value="<?php echo isset($cargo) ? $cargo : ''; ?>">
-                  <option value="" disabled selected>Selecione</option>
-                  <option value="Administração">Administração</option>
-                  <option value="Recepção">Recepção</option>
-                </select>
-              </div>
-              <div class="mb-3 col">
-                <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
-                <input name="horarioEntrada" type="time" class="form-control" required
-                  value="<?php echo isset($horarioEntrada) ? $horarioEntrada : ''; ?>">
-              </div>
-              <div class="mb-3 col">
-                <label for="horarioSaida" class="form-label">Horário de Saída:</label>
-                <input name="horarioSaida" type="time" class="form-control" required
-                  value="<?php echo isset($horarioSaida) ? $horarioSaida : ''; ?>">
-              </div>
+            <div class="mb-3 col-2">
+              <label for="numeroEndereco" class="form-label">Número:</label>
+              <input name="numeroEndereco" type="number" class="form-control" id="numeroEndereco" required
+                value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
             </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col">
+              <label for="email" class="form-label">Email:</label>
+              <input name="email" type="email" class="form-control" id="email" required
+                value="<?php echo isset($email) ? $email : ''; ?>">
+            </div>
+            <div class="mb-3 col">
+              <label for="telefone" class="form-label">Telefone:</label>
+              <input name="telefone" type="text" class="form-control" id="telefone" required
+                value="<?php echo isset($telefone) ? $telefone : ''; ?>">
+            </div>
+            <div class="mb-3 col">
+              <label for="senha" class="form-label">Senha:</label>
+              <input name="senha" type="password" class="form-control" id="senha" minlength="6" required
+                value="<?php echo isset($senha) ? $senha : ''; ?>" onchange='confereSenha();'>
+            </div>
+            <div class="mb-3 col">
+              <label for="confirma" class="form-label">Confirmar Senha:</label>
+              <input name="confirma" type="password" class="form-control" id="confirma" required
+                onchange='confereSenha();' placeholder="Repita sua senha">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col">
+              <label for="dataAdmissao" class="form-label">Data Admissão:</label>
+              <input name="dataAdmissao" type="date" class="form-control" required
+                value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
+            </div>
+            <div class="mb-3 col">
+              <label for="salario" class="form-label">Salário:</label>
+              <input name="salario" type="text" class="form-control" id="salario" required
+                value="<?php echo isset($salario) ? $salario : ''; ?>">
+            </div>
+            <div class="mb-3 col">
+              <label for="cargo" class="form-label">Cargo:</label>
+              <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required
+                value="<?php echo isset($cargo) ? $cargo : ''; ?>">
+                <option value="" disabled selected>Selecione</option>
+                <option value="Administração" <?php echo (isset($cargo) && $cargo == "Administração") ? "selected" : ""; ?>>Administração</option>
+                <option value="Recepção" <?php echo (isset($cargo) && $cargo == "Recepção") ? "selected" : ""; ?>>Recepção
+                </option>
+              </select>
+            </div>
+            <div class="mb-3 col">
+              <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
+              <input name="horarioEntrada" type="time" class="form-control" required
+                value="<?php echo isset($horarioEntrada) ? $horarioEntrada : ''; ?>">
+            </div>
+            <div class="mb-3 col">
+              <label for="horarioSaida" class="form-label">Horário de Saída:</label>
+              <input name="horarioSaida" type="time" class="form-control" required
+                value="<?php echo isset($horarioSaida) ? $horarioSaida : ''; ?>">
+            </div>
+          </div>
 
-            <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">
-              Cadastrar
-              <i class="fa-solid fa-check"></i>
-            </button>
+          <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">
+            Cadastrar
+            <i class="fa-solid fa-check"></i>
+          </button>
 
         </form>
       </div>

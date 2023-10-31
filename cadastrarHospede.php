@@ -136,7 +136,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col-8">
               <label for="nome" class="form-label">Nome Completo:</label>
               <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome completo"
-                required minlength="10" value="<?php echo isset($nome) ? $nome : ''; ?>">
+                pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10"
+                value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
             <div class="mb-3 col">
               <label for="cpf" class="form-label">CPF:</label>
@@ -154,10 +155,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col-2">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="F">Feminino</option>
-                <option value="M">Masculino</option>
+                <option value="" disabled>Selecione</option>
+                <option value="F" <?php echo (isset($genero) && $genero == "F") ? "selected" : ""; ?>>Feminino</option>
+                <option value="M" <?php echo (isset($genero) && $genero == "M") ? "selected" : ""; ?>>Masculino</option>
               </select>
+
             </div>
             <div class="mb-3 col-2">
               <label for="cep" class="form-label">CEP:</label>
@@ -166,11 +168,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-1">
               <label for="estado" class="form-label">UF</label>
-              <input name="estado" type="text" id="uf" class="form-control" required>
+              <input name="estado" type="text" id="uf" class="form-control" required
+                value="<?php echo isset($estado) ? $estado : ''; ?>">
+
             </div>
             <div class="mb-3 col">
               <label for="cidade" class="form-label">Cidade</label>
-              <input name="cidade" type="text" id="cidade" class="form-control" required>
+              <input name="cidade" type="text" id="cidade" class="form-control" required
+                value="<?php echo isset($cidade) ? $cidade : ''; ?>">
             </div>
           </div>
           <div class="row">
