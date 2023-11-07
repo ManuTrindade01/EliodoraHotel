@@ -124,7 +124,7 @@ if (isset($_POST['cadastrar'])) {
                         </div>
                         <div class="col">
                             Valor total da reserva:
-                            <label for="" class="form-control">
+                            <label for="" class="form-control" id="valorTotalReserva">
                                 <?= $valorTotalReserva ?>
                             </label>
                         </div>
@@ -139,5 +139,10 @@ if (isset($_POST['cadastrar'])) {
         </div>
     </div>
     </div>
+    <script>
+        $('#valorTotalReserva').mask("#.##0,00", {
+            reverse: true
+        });
+    </script>
 
 </html>

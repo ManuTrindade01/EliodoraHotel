@@ -62,7 +62,7 @@ require_once("conexao.php");
             <div class="mb-3 col">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
               <input type="date" class="form-control" name="dataSaida" id="dataSaida"
-              min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" max="9999-12-31" required>
+              min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" max="2100-12-31" required>
             </div>
           </div>
           <!--
