@@ -62,7 +62,7 @@ $resultado = mysqli_query($conexao, $sql);
 
 
 
-
+<div class="table-responsive">
 <table class="table table-danger table-striped">
   <thead>
     <tr>
@@ -102,7 +102,7 @@ $resultado = mysqli_query($conexao, $sql);
         </td>
 
         <td>
-
+        <div class="btn-group">
           <a href="alterarHospede.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
@@ -112,6 +112,7 @@ $resultado = mysqli_query($conexao, $sql);
             onclick="return confirm('Confirma exclusão')">
             <i class="fa-solid fa-trash-can"></i>
           </a>
+          </div>
         </td>
 
 
@@ -119,6 +120,7 @@ $resultado = mysqli_query($conexao, $sql);
     <?php } ?>
   </tbody>
 </table>
+</div>
 </div>
 </body>
 
