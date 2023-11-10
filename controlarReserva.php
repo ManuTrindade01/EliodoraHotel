@@ -7,6 +7,7 @@ $sql = "SELECT reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_
 FROM reserva
 LEFT JOIN hospede ON hospede.id = reserva.id_hospede
 LEFT JOIN quarto ON quarto.id = reserva.id_quarto
+    WHERE dataSaida IS NULL
 ORDER BY reserva.dataEntrada ASC";
 
 $resultado = mysqli_query($conexao, $sql);
@@ -46,7 +47,11 @@ $resultado = mysqli_query($conexao, $sql);
                                     <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
                                 </li>
                                 <li class="list-group-item">Data saída:
-                                    <?= date('d/m/Y', strtotime($linha['dataSaida'])) ?>
+                                    <?php
+                                    if (isset($linha['dataSaida'])) {
+                                        date('d/m/Y', strtotime($linha['dataSaida']));
+                                    }
+                                    ?>
                                 </li>
                                 <li class="list-group-item">Valor Total:
                                     <?= $linha['valorTotalReserva']?> R$
