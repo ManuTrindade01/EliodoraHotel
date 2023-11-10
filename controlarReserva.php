@@ -46,13 +46,7 @@ $resultado = mysqli_query($conexao, $sql);
                                 <li class="list-group-item">Data de entrada:
                                     <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
                                 </li>
-                                <li class="list-group-item">Data saída:
-                                    <?php
-                                    if (isset($linha['dataSaida'])) {
-                                        date('d/m/Y', strtotime($linha['dataSaida']));
-                                    }
-                                    ?>
-                                </li>
+                                
                                 <li class="list-group-item">Valor Total:
                                     <?= $linha['valorTotalReserva']?> R$
                                 </li>
