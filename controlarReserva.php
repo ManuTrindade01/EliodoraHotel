@@ -37,7 +37,7 @@ $resultado = mysqli_query($conexao, $sql);
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" style="color: #a70162; font-family: 'Segoe UI'">QUARTO
-                                <?= $linha['quarto_numero'] ?>
+                                <?= $linha['quarto_numero'] . "({$linha['id']})"  ?>
                             </h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Nome Hóspede:

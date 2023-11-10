@@ -110,7 +110,7 @@ $resultado = mysqli_query($conexao, $sql);
           <td>
             <?php
             if (isset($linha['dataSaida'])) {
-              date('d/m/Y', strtotime($linha['dataSaida']));
+              echo date('d/m/Y', strtotime($linha['dataSaida']));
             }
             ?>
           </td>
