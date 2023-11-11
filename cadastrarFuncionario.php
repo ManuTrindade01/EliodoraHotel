@@ -209,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col">
               <label for="dataAdmissao" class="form-label">Data Admissão:</label>
-              <input name="dataAdmissao" type="date" class="form-control" required value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
+              <input name="dataAdmissao" type="date" class="form-control" min="2023-11-10" max="<?php echo date('Y-m-d') ?>" required value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
             </div>
             <div class="mb-3 col">
               <label for="salario" class="form-label">Salário:</label>
