@@ -115,7 +115,7 @@ $resultado = mysqli_query($conexao, $sql);
             ?>
           </td>
           <td>
-            <?= $linha['valorTotalReserva'] ?>
+          <?= number_format($linha['valorTotalReserva'], 2, ',', '.') ?>
           </td>
           <td>
 
