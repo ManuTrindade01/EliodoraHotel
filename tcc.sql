@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/10/2023 às 17:05
+-- Tempo de geração: 13/11/2023 às 16:21
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -201,7 +201,7 @@ INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiar
 
 CREATE TABLE `reserva` (
   `id` int(11) NOT NULL,
-  `status` varchar(3) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `dataEntrada` date NOT NULL,
   `dataSaida` date NOT NULL,
   `valorTotalReserva` double NOT NULL,
@@ -218,8 +218,12 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
-(90, '', '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:00:10'),
-(91, '', '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:02:30');
+(90, 1, '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:00:10'),
+(91, 1, '2002-02-02', '2002-02-03', 0, 2, '', 56, 12, NULL, '2023-10-27 12:02:30'),
+(92, 1, '2024-01-22', '2024-01-23', 200, 1, '', 51, 11, NULL, '2023-11-13 11:29:36'),
+(93, 1, '2024-01-22', '2024-01-23', 100, 1, '', 51, 12, NULL, '2023-11-13 11:36:09'),
+(94, 1, '2024-02-23', '2024-02-24', 100, 2, '', 51, 12, NULL, '2023-11-13 11:43:40'),
+(95, 1, '2023-11-22', '2023-11-23', 200, 1, '', 56, 11, NULL, '2023-11-13 12:13:47');
 
 -- --------------------------------------------------------
 
@@ -341,7 +345,7 @@ ALTER TABLE `quarto`
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`
