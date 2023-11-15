@@ -82,6 +82,7 @@ if (isset($_POST['cadastrar'])) {
             <div class="mb-3 col">
               <label for="valorDiaria" class="form-label">Valor da Diária:</label>
               <input type="text" class="form-control" name="valorDiaria" id="valorDiaria" required>
+             
             </div>
           </div>
           <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar

@@ -44,8 +44,7 @@ if (isset($_POST['salvar'])) {
                     salario = '$salario',
                     cargo = '$cargo',
                     horarioEntrada = '$horarioEntrada',
-                    horarioSaida = '$horarioSaida',
-                    status = '$status'
+                    horarioSaida = '$horarioSaida'
                 where id  = $id";
 
   //4. Executar a SQL
@@ -87,17 +86,15 @@ $linha = mysqli_fetch_array($resultado);
       <form method="post">
         <input type="hidden" name="id" value="<?= $linha['id'] ?>">
         <div class="row">
-          <div class="mb-3 col-7">
+          <div class="mb-3 col-5">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" class="form-control" name="nome" value="<?= $linha['nome'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-3">
             <label for="cpf" class="form-label">CPF:</label>
             <input type="text" class="form-control" name="cpf" value="<?= $linha['cpf'] ?>">
           </div>
 
-        </div>
-        <div class="row">
           <div class="mb-3 col">
             <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
             <input name="dataNascimento" type="date" class="form-control" value="<?= $linha['dataNascimento'] ?>">
@@ -109,16 +106,22 @@ $linha = mysqli_fetch_array($resultado);
               <option value="M" <?= ($linha['genero'] == "M") ? "selected" : "" ?>>Masculino</option>
             </select>
           </div>
+        </div>
+        <div class="row">
+        <div class="mb-3 col">
+            <label for="cep" class="form-label">CEP:</label>
+            <input name="cep" type="text" class="form-control" value="<?= $linha['cep'] ?>" required
+              pattern="\d{5}-?\d{3}">
+          </div>
           <div class="mb-3 col">
-            <label for="estado" class="form-label">UF</label>
-            <input name="estado" id="estado" class="form-control" value="<?= $linha['estado'] ?>">
+            <label for="estado" class="form-label">Estado</label>
+            <input name="estado" id="uf" class="form-control" value="<?= $linha['estado'] ?>">
           </div>
           <div class="mb-3 col">
             <label for="cidade" class="form-label">Cidade</label>
             <input name="cidade" id="cidade" value="<?= $linha['cidade'] ?>" class="form-control">
           </div>
-        </div>
-        <div class="row">
+          
           <div class="mb-3 col">
             <label for="bairro" class="form-label">Bairro:</label>
             <input name="bairro" type="text" class="form-control" id="bairro" value="<?= $linha['bairro'] ?>">
@@ -131,10 +134,7 @@ $linha = mysqli_fetch_array($resultado);
             <label for="numeroEndereco" class="form-label">Número:</label>
             <input name="numeroEndereco" type="number" class="form-control" value="<?= $linha['numeroEndereco'] ?>">
           </div>
-          <div class="mb-3 col">
-            <label for="cep" class="form-label">CEP:</label>
-            <input name="cep" type="text" class="form-control" value="<?= $linha['cep'] ?>">
-          </div>
+
         </div>
         <div class="row">
           <div class="mb-3 col">
@@ -188,15 +188,8 @@ $linha = mysqli_fetch_array($resultado);
             <label for="horarioSaida" class="form-label">Horário de Saída:</label>
             <input name="horarioSaida" type="time" class="form-control" value="<?= $linha['horarioSaida'] ?>">
           </div>
-
-          <div class="mb-3 col-3">
-            <label for="status" class="form-label">Ativo</label>
-            <select name="status" id="status" class="form-select">
-              <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
-              <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
-            </select>
           </div>
-        </div>
+
 
 
 
@@ -223,6 +216,37 @@ $linha = mysqli_fetch_array($resultado);
       $('#telefone').mask('(00) 00000-0000');
       $('#cep').mask('00000-000');
       $('#salario').mask("#.##0,00", { reverse: true });
+    </script>
+    <script>
+      $("#cep").blur(function () {
+        // Remove tudo o que não é número para fazer a pesquisa
+        var cep = this.value.replace(/[^0-9]/, "");
+
+        // Validação do CEP; caso o CEP não possua 8 números, então cancela
+        // a consulta
+        if (cep.length != 8) {
+          return false;
+        }
+
+        // A url de pesquisa consiste no endereço do webservice + o cep que
+        // o usuário informou + o tipo de retorno desejado (entre "json",
+        // "jsonp", "xml", "piped" ou "querty")
+        var url = "https://viacep.com.br/ws/" + cep + "/json/";
+
+        // Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+        // caso ocorra algum erro (o cep pode não existir, por exemplo) a
+        // usabilidade não seja afetada, assim o usuário pode continuar//
+        // preenchendo os campos normalmente
+        $.getJSON(url, function (dadosRetorno) {
+          try {
+            // Preenche os campos de acordo com o retorno da pesquisa
+            $("#endereco").val(dadosRetorno.logradouro);
+            $("#bairro").val(dadosRetorno.bairro);
+            $("#cidade").val(dadosRetorno.localidade);
+            $("#uf").val(dadosRetorno.uf);
+          } catch (ex) { }
+        });
+      });
     </script>
     <script>
       // Função para exibir a mensagem de confirmação

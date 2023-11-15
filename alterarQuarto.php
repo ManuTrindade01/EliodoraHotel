@@ -106,7 +106,7 @@ $linha = mysqli_fetch_array($resultado);
   integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  $('#valorDiaria').mask("#.##0,00", { reverse: true }); 
+  $('#valorDiaria').mask("#.###,##", { reverse: true }); 
 </script>
 <script>
         // Função para exibir a mensagem de confirmação
