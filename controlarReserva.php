@@ -1,6 +1,7 @@
 <?php
 // Função para retornar o nome do status com base no número
-function getStatusName($statusNumber) {
+function getStatusName($statusNumber)
+{
     switch ($statusNumber) {
         case 1:
             return ['Pendente', 'warning'];
@@ -20,49 +21,52 @@ require_once("conexao.php");
 ?>
 
 <!DOCTYPE html>
+
 <head>
     <title>Reservas</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <style>
         /* style.css */
 
-/* Estilos para o botão de filtragem */
-.filter-button {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #a70162;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        /* Estilos para o botão de filtragem */
+        .filter-button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #a70162;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.filter-button:hover {
-    background-color: #872850;
-}
-
+        .filter-button:hover {
+            background-color: #872850;
+        }
     </style>
 </head>
 
 <?php require_once("cabecalho.php"); ?>
 
 <body>
-    <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <label for="statusSelect" >Filtrar por status:</label>
-        <select name="status" id="statusSelect" >
-            <option value="">Todos</option>
-            <option value="1">Pendente</option>
-            <option value="2">Em andamento</option>
-            <option value="3">Finalizado</option>
-            <option value="4">Cancelado</option>
-        </select>
-        <button type="submit" class="filter-button">Filtrar</button>
-    </form>
-
+    <br>
+    <center>
+        <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <label for="statusSelect">Filtrar por status:
+                <select name="status" id="statusSelect" class="form-control mr-sm-2">
+                    <option value="">Todos</option>
+                    <option value="1">Pendente</option>
+                    <option value="2">Em andamento</option>
+                    <option value="3">Finalizado</option>
+                    <option value="4">Cancelado</option>
+                </select></label>
+            <button type="submit" class="filter-button">Filtrar</button>
+        </form>
+    </center>
     <div>
+        <br>
         <div class="row row-cols 1 row-cols-md-4 g-4">
             <?php
             // Reutilização da variável $conexao do arquivo conexão.php
@@ -84,12 +88,12 @@ require_once("conexao.php");
             // Verifica se a consulta foi bem-sucedida
             if ($resultado) {
                 $reservas = []; // Array para armazenar as reservas
-
+            
                 // Armazena os resultados em uma matriz
                 while ($linha = mysqli_fetch_array($resultado)) {
                     $reservas[] = $linha;
                 }
-                
+
 
                 // Itera sobre as reservas para exibir os cartões de reserva
                 foreach ($reservas as $reserva) {
@@ -98,15 +102,19 @@ require_once("conexao.php");
                     $statusClass = $statusInfo[1];
                     ?>
 
-                    
+
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" style="color: #a70162; font-family: 'Segoe UI'">QUARTO
-                                    <?= $reserva['quarto_numero'] ?>
-                                </h5>
-                                <label class="badge text-bg-<?= $statusClass ?>"><?= $statusText ?></label>
+                                <div class="card-title">
+                                    <h5 style="color: #a70162; font-family: 'Segoe UI'">QUARTO
+                                        <?= $reserva['quarto_numero'] ?>
+                                    </h5>
 
+                                    <label class="badge text-bg-<?= $statusClass ?>">
+                                        <?= $statusText ?>
+                                    </label>
+                                </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">Hóspede:
                                         <?= $reserva['hospede_nome'] ?>
@@ -125,6 +133,9 @@ require_once("conexao.php");
                                 <a href="alterarReserva.php?id=<?= $reserva['id'] ?>" class="btn btn-warning">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
+                                <a href="alterarReserva.php?id=<?= $reserva['id'] ?>" class="btn btn-success">
+                                    <i class="fa-solid fa-money-check-dollar"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -137,4 +148,5 @@ require_once("conexao.php");
         </div>
     </div>
 </body>
+
 </html>
