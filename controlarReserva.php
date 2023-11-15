@@ -3,15 +3,15 @@
 function getStatusName($statusNumber) {
     switch ($statusNumber) {
         case 1:
-            return 'Pendente';
+            return ['Pendente', 'warning'];
         case 2:
-            return 'Em andamento';
+            return ['Em andamento', 'primary'];
         case 3:
-            return 'Finalizado';
+            return ['Finalizado', 'success'];
         case 4:
-            return 'Cancelado';
+            return ['Cancelado', 'danger'];
         default:
-            return 'Status Desconhecido';
+            return ['Status Desconhecido', 'secondary'];
     }
 }
 
@@ -89,20 +89,26 @@ require_once("conexao.php");
                 while ($linha = mysqli_fetch_array($resultado)) {
                     $reservas[] = $linha;
                 }
+                
 
                 // Itera sobre as reservas para exibir os cartões de reserva
                 foreach ($reservas as $reserva) {
+                    $statusInfo = getStatusName($reserva['status']);
+                    $statusText = $statusInfo[0];
+                    $statusClass = $statusInfo[1];
                     ?>
+
+                    
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: #a70162; font-family: 'Segoe UI'">QUARTO
                                     <?= $reserva['quarto_numero'] ?>
                                 </h5>
-                                <label class="badge text-bg-primary"><?= getStatusName($reserva['status']) ?></label>
+                                <label class="badge text-bg-<?= $statusClass ?>"><?= $statusText ?></label>
 
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Nome Hóspede:
+                                    <li class="list-group-item">Hóspede:
                                         <?= $reserva['hospede_nome'] ?>
                                     </li>
                                     <li class="list-group-item">Data de entrada:
