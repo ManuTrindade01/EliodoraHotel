@@ -26,7 +26,7 @@ $resultado = mysqli_query($conexao, $sql);
 
 <?php require_once("cabecalho.php"); ?>
 
-
+<div class="container">
 <!--Bloco de mensagem-->
 <?php if (isset($mensagem)) { ?>
   <div class="alert alert-success" role="alert">

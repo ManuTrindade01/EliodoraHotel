@@ -140,10 +140,12 @@ $linha = mysqli_fetch_array($resultado);
                         </div>
 
                         <div class="mb-3 col-4">
-                            <label for="status" class="form-label">Ativo</label>
+                            <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select">
-                                <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
-                                <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
+                                <option value="1" <?= ($linha['status'] == '1') ? 'selected' : '' ?>>Pendente</option>
+                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Em andamento</option>
+                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Finalizado</option>
+                                <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Cancelado</option>
                             </select>
                         </div>
                     </div>

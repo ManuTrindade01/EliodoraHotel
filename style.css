@@ -9,7 +9,7 @@ body {
 }
 header {
     background-color: #b97c8c;
-    box-shadow: 0px 3px 10px #120303;
+    box-shadow: 0px 3px 10px #704848;
 }
 .nav-bar {
     display: flex;
@@ -132,6 +132,25 @@ header {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #a70162;
   }
+
+  /* style.css */
+
+/* Estilos para o botão de filtragem */
+.filter-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #a70162;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #872850;
+}
 
 
   

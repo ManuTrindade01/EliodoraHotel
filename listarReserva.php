@@ -33,7 +33,7 @@ $resultado = mysqli_query($conexao, $sql);
 <?php require_once("cabecalho.php"); ?>
 
 <div class="container">
-  
+
   <!--Bloco de mensagem-->
   <?php if (isset($mensagem)) { ?>
     <div class="alert alert-success" role="alert">
@@ -46,7 +46,8 @@ $resultado = mysqli_query($conexao, $sql);
 
     <div class="card-body">
       <h2 class="card-title">Reservas
-        <a href="cadastrarReserva.php" class="btn btn-sn" style="background-color: #a70162; color: #fff;"><i class="fa-solid fa-plus"></i>
+        <a href="cadastrarReserva.php" class="btn btn-sn" style="background-color: #a70162; color: #fff;"><i
+            class="fa-solid fa-plus"></i>
         </a>
       </h2>
     </div>
@@ -54,13 +55,15 @@ $resultado = mysqli_query($conexao, $sql);
 
   <form method="post">
     <div class="input-group mb-3">
-      <input type="text" name="hospede_nome" id="id_hospede" class="form-control" placeholder="Pesquisar por nome do hóspede" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <input type="text" name="hospede_nome" id="id_hospede" class="form-control"
+        placeholder="Pesquisar por nome do hóspede" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit"><i class="fa-solid fa-magnifying-glass"></i> </button>
+        <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit"><i
+            class="fa-solid fa-magnifying-glass"></i> </button>
   </form>
-  </div>
-  </div>
-  <!--
+</div>
+</div>
+<!--
   <div class="card mt-3 mb-3">
     <div class="card-body">
       <h2 class="card-title">Pesquisar</h2>
@@ -77,68 +80,69 @@ $resultado = mysqli_query($conexao, $sql);
     </div>
   </div>
   -->
-  <div class="table-responsive">
-    <table class="table table-danger table-striped">
-      <thead>
+<div class="table-responsive">
+  <table class="table table-danger table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Hóspede</th>
+        <th scope="col">Quarto</th>
+        <th scope="col">Data Entrada</th>
+        <th scope="col">Data Saída</th>
+        <th scope="col">Valor Total</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php while ($linha = mysqli_fetch_array($resultado)) { ?>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Hóspede</th>
-          <th scope="col">Quarto</th>
-          <th scope="col">Data Entrada</th>
-          <th scope="col">Data Saída</th>
-          <th scope="col">Valor Total</th>
-          <th scope="col">Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php while ($linha = mysqli_fetch_array($resultado)) { ?>
-          <tr>
-            <td>
-              <?= $linha['id'] ?>
-              </th>
-            <td>
-              <?= $linha['hospede_nome'] ?>
-            </td>
-            <td>
-              <?= $linha['quarto_numero'] ?>
-            </td>
-            <td>
-              <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
-            </td>
-            <td>
-              <?php
-              if (isset($linha['dataSaida'])) {
-                echo date('d/m/Y', strtotime($linha['dataSaida']));
-              }
-              ?>
-            </td>
-            <td>
+          <td>
+            <?= $linha['id'] ?>
+            </th>
+          <td>
+            <?= $linha['hospede_nome'] ?>
+          </td>
+          <td>
+            <?= $linha['quarto_numero'] ?>
+          </td>
+          <td>
+            <?= date('d/m/Y', strtotime($linha['dataEntrada'])) ?>
+          </td>
+          <td>
+            <?php
+            if (isset($linha['dataSaida'])) {
+              echo date('d/m/Y', strtotime($linha['dataSaida']));
+            }
+            ?>
+          </td>
+          <td>
             <?= number_format($linha['valorTotalReserva'], 2, ',', '.') ?>
-            </td>
-            <td>
+          </td>
+          <td>
 
-              <div class="btn-group">
-                <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-                <!--BOTÃO EXCLUIR-->
+            <div class="btn-group">
+              <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+              <!--BOTÃO EXCLUIR-->
 
-                <a href="listarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-danger" onclick="return confirm('Confirma exclusão')">
-                  <i class="fa-solid fa-trash-can"></i>
-                </a>
+              <a href="listarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-danger"
+                onclick="return confirm('Confirma exclusão')">
+                <i class="fa-solid fa-trash-can"></i>
+              </a>
 
-              </div>
-            </td>
+            </div>
+          </td>
 
 
-          </tr>
-        <?php } ?>
-      </tbody>
-    </table>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
 
-  </div>
-  </div>
-  </div>
+</div>
+</div>
+</div>
 </body>
 
 </html>
