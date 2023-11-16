@@ -53,7 +53,8 @@ $resultado = mysqli_query($conexao, $sql);
     <input type="text" name="nome" id="nome" class="form-control" placeholder="Pesquisar por nome" aria-label="Recipient's username" aria-describedby="basic-addon2">
     <div class="input-group-append">
       <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit"><i class="fa-solid fa-magnifying-glass"></i> </button>
-</form>
+      
+    </form>
 </div>
 </div>
 

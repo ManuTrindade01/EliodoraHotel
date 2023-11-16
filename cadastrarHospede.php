@@ -133,24 +133,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" id="form" name="form">
           <div class="row">
-            <div class="mb-3 col-8">
+            <div class="mb-3 col-5">
               <label for="nome" class="form-label">Nome Completo:</label>
               <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome completo"
                 pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10"
                 value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
-            <div class="mb-3 col">
+            <div class="mb-3 col-2">
               <label for="cpf" class="form-label">CPF:</label>
               <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                 value="<?php echo isset($cpf) ? $cpf : ''; ?>">
 
             </div>
-          </div>
-          <div class="row">
             <div class="mb-3 col-3">
-              <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+              <label for="dataNascimento" class="form-label">Data Nascimento:</label>
               <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
-                value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>">
+                value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
             </div>
             <div class="mb-3 col-2">
               <label for="genero" class="form-label">Gênero:</label>
@@ -161,6 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </select>
 
             </div>
+            
+          </div>
+          <div class="row">
             <div class="mb-3 col-2">
               <label for="cep" class="form-label">CEP:</label>
               <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
@@ -177,8 +178,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="cidade" type="text" id="cidade" class="form-control" required
                 value="<?php echo isset($cidade) ? $cidade : ''; ?>">
             </div>
-          </div>
-          <div class="row">
             <div class="mb-3 col">
               <label for="bairro" class="form-label">Bairro:</label>
               <input name="bairro" type="text" class="form-control" id="bairro" required
