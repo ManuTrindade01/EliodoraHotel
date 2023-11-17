@@ -29,7 +29,7 @@ require_once("verificaAutenticacao.php");
     <div class="container1">
         <div class="box">
             <div class="boxContent">
-            <i class="fa fa-user-group icon"></i>
+            <i class="fa fa-user icon"></i>
                 <h1 class="title">Hóspedes Cadastrados</h1>
             </div>
             <a href="listarHospedes.php"></a>

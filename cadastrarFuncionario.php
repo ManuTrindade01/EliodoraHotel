@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
-                <option value="" disabled>Selecione</option>
+                <option value="" disabled selected>Selecione</option>
                 <option value="F" <?php echo (isset($genero) && $genero == "F") ? "selected" : ""; ?>>Feminino</option>
                 <option value="M" <?php echo (isset($genero) && $genero == "M") ? "selected" : ""; ?>>Masculino</option>
               </select>
