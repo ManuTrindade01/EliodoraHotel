@@ -131,11 +131,9 @@ require_once("conexao.php");
                                 </ul>
 
                                 <a href="alterarReserva.php?id=<?= $reserva['id'] ?>" class="btn btn-warning">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-pen-to-square"></i>Alterar
                                 </a>
-                                <a href="alterarReserva.php?id=<?= $reserva['id'] ?>" class="btn btn-success">
-                                    <i class="fa-solid fa-money-check-dollar"></i>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>

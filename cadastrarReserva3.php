@@ -22,7 +22,6 @@ $valorDiaria = $quarto['valorDiaria'];
 
 // Calcular o valor total da reserva
 $valorTotalReserva = $valorDiaria * $diferencaDias;
-$valorTotalReservaFormatado = number_format($valorTotalReserva, 2, ',', '.');
 
 if (isset($_POST['cadastrar'])) {
     // Receber os dados para inserir no BD
@@ -125,7 +124,7 @@ if (isset($_POST['cadastrar'])) {
                         <div class="col">
                             Valor total da reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
-                                <?= $valorTotalReservaFormatado ?>
+                                <?= $valorTotalReserva ?>
                             </label>
                         </div>
                         <br>

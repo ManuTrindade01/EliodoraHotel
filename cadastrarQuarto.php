@@ -11,7 +11,8 @@ if (isset($_POST['cadastrar'])) {
   $numero = $_POST['numero'];
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
-  $valorDiaria = $_POST['valorDiaria'];
+  $valorDiaria = str_replace(',', '.', $_POST['valorDiaria']);
+
 
 
   //3. Preparar a SQL
