@@ -14,7 +14,7 @@ if (isset($_POST['salvar'])) {
     $id_quarto = $_POST['id_quarto'];
     $dataEntrada = $_POST['dataEntrada'];
     $dataSaida = $_POST['dataSaida'];
-    $valorTotalReserva = $_POST['valorTotalReserva'];
+    $valorTotalReserva = str_replace(',', '.', $_POST['valorTotalReserva']);
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
 
