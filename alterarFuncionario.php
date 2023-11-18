@@ -3,11 +3,56 @@ require_once("verificaAutenticacao.php");
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
 
+function validarCPF($cpf)
+{
+  // Remove caracteres não numéricos
+  $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+  // Verifica se o CPF possui 11 dígitos
+  if (strlen($cpf) != 11) {
+    return false;
+  }
+
+  // Verifica se todos os dígitos são iguais
+  if (preg_match('/(\d)\1{10}/', $cpf)) {
+    return false;
+  }
+
+  // Calcula o primeiro dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 9; $i++) {
+    $soma += $cpf[$i] * (10 - $i);
+  }
+  $resto = $soma % 11;
+  $digito1 = ($resto < 2) ? 0 : 11 - $resto;
+
+  // Calcula o segundo dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 10; $i++) {
+    $soma += $cpf[$i] * (11 - $i);
+  }
+  $resto = $soma % 11;
+  $digito2 = ($resto < 2) ? 0 : 11 - $resto;
+
+  // Verifica se os dígitos verificadores estão corretos
+  if ($cpf[9] == $digito1 && $cpf[10] == $digito2) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 if (isset($_POST['salvar'])) {
+  $cpf = $_POST["cpf"];
+
+  if (!validarCPF($cpf)) {
+    $mensagemErro = "CPF inválido!";
+} else {
+
   //2. Receber os dados para inserir no BD
   $id = $_POST['id'];
   $nome = $_POST['nome'];
+  $status = $_POST['status'];
   $cpf = $_POST['cpf'];
   $dataNascimento = $_POST['dataNascimento'];
   $genero = $_POST['genero'];
@@ -20,15 +65,15 @@ if (isset($_POST['salvar'])) {
   $telefone = $_POST['telefone'];
   $senha = $_POST['senha'];
   $dataAdmissao = $_POST['dataAdmissao'];
-  $salario = $_POST['salario'];
+  $salario = str_replace(',', '.', $_POST['salario']);
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];
-  $status = $_POST['status'];
 
   //3. Preparar a SQL
   $sql = "UPDATE funcionario
                 set nome  = '$nome',
+                    status = '$status',
                     cpf = '$cpf',
                     dataNascimento = '$dataNascimento',
                     genero = '$genero',
@@ -53,11 +98,11 @@ if (isset($_POST['salvar'])) {
   //5. Mostrar uma mensagem ao usuário
   $mensagem = "Registro salvo com sucesso.";
 
-
+}
 
 }
 
-//Busca usuário selecionado pelo "listarHospedes.php"
+//Busca usuário selecionado pelo "listarFuncionario.php"
 $sql = "SELECT * from funcionario where id = " . $_GET['id'];
 $resultado = mysqli_query($conexao, $sql);
 $linha = mysqli_fetch_array($resultado);
@@ -81,25 +126,31 @@ $linha = mysqli_fetch_array($resultado);
           <?= $mensagem ?>
         </div>
       <?php } ?>
+      <?php if (isset($mensagemErro)) { ?>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagemErro ?>
+          </div>
+        <?php } ?>
 
 
       <form method="post">
         <input type="hidden" name="id" value="<?= $linha['id'] ?>">
         <div class="row">
-          <div class="mb-3 col-5">
+          <div class="mb-3 col-md-5">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" class="form-control" name="nome" value="<?= $linha['nome'] ?>">
           </div>
-          <div class="mb-3 col-3">
+          <div class="mb-3 col-md-3">
             <label for="cpf" class="form-label">CPF:</label>
-            <input type="text" class="form-control" name="cpf" value="<?= $linha['cpf'] ?>">
+            <input type="text" class="form-control" name="cpf" id=cpf value="<?= $linha['cpf'] ?>">
           </div>
 
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
             <input name="dataNascimento" type="date" class="form-control" value="<?= $linha['dataNascimento'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="genero" class="form-label">Gênero:</label>
             <select name="genero" class="form-select" aria-label="Default select example">
               <option value="F" <?= ($linha['genero'] == "F") ? "selected" : "" ?>>Feminino</option>
@@ -108,69 +159,69 @@ $linha = mysqli_fetch_array($resultado);
           </div>
         </div>
         <div class="row">
-        <div class="mb-3 col">
+        <div class="mb-3 col-md">
             <label for="cep" class="form-label">CEP:</label>
             <input name="cep" type="text" class="form-control" value="<?= $linha['cep'] ?>" required
               pattern="\d{5}-?\d{3}">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="estado" class="form-label">Estado</label>
             <input name="estado" id="uf" class="form-control" value="<?= $linha['estado'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="cidade" class="form-label">Cidade</label>
             <input name="cidade" id="cidade" value="<?= $linha['cidade'] ?>" class="form-control">
           </div>
           
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="bairro" class="form-label">Bairro:</label>
             <input name="bairro" type="text" class="form-control" id="bairro" value="<?= $linha['bairro'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="endereco" class="form-label">Endereço:</label>
             <input name="endereco" type="text" class="form-control" value="<?= $linha['endereco'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="numeroEndereco" class="form-label">Número:</label>
             <input name="numeroEndereco" type="number" class="form-control" value="<?= $linha['numeroEndereco'] ?>">
           </div>
 
         </div>
         <div class="row">
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="email" class="form-label">Email:</label>
             <input name="email" type="email" class="form-control" value="<?= $linha['email'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="telefone" class="form-label">Telefone:</label>
             <input name="telefone" type="text" class="form-control" value="<?= $linha['telefone'] ?>">
           </div>
 
 
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="senha" class="form-label">Senha:</label>
             <input name="senha" type="password" class="form-control" value="<?= $linha['senha'] ?>"
               onchange='confereSenha();'>
           </div>
 
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="confirma" class="form-label">Confirmar Senha:</label>
             <input name="confirma" type="password" class="form-control" id="confirma" value="<?= $linha['senha'] ?>"
               onchange='confereSenha();' placeholder="Repita sua senha">
           </div>
 
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="dataAdmissao" class="form-label">Data Admissão:</label>
             <input name="dataAdmissao" type="date" class="form-control" value="<?= $linha['dataAdmissao'] ?>">
           </div>
         </div>
 
         <div class="row">
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="salario" class="form-label">Salário:</label>
             <input name="salario" type="text" class="form-control" id="salario" value="<?= $linha['salario'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="cargo" class="form-label">Cargo:</label>
             <select name="cargo" class="form-select" aria-label="Default select example" id="cargo"
               value="<?= $linha['cargo'] ?>">
@@ -180,14 +231,21 @@ $linha = mysqli_fetch_array($resultado);
               <option value="Recepção" <?= ($linha['cargo'] == 'Recepção') ? 'selected' : '' ?>>Recepção</option>
             </select>
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
             <input name="horarioEntrada" type="time" class="form-control" value="<?= $linha['horarioEntrada'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="horarioSaida" class="form-label">Horário de Saída:</label>
             <input name="horarioSaida" type="time" class="form-control" value="<?= $linha['horarioSaida'] ?>">
           </div>
+          <div class="mb-3 col-md">
+                            <label for="status" class="form-label">Status:</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="1" <?= ($linha['status'] == '1') ? 'selected' : '' ?>>Ativo(a)</option>
+                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Inativo(a)</option>
+                               </select>
+                        </div>
           </div>
 
 
@@ -217,37 +275,7 @@ $linha = mysqli_fetch_array($resultado);
       $('#cep').mask('00000-000');
       $('#salario').mask("#.##0,00", { reverse: true });
     </script>
-    <script>
-      $("#cep").blur(function () {
-        // Remove tudo o que não é número para fazer a pesquisa
-        var cep = this.value.replace(/[^0-9]/, "");
-
-        // Validação do CEP; caso o CEP não possua 8 números, então cancela
-        // a consulta
-        if (cep.length != 8) {
-          return false;
-        }
-
-        // A url de pesquisa consiste no endereço do webservice + o cep que
-        // o usuário informou + o tipo de retorno desejado (entre "json",
-        // "jsonp", "xml", "piped" ou "querty")
-        var url = "https://viacep.com.br/ws/" + cep + "/json/";
-
-        // Faz a pesquisa do CEP, tratando o retorno com try/catch para que
-        // caso ocorra algum erro (o cep pode não existir, por exemplo) a
-        // usabilidade não seja afetada, assim o usuário pode continuar//
-        // preenchendo os campos normalmente
-        $.getJSON(url, function (dadosRetorno) {
-          try {
-            // Preenche os campos de acordo com o retorno da pesquisa
-            $("#endereco").val(dadosRetorno.logradouro);
-            $("#bairro").val(dadosRetorno.bairro);
-            $("#cidade").val(dadosRetorno.localidade);
-            $("#uf").val(dadosRetorno.uf);
-          } catch (ex) { }
-        });
-      });
-    </script>
+    
     <script>
       // Função para exibir a mensagem de confirmação
       window.onbeforeunload = function () {

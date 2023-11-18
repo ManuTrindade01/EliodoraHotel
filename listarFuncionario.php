@@ -69,20 +69,29 @@ $resultado = mysqli_query($conexao, $sql);
       <th scope="col">Telefone</th>
       <th scope="col">Horário Entrada</th>
       <th scope="col">Horário Saída</th>
-      <th scope="col">Ativo</th>
+      <th scope="col">Status</th>
       <th scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
     <?php while ($linha = mysqli_fetch_array($resultado)) { ?>
       <tr>
+
         <td><?= $linha['id'] ?></th>
         <td><?= $linha['nome'] ?></td>
         <td><?= $linha['email'] ?></td>
         <td><?= $linha['telefone'] ?></td>
         <td><?= $linha['horarioEntrada'] ?></td>
         <td><?= $linha['horarioSaida'] ?></td>
-        <td><?= $linha['status'] ?></td>
+        <td>
+        <?php
+        if ($linha['status'] == 1) {
+          echo 'Ativo(a)';
+        } else {
+          echo 'Inativo(a)';
+        }
+        ?>
+      </td>
         <td>
           <div class="btn-group">
             <a href="alterarFuncionario.php?id=<?= $linha['id'] ?>" class="btn btn-warning">

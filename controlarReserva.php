@@ -8,8 +8,10 @@ function getStatusName($statusNumber)
         case 2:
             return ['Em andamento', 'primary'];
         case 3:
-            return ['Finalizado', 'success'];
+            return ['Finalizado - A pagar', 'secondary'];
         case 4:
+            return ['Finalizado - Pago', 'success'];
+        case 5:
             return ['Cancelado', 'danger'];
         default:
             return ['Status Desconhecido', 'secondary'];
@@ -54,15 +56,16 @@ require_once("conexao.php");
     <br>
     <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-10">
             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <label for="statusSelect">Filtrar por status:
                     <select name="status" id="statusSelect" class="form-control mr-sm-2">
                         <option value="">Todos</option>
                         <option value="1">Pendente</option>
                         <option value="2">Em andamento</option>
-                        <option value="3">Finalizado</option>
-                        <option value="4">Cancelado</option>
+                        <option value="3">Finalizado - A pagar</option>
+                        <option value="4">Finalizado - Pago</option>
+                        <option value="5">Cancelado</option>
                     </select>
                 </label>
                 <label for="dataEntrada">Data de Entrada:

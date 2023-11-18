@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col-md-5">
               <label for="nome" class="form-label">Nome Completo:</label>
-              <input type="text" class="form-control" name="nome" id="nome" placeholder="Insira o nome completo"
+              <input type="text" class="form-control" name="nome" id="nome"
                 pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10"
                 value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>

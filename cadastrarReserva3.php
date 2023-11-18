@@ -60,6 +60,10 @@ if (isset($_POST['cadastrar'])) {
 
 <body>
     <div class="container p-4">
+    <div class="progress">
+  <div class="progress-bar progress-bar-striped" style="background-color:#a70162; width: 100%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
         <div class="card">
 
 
@@ -83,6 +87,7 @@ if (isset($_POST['cadastrar'])) {
                     <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
                     <input type="hidden" name="id_quarto" value="<?= $_POST['id_quarto'] ?>">
                     <div class="row">
+                    
                         <div class="mb-3 col-md">
                             Data de Entrada:
                             <label for="dataEntrada" class="form-control">

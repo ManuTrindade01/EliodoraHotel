@@ -20,6 +20,11 @@ require_once("conexao.php");
 
 
   <div class="container p-4">
+  <div class="progress">
+  <div class="progress-bar progress-bar-striped" style="background-color:#a70162; width: 33%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  
+</div>
+<br>
     <div class="card">
       <div class="card-header">
         <h2>Cadastrar Reserva</h2>

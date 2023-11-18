@@ -59,31 +59,32 @@ $linha = mysqli_fetch_array($resultado);
 
       <form method="post">
         <input type="hidden" name="id" value="<?= $linha['id'] ?>">
-
-        <div class="mb-3">
+        <div class="row">
+        <div class="mb-3 col-md">
           <label for="numero" class="form-label">Número:</label>
           <input type="text" class="form-control" name="numero" value="<?= $linha['numero'] ?>">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md">
           <label for="tipo" class="form-label">Tipo:</label>
           <input type="text" class="form-control" name="tipo" value="<?= $linha['tipo'] ?>">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md">
           <label for="capacidade" class="form-label">Capacidade:</label>
           <input type="text" class="form-control" name="capacidade" id="capacidade" value="<?= $linha['capacidade'] ?>">
 
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md">
           <label for="valorDiaria" class="form-label">Valor Diária:</label>
           <input name="valorDiaria" type="text" class="form-control" id="valorDiaria"
             value="<?= $linha['valorDiaria'] ?>">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md">
           <label for="status" class="form-label">Ativo</label>
           <select name="status" id="status" class="form-select">
             <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
             <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
           </select>
+        </div>
         </div>
         <button name="salvar" type="submit" style="background-color: #a70162; color: #fff" class="btn"><i
             class="fa-solid fa-check"></i> Salvar</button>

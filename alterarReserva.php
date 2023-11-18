@@ -77,7 +77,7 @@ $linha = mysqli_fetch_array($resultado);
 
 
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-md">
                             <label for="id_hospede" class="form-label">Hóspede:</label>
                             <select name="id_hospede" id="id_hospede" class="form-select">
                                 <option value="">-- Selecione--</option>
@@ -99,19 +99,19 @@ $linha = mysqli_fetch_array($resultado);
                             </select>
                         </div>
 
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-md">
                             <label for="dataEntrada" class="form-label">Data da Entrada:</label>
                             <input type="date" class="form-control" name="dataEntrada"
                                 value="<?= $linha['dataEntrada'] ?>">
                         </div>
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-md">
                             <label for="dataSaida" class="form-label">Data da Saída:</label>
                             <input type="date" class="form-control" name="dataSaida" value="<?= $linha['dataSaida'] ?>">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="mb-3 col-4">
+                        <div class="mb-3 col-md">
                             <label for="id_quarto" class="form-label">Quarto:</label>
                             <select name="id_quarto" id="id_quarto" class="form-select">
                                 <option value="">-- Selecione--</option>
@@ -133,27 +133,28 @@ $linha = mysqli_fetch_array($resultado);
                             </select>
                         </div>
 
-                        <div class="mb-3 col-4">
+                        <div class="mb-3 col-md">
                             <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
                             <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva"
                                 value="<?= $linha['valorTotalReserva'] ?>">
                         </div>
 
-                        <div class="mb-3 col-4">
+                        <div class="mb-3 col-md">
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select">
                                 <option value="1" <?= ($linha['status'] == '1') ? 'selected' : '' ?>>Pendente</option>
                                 <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Em andamento</option>
-                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Finalizado</option>
-                                <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Cancelado</option>
+                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Finalizado - A pagar</option>
+                                <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Finalizado - Pago</option>
+                                <option value="5" <?= ($linha['status'] == '5') ? 'selected' : '' ?>>Cancelado</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 col-md">
                         <label for="observacao" class="form-label">Observação:</label>
                         <input class="form-control" id="observacao" name="observacao"
                             value="<?= $linha['observacao'] ?>">
+                    </div>
                     </div>
 
                     <button name="salvar" type="submit" class="btn"
