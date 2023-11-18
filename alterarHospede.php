@@ -2,11 +2,53 @@
 require_once("verificaAutenticacao.php");
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
+function validarCPF($cpf)
+{
+  // Remove caracteres não numéricos
+  $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
+  // Verifica se o CPF possui 11 dígitos
+  if (strlen($cpf) != 11) {
+    return false;
+  }
+
+  // Verifica se todos os dígitos são iguais
+  if (preg_match('/(\d)\1{10}/', $cpf)) {
+    return false;
+  }
+
+  // Calcula o primeiro dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 9; $i++) {
+    $soma += $cpf[$i] * (10 - $i);
+  }
+  $resto = $soma % 11;
+  $digito1 = ($resto < 2) ? 0 : 11 - $resto;
+
+  // Calcula o segundo dígito verificador
+  $soma = 0;
+  for ($i = 0; $i < 10; $i++) {
+    $soma += $cpf[$i] * (11 - $i);
+  }
+  $resto = $soma % 11;
+  $digito2 = ($resto < 2) ? 0 : 11 - $resto;
+
+  // Verifica se os dígitos verificadores estão corretos
+  if ($cpf[9] == $digito1 && $cpf[10] == $digito2) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 if (isset($_POST['salvar'])) {
-  //2. Receber os dados para inserir no BD
-  $id = $_POST['id'];
+  $cpf = $_POST["cpf"];
+
+  if (!validarCPF($cpf)) {
+    $mensagemErro = "CPF inválido!";
+} else {
+
+      $id = $_POST['id'];
   $nome = $_POST['nome'];
   $cpf = $_POST['cpf'];
   $dataNascimento = $_POST['dataNascimento'];
@@ -35,6 +77,7 @@ if (isset($_POST['salvar'])) {
                     telefone = '$telefone',
                     contatoEmergencia = '$contatoEmergencia'
                 where id  = $id";
+                
 
   //4. Executar a SQL
   mysqli_query($conexao, $sql);
@@ -43,7 +86,7 @@ if (isset($_POST['salvar'])) {
   $mensagem = "Registro salvo com sucesso.";
 
 
-
+}
 }
 
 //Busca usuário selecionado pelo "listarHospedes.php"
@@ -69,25 +112,31 @@ $linha = mysqli_fetch_array($resultado);
           <?= $mensagem ?>
         </div>
       <?php } ?>
+      <?php if (isset($mensagemErro)) { ?>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagemErro ?>
+          </div>
+        <?php } ?>
 
 
       <form method="post">
         <input type="hidden" name="id" value="<?= $linha['id'] ?>">
         <div class="row">
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-md-4">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" class="form-control" name="nome" value="<?= $linha['nome'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="cpf" class="form-label">CPF:</label>
             <input type="text" class="form-control" name="cpf" id="cpf" value="<?= $linha['cpf'] ?>">
 
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
             <input name="dataNascimento" type="date" class="form-control" value="<?= $linha['dataNascimento'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="genero" class="form-label">Gênero:</label>
             <select name="genero" class="form-select" aria-label="Default select example">
               <option value="F" <?= ($linha['genero'] == "F") ? "selected" : "" ?>>Feminino</option>
@@ -96,41 +145,41 @@ $linha = mysqli_fetch_array($resultado);
           </div>
         </div>
         <div class="row">
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
+            <label for="cep" class="form-label">CEP:</label>
+            <input name="cep" type="text" id="cep" class="form-control" value="<?= $linha['cep'] ?>" id="cep">
+          </div>
+          <div class="mb-3 col-md">
             <label for="estado" class="form-label">UF:</label>
             <input name="estado" type="text" id="uf" class="form-control" value="<?= $linha['estado'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="cidade" class="form-label">Cidade:</label>
             <input name="cidade" type="text" class="form-control" value="<?= $linha['cidade'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="bairro" class="form-label">Bairro:</label>
             <input name="bairro" type="text" class="form-control" value="<?= $linha['bairro'] ?>">
           </div>
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-md-4">
             <label for="endereco" class="form-label">Endereço:</label>
             <input name="endereco" type="text" class="form-control" value="<?= $linha['endereco'] ?>">
           </div>
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
             <label for="numeroEndereco" class="form-label">Número:</label>
             <input name="numeroEndereco" type="number" class="form-control" value="<?= $linha['numeroEndereco'] ?>">
           </div>
-          <div class="mb-3 col">
-            <label for="cep" class="form-label">CEP:</label>
-            <input name="cep" type="text" class="form-control" value="<?= $linha['cep'] ?>" id="cep">
-          </div>
         </div>
     <div class="row">
-      <div class="mb-3 col">
+      <div class="mb-3 col-md">
         <label for="email" class="form-label">Email:</label>
         <input name="email" type="email" class="form-control" value="<?= $linha['email'] ?>">
       </div>
-      <div class="mb-3 col">
+      <div class="mb-3 col-md">
         <label for="telefone" class="form-label">Telefone:</label>
         <input name="telefone" type="text" class="form-control" value="<?= $linha['telefone'] ?>" id="telefone">
       </div>
-      <div class="mb-3 col">
+      <div class="mb-3 col-md">
         <label for="contatoEmergencia" class="form-label">Contato de Emergência:</label>
         <input name="contatoEmergencia" type="text" class="form-control" value="<?= $linha['contatoEmergencia'] ?>"
           id="contatoEmergencia">
@@ -150,6 +199,7 @@ $linha = mysqli_fetch_array($resultado);
 
 </div>
 <script type="text/javascript" src="js/app.js"></script>
+
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"

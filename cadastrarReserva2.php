@@ -86,7 +86,7 @@ if (isset($_POST['cadastrar'])) {
           <input type="hidden" name="quantHospede" value="<?= $_POST['quantHospede'] ?>">
           <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
           <div class="row">
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="dataEntrada" class="form-label">Data da Entrada:</label>
               <label for="dataEntrada" class="form-control">
                 <?php
@@ -101,7 +101,7 @@ if (isset($_POST['cadastrar'])) {
                 ?>
               </label>
             </div>
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
               <label for="dataSaida" class="form-control">
                 <?php
@@ -117,12 +117,12 @@ if (isset($_POST['cadastrar'])) {
               </label>
             </div>
           
-          <div class="mb-3 col">
+          <div class="mb-3 col-md">
 
 
             <label for="id_quarto" class="form-label">Quarto:</label>
             <select name="id_quarto" id="id_quarto" class="form-select" required>
-              <option value="" disabled selected>-- Selecione--</option>
+              <option value="" disabled selected> Selecione</option>
 
               <?php
               $sql = "select quarto.* 

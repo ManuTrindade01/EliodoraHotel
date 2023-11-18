@@ -12,9 +12,6 @@ if (isset($_POST['cadastrar'])) {
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
   $valorDiaria = str_replace(',', '.', $_POST['valorDiaria']);
-
-
-
   //3. Preparar a SQL
   $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
@@ -53,13 +50,13 @@ if (isset($_POST['cadastrar'])) {
 
         <form method="post" id="form" name="form">
           <div class="row">
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="numero" class="form-label">Número:</label>
               <input type="number" class="form-control" name="numero" required>
             </div>
 
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="tipo" class="form-label">Tipo:</label>
               <select name="tipo" class="form-select" aria-label="Default select example" id="generoSelect" required>
                 <option value="" disabled selected>Selecione</option>
@@ -68,7 +65,7 @@ if (isset($_POST['cadastrar'])) {
               </select>
             </div>
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="capacidade" class="form-label">Capacidade:</label>
               <select name="capacidade" class="form-select" aria-label="Default select example" id="capacidade" required>
                 <option value="" disabled selected>Selecione</option>
@@ -80,7 +77,7 @@ if (isset($_POST['cadastrar'])) {
               </select>
             </div>
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="valorDiaria" class="form-label">Valor da Diária:</label>
               <input type="text" class="form-control" name="valorDiaria" id="valorDiaria" required>
              

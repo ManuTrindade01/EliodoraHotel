@@ -34,10 +34,10 @@ require_once("conexao.php");
 
         <form method="post" id="form" name="form" action="cadastrarReserva2.php" onsubmit="return validaForm(form)">
           <div class="row">
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="id_hospede" class="form-label">Hóspede Responsável:</label>
               <select name="id_hospede" id="id_hospede" class="form-select" required>
-                <option value="">-- Selecione--</option>
+                <option value=""> Selecione</option>
 
                 <?php
                 $sql = "select * from hospede order by nome";
@@ -54,12 +54,12 @@ require_once("conexao.php");
               </select>
             </div>
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="dataEntrada" class="form-label">Data da Entrada:</label>
               <input type="date" class="form-control" name="dataEntrada" id="dataEntrada"
                 min="<?php echo date('Y-m-d') ?>" max="9999-12-31" required>
             </div>
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
               <input type="date" class="form-control" name="dataSaida" id="dataSaida"
               min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" max="2100-12-31" required>
@@ -90,7 +90,7 @@ require_once("conexao.php");
             </div>
                 -->
           <div class="row">
-            <div class="mb-3 col-2">
+            <div class="mb-3 col-md-2">
               <label for="quantHospede" class="form-label">Número Hóspedes:</label>
               <select name="quantHospede" class="form-select" aria-label="Default select example" id="quantHospede"
                 required>
@@ -104,7 +104,7 @@ require_once("conexao.php");
             </div>
 
 
-            <div class="mb-3 col">
+            <div class="mb-3 col-md">
               <label for="observacao" class="form-label">Observação:</label>
               <input class="form-control" id="observacao" name="observacao" placeholder="Nome dos demais integrantes">
             </div>

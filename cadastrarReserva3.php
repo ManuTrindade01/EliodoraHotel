@@ -83,7 +83,7 @@ if (isset($_POST['cadastrar'])) {
                     <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
                     <input type="hidden" name="id_quarto" value="<?= $_POST['id_quarto'] ?>">
                     <div class="row">
-                        <div class="col">
+                        <div class="mb-3 col-md">
                             Data de Entrada:
                             <label for="dataEntrada" class="form-control">
                                 <?php
@@ -98,7 +98,7 @@ if (isset($_POST['cadastrar'])) {
                                 ?>
                             </label>
                         </div>
-                        <div class="col">
+                        <div class="mb-3 col-md">
                             Data de Saída:
                             <label for="dataSaida" class="form-control">
                                 <?php
@@ -114,14 +114,14 @@ if (isset($_POST['cadastrar'])) {
                         </div>
                         <br>
                         <br>
-                        <div class="col">
+                        <div class="mb-3 col-md">
                             Quarto:
                             <label for="id_quarto" class="form-control">
                                 <?= $_POST['id_quarto'] ?>
                             </label>
                             <br>
                         </div>
-                        <div class="col">
+                        <div class="mb-3 col-md">
                             Valor total da reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
                                 <?= $valorTotalReserva ?>

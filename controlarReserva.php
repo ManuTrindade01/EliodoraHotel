@@ -52,33 +52,63 @@ require_once("conexao.php");
 
 <body>
     <br>
-    <center>
-        <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <label for="statusSelect">Filtrar por status:
-                <select name="status" id="statusSelect" class="form-control mr-sm-2">
-                    <option value="">Todos</option>
-                    <option value="1">Pendente</option>
-                    <option value="2">Em andamento</option>
-                    <option value="3">Finalizado</option>
-                    <option value="4">Cancelado</option>
-                </select></label>
-            <button type="submit" class="filter-button">Filtrar</button>
-        </form>
-    </center>
-    <div>
-        <br>
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <label for="statusSelect">Filtrar por status:
+                    <select name="status" id="statusSelect" class="form-control mr-sm-2">
+                        <option value="">Todos</option>
+                        <option value="1">Pendente</option>
+                        <option value="2">Em andamento</option>
+                        <option value="3">Finalizado</option>
+                        <option value="4">Cancelado</option>
+                    </select>
+                </label>
+                <label for="dataEntrada">Data de Entrada:
+                    <input type="date" id="dataEntrada" name="dataEntrada" class="form-control mr-sm-2">
+                </label>
+
+                <label for="dataSaida">Data de Saída:
+                    <input type="date" id="dataSaida" name="dataSaida" class="form-control mr-sm-2">
+                </label>
+
+                <label for="nome">Nome do Hóspede:
+                    <input type="text" id="nome" name="nome" class="form-control mr-sm-2">
+                </label>
+
+                <button type="submit" class="filter-button">Filtrar</button>
+            </form>
+        </div>
+    
         <div class="row row-cols 1 row-cols-md-4 g-4">
             <?php
             // Reutilização da variável $conexao do arquivo conexão.php
             $filtroStatus = isset($_GET['status']) ? $_GET['status'] : '';
+            $filtroDataEntrada = isset($_GET['dataEntrada']) ? $_GET['dataEntrada'] : '';
+            $filtroDataSaida = isset($_GET['dataSaida']) ? $_GET['dataSaida'] : '';
+            $filtroNomeHospede = isset($_GET['nome']) ? $_GET['nome'] : '';
 
             $sql = "SELECT reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
                     FROM reserva
                     LEFT JOIN hospede ON hospede.id = reserva.id_hospede
-                    LEFT JOIN quarto ON quarto.id = reserva.id_quarto";
+                    LEFT JOIN quarto ON quarto.id = reserva.id_quarto
+                    WHERE 1";
 
             if (!empty($filtroStatus)) {
-                $sql .= " WHERE reserva.status = $filtroStatus";
+                $sql .= " AND reserva.status = $filtroStatus";
+            }
+
+            if (!empty($filtroDataEntrada)) {
+                $sql .= " AND reserva.dataEntrada >= '$filtroDataEntrada'";
+            }
+
+            if (!empty($filtroDataSaida)) {
+                $sql .= " AND reserva.dataSaida <= '$filtroDataSaida'";
+            }
+
+            if (!empty($filtroNomeHospede)) {
+                $sql .= " AND hospede.nome LIKE '%$filtroNomeHospede%'";
             }
 
             $sql .= " ORDER BY reserva.dataEntrada ASC";
@@ -103,7 +133,7 @@ require_once("conexao.php");
                     ?>
 
 
-                    <div class="col">
+                    <div class="col-md">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">

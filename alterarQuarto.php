@@ -11,7 +11,6 @@ if (isset($_POST['salvar'])) {
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
   $valorDiaria = str_replace(',', '.', $_POST['valorDiaria']);
-
   $status = $_POST['status'];
 
   //3. Preparar a SQL

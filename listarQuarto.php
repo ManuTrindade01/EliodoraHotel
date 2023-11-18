@@ -88,8 +88,8 @@ $resultado = mysqli_query($conexao, $sql);
           <?= $linha['capacidade'] ?>
         </td>
         <td>
-          <?= $linha['valorDiaria'] ?>
-        </td>
+            <?= number_format($linha['valorDiaria'], 2, ',', '.') ?>
+          </td>
         <td>
           <?= $linha['status'] ?>
         </td>
