@@ -12,6 +12,7 @@ if (isset($_POST['salvar'])) {
   $capacidade = $_POST['capacidade'];
   $valorDiaria = str_replace(['.', ','], '', $_POST['valorDiaria']);
 
+
   //3. Preparar a SQL
   $sql = "UPDATE quarto
                 set numero  = '$numero',
@@ -23,6 +24,7 @@ if (isset($_POST['salvar'])) {
   //4. Executar a SQL
   mysqli_query($conexao, $sql);
 
+  var_dump($valorDiaria);
   //5. Mostrar uma mensagem ao usuário
   $mensagem = "Registro salvo com sucesso.";
 
