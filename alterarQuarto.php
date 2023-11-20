@@ -11,15 +11,13 @@ if (isset($_POST['salvar'])) {
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
   $valorDiaria = str_replace(',', '.', $_POST['valorDiaria']);
-  $status = $_POST['status'];
 
   //3. Preparar a SQL
   $sql = "UPDATE quarto
                 set numero  = '$numero',
                     tipo = '$tipo',
                     capacidade = '$capacidade',
-                    valorDiaria = '$valorDiaria', 
-                    status = '$status'
+                    valorDiaria = '$valorDiaria'
                 where id  = $id";
 
   //4. Executar a SQL
@@ -78,13 +76,7 @@ $linha = mysqli_fetch_array($resultado);
           <input name="valorDiaria" type="text" class="form-control" id="valorDiaria"
             value="<?= $linha['valorDiaria'] ?>">
         </div>
-        <div class="mb-3 col-md">
-          <label for="status" class="form-label">Ativo</label>
-          <select name="status" id="status" class="form-select">
-            <option value="Sim" <?= ($linha['status'] == 'Sim') ? 'selected' : '' ?>>Sim</option>
-            <option value="Não" <?= ($linha['status'] == 'Não') ? 'selected' : '' ?>>Não</option>
-          </select>
-        </div>
+        
         </div>
         <button name="salvar" type="submit" style="background-color: #a70162; color: #fff" class="btn"><i
             class="fa-solid fa-check"></i> Salvar</button>

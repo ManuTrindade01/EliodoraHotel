@@ -153,9 +153,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento" min="1900-01-01"
-                max="2100-12-31" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
-                onclick="validarIdade()">
+              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
+                required>
             </div>
             <div class="mb-3 col-md">
               <label for="genero" class="form-label">Gênero:</label>
@@ -223,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col-md">
               <label for="dataAdmissao" class="form-label">Data Admissão:</label>
-              <input name="dataAdmissao" type="date" class="form-control" min="2023-11-10"
+              <input name="dataAdmissao" type="date" class="form-control" 
                 max="<?php echo date('Y-m-d') ?>" required
                 value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
             </div>
@@ -276,31 +275,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
     $('#telefone').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
-    $('#salario').mask("#.##0,00", {
-      reverse: true
-    });
+    $('#salario').mask("#.###,##", { reverse: true });
   </script>
-  <script>
-    function validarIdade() {
-      // Obtém a data de nascimento do input
-      var dataNascimento = new Date(document.getElementById('dob').value);
-
-      // Obtém a data atual
-      var dataAtual = new Date();
-
-      // Calcula a diferença de idade em anos
-      var idade = dataAtual.getFullYear() - dataNascimento.getFullYear();
-
-      // Verifica se a pessoa é maior de idade (18 anos ou mais)
-      if (idade >= 18) {
-        alert('Você é maior de idade.');
-        // Aqui você pode adicionar lógica adicional se a data for válida
-      } else {
-        alert('Você não é maior de idade.');
-        // Aqui você pode adicionar lógica adicional se a data não for válida
-      }
-    }
-  </script>
+  
 
   <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script>

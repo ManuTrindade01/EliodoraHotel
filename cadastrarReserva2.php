@@ -84,7 +84,7 @@ if (isset($_POST['cadastrar'])) {
           </div>
         <?php } ?>
 
-        <form method="post" id="form" name="form" action="cadastrarReserva3.php">
+        <form method="post" id="form" name="form" action="cadastrarReserva3.php" id="formVoltar">
           <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
           <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
           <input type="hidden" name="dataSaida" value="<?= $_POST['dataSaida'] ?>">
@@ -153,6 +153,7 @@ if (isset($_POST['cadastrar'])) {
             </select>
           </div>
           </div>
+          
           <button name="proximo" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Próximo
             <i class="fa-solid fa-arrow-right"></i>
           </button>

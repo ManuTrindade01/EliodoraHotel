@@ -148,5 +148,16 @@ if (isset($_POST['cadastrar'])) {
             reverse: true
         });
     </script>
+    <script>
+      // Função para exibir a mensagem de confirmação
+      window.onbeforeunload = function () {
+        return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+      };
+
+      // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+      document.querySelector('form').addEventListener('submit', function () {
+        window.onbeforeunload = null;
+      });
+    </script>
 
 </html>

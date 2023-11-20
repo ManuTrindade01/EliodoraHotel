@@ -1,4 +1,5 @@
 <?php
+
 require_once("verificaAutenticacao.php");
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
@@ -50,6 +51,8 @@ if (isset($_POST['salvar'])) {
 } else {
 
   //2. Receber os dados para inserir no BD
+  
+  var_dump($_POST['salario']);
   $id = $_POST['id'];
   $nome = $_POST['nome'];
   $status = $_POST['status'];
@@ -59,13 +62,14 @@ if (isset($_POST['salvar'])) {
   $estado = $_POST['estado'];
   $cidade = $_POST['cidade'];
   $endereco = $_POST['endereco'];
+  $bairro = $_POST['bairro'];
   $numeroEndereco = $_POST['numeroEndereco'];
   $cep = $_POST['cep'];
   $email = $_POST['email'];
   $telefone = $_POST['telefone'];
   $senha = $_POST['senha'];
   $dataAdmissao = $_POST['dataAdmissao'];
-  $salario = str_replace(',', '.', $_POST['salario']);
+  $salario =  str_replace(',', '.', $_POST['salario']);
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];
@@ -80,6 +84,7 @@ if (isset($_POST['salvar'])) {
                     estado = '$estado',
                     cidade = '$cidade',
                     endereco = '$endereco',
+                    bairro = '$bairro',
                     numeroEndereco = '$numeroEndereco',
                     cep = '$cep',
                     email = '$email',
@@ -106,13 +111,12 @@ if (isset($_POST['salvar'])) {
 $sql = "SELECT * from funcionario where id = " . $_GET['id'];
 $resultado = mysqli_query($conexao, $sql);
 $linha = mysqli_fetch_array($resultado);
-
 ?>
 
 <?php require_once("cabecalho.php"); ?>
 
 
-
+<title>Alterar Funcionario</title>
 
 <div class="container p-4">
   <div class="card">
@@ -273,7 +277,7 @@ $linha = mysqli_fetch_array($resultado);
       $('#cpf').mask('000.000.000-00', { reverse: true });
       $('#telefone').mask('(00) 00000-0000');
       $('#cep').mask('00000-000');
-      $('#salario').mask("#.##0,00", { reverse: true });
+      $('#salario').mask("#.###,##", { reverse: true }); 
     </script>
     
     <script>

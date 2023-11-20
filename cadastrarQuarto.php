@@ -99,7 +99,7 @@ if (isset($_POST['cadastrar'])) {
         integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script>
-        $('#valorDiaria').mask("#.##0,00", { reverse: true });
+        $('#valorDiaria').mask("#.###,##", { reverse: true });
       </script>
 
 

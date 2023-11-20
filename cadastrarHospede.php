@@ -139,13 +139,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10"
                 value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
-            <div class="mb-3 col-md-2">
+            <div class="mb-3 col-md-3">
               <label for="cpf" class="form-label">CPF:</label>
               <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                 value="<?php echo isset($cpf) ? $cpf : ''; ?>">
 
             </div>
-            <div class="mb-3 col-md-3">
+            <div class="mb-3 col-md-2">
               <label for="dataNascimento" class="form-label">Data Nascimento:</label>
               <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
                 value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
