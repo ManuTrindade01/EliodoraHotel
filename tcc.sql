@@ -3,9 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< Updated upstream
 -- Tempo de geração: 20/11/2023 às 13:10
+=======
+-- Tempo de geração: 18-Nov-2023 às 18:21
+>>>>>>> Stashed changes
 -- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +30,7 @@ USE `tcc`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `consumo`
+-- Estrutura da tabela `consumo`
 --
 
 CREATE TABLE `consumo` (
@@ -39,7 +43,7 @@ CREATE TABLE `consumo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `consumo`
+-- Extraindo dados da tabela `consumo`
 --
 
 INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, `id_produto`) VALUES
@@ -48,7 +52,7 @@ INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -76,16 +80,20 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `funcionario`
+-- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`) VALUES
+<<<<<<< Updated upstream
 (27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465439, 'Administração', '08:00:00', '17:00:00');
+=======
+(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465.45, 'Administração', '08:00:00', '17:00:00');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `hospede`
+-- Estrutura da tabela `hospede`
 --
 
 CREATE TABLE `hospede` (
@@ -106,7 +114,7 @@ CREATE TABLE `hospede` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `hospede`
+-- Extraindo dados da tabela `hospede`
 --
 
 INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
@@ -116,7 +124,7 @@ INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `marca`
+-- Estrutura da tabela `marca`
 --
 
 CREATE TABLE `marca` (
@@ -125,7 +133,7 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `marca`
+-- Extraindo dados da tabela `marca`
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
@@ -140,7 +148,7 @@ INSERT INTO `marca` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -154,7 +162,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`, `id_tipo`, `id_marca`) VALUES
@@ -166,7 +174,7 @@ INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `quarto`
+-- Estrutura da tabela `quarto`
 --
 
 CREATE TABLE `quarto` (
@@ -179,16 +187,20 @@ CREATE TABLE `quarto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `quarto`
+-- Extraindo dados da tabela `quarto`
 --
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
+<<<<<<< Updated upstream
 (1, '', 1, 'Solteiro', 2, 1200.00);
+=======
+(1, '', 1, 'Solteiro', 2, 120.00);
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `reserva`
+-- Estrutura da tabela `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -206,16 +218,20 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `reserva`
+-- Extraindo dados da tabela `reserva`
 --
 
 INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
+<<<<<<< Updated upstream
 (1, 2, '2023-11-18', '2023-11-19', 12008.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
+=======
+(1, 2, '2023-11-18', '2023-11-19', 120.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo`
+-- Estrutura da tabela `tipo`
 --
 
 CREATE TABLE `tipo` (
@@ -224,7 +240,7 @@ CREATE TABLE `tipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tipo`
+-- Extraindo dados da tabela `tipo`
 --
 
 INSERT INTO `tipo` (`id`, `nome`) VALUES
@@ -239,7 +255,7 @@ INSERT INTO `tipo` (`id`, `nome`) VALUES
 --
 
 --
--- Índices de tabela `consumo`
+-- Índices para tabela `consumo`
 --
 ALTER TABLE `consumo`
   ADD PRIMARY KEY (`id`),
@@ -247,25 +263,25 @@ ALTER TABLE `consumo`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices de tabela `funcionario`
+-- Índices para tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `hospede`
+-- Índices para tabela `hospede`
 --
 ALTER TABLE `hospede`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `marca`
+-- Índices para tabela `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `produto`
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id`),
@@ -274,13 +290,13 @@ ALTER TABLE `produto`
   ADD KEY `produto_marca` (`id_marca`);
 
 --
--- Índices de tabela `quarto`
+-- Índices para tabela `quarto`
 --
 ALTER TABLE `quarto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `reserva`
+-- Índices para tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
@@ -289,13 +305,13 @@ ALTER TABLE `reserva`
   ADD KEY `reserva_quarto` (`id_quarto`);
 
 --
--- Índices de tabela `tipo`
+-- Índices para tabela `tipo`
 --
 ALTER TABLE `tipo`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -341,25 +357,25 @@ ALTER TABLE `tipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `consumo`
+-- Limitadores para a tabela `consumo`
 --
 ALTER TABLE `consumo`
   ADD CONSTRAINT `consumo_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`),
   ADD CONSTRAINT `consumo_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id`);
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_marca` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id`),
   ADD CONSTRAINT `produto_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipo` (`id`);
 
 --
--- Restrições para tabelas `reserva`
+-- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_funcionario` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`),

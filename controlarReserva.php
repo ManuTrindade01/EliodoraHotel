@@ -56,7 +56,7 @@ require_once("conexao.php");
     <br>
     <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <label for="statusSelect">Filtrar por status:
                     <select name="status" id="statusSelect" class="form-control mr-sm-2">
@@ -80,7 +80,7 @@ require_once("conexao.php");
                     <input type="text" id="nome" name="nome" class="form-control mr-sm-2">
                 </label>
 
-                <button type="submit" class="filter-button">Filtrar</button>
+                <button type="submit" class="filter-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
     

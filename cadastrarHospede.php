@@ -105,11 +105,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php require_once("cabecalho.php"); ?>
 
 <title>Cadastrar Hóspede</title>
+
 </head>
 
 <body>
 
-  <div class="container p-4">
+  <div class="container-fluid p-4">
     <div class="card">
       <div class="card-header">
         <h2>Cadastrar Hóspede</h2>
@@ -132,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" id="form" name="form">
-          <div class="row">
+          <div class="form-group row">
             <div class="mb-3 col-md-5">
               <label for="nome" class="form-label">Nome Completo:</label>
               <input type="text" class="form-control" name="nome" id="nome"
@@ -146,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
             <div class="mb-3 col-md-2">
-              <label for="dataNascimento" class="form-label">Data Nascimento:</label>
+              <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
               <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
                 value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
             </div>
