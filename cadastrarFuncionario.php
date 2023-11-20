@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $senha = $_POST['senha'];
       $confirma = $_POST['confirma'];
       $dataAdmissao = $_POST['dataAdmissao'];
-      $salario = str_replace(',', '.', $_POST['salario']);
+      $salario = str_replace(['.', ','], '', $_POST['salario']);
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $senha = $_POST['senha'];
       $confirma = $_POST['confirma'];
       $dataAdmissao = $_POST['dataAdmissao'];
-      $salario = str_replace(',', '.', $_POST['salario']);
+      $salario = str_replace(['.', ','], '', $_POST['salario']);
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
@@ -228,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="salario" class="form-label">Salário:</label>
-              <input name="salario" type="text" class="form-control" id="salario" required
+              <input name="salario" type="text" class="form-control" id="salario" required 
                 value="<?php echo isset($salario) ? $salario : ''; ?>">
             </div>
             <div class="mb-3 col-md">
@@ -275,7 +275,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
     $('#telefone').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
-    $('#salario').mask("#.###,##", { reverse: true });
   </script>
   
 

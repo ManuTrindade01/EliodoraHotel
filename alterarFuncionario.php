@@ -51,8 +51,7 @@ if (isset($_POST['salvar'])) {
 } else {
 
   //2. Receber os dados para inserir no BD
-  
-  var_dump($_POST['salario']);
+
   $id = $_POST['id'];
   $nome = $_POST['nome'];
   $status = $_POST['status'];
@@ -69,7 +68,7 @@ if (isset($_POST['salvar'])) {
   $telefone = $_POST['telefone'];
   $senha = $_POST['senha'];
   $dataAdmissao = $_POST['dataAdmissao'];
-  $salario =  str_replace(',', '.', $_POST['salario']);
+  $salario = str_replace(['.', ','], '', $_POST['salario']);
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];

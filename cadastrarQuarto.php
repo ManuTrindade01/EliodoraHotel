@@ -11,7 +11,7 @@ if (isset($_POST['cadastrar'])) {
   $numero = $_POST['numero'];
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
-  $valorDiaria = str_replace(',', '.', $_POST['valorDiaria']);
+  $valorDiaria = str_replace(['.', ','], '', $_POST['valorDiaria']);
   //3. Preparar a SQL
   $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
