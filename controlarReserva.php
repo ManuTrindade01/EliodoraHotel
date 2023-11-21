@@ -4,7 +4,7 @@ function getStatusName($statusNumber)
 {
     switch ($statusNumber) {
         case 1:
-            return ['Pendente', 'warning'];
+            return ['Futuro', 'warning'];
         case 2:
             return ['Em andamento', 'primary'];
         case 3:
@@ -61,7 +61,7 @@ require_once("conexao.php");
                 <label for="statusSelect">Filtrar por status:
                     <select name="status" id="statusSelect" class="form-control mr-sm-2">
                         <option value="">Todos</option>
-                        <option value="1">Pendente</option>
+                        <option value="1">Futuro</option>
                         <option value="2">Em andamento</option>
                         <option value="3">Finalizado - A pagar</option>
                         <option value="4">Finalizado - Pago</option>

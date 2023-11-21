@@ -68,7 +68,7 @@ if (isset($_POST['salvar'])) {
   $telefone = $_POST['telefone'];
   $senha = $_POST['senha'];
   $dataAdmissao = $_POST['dataAdmissao'];
-  $salario = str_replace(['.', ','], '', $_POST['salario']);
+  $salario = $_POST['salario'];
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];
@@ -276,7 +276,6 @@ $linha = mysqli_fetch_array($resultado);
       $('#cpf').mask('000.000.000-00', { reverse: true });
       $('#telefone').mask('(00) 00000-0000');
       $('#cep').mask('00000-000');
-      $('#salario').mask("#.###,##", { reverse: true }); 
     </script>
     
     <script>

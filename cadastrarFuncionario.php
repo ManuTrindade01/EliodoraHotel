@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $senha = $_POST['senha'];
       $confirma = $_POST['confirma'];
       $dataAdmissao = $_POST['dataAdmissao'];
-      $salario = str_replace(['.', ','], '', $_POST['salario']);
+      $salario = $_POST['salario'];
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $senha = $_POST['senha'];
       $confirma = $_POST['confirma'];
       $dataAdmissao = $_POST['dataAdmissao'];
-      $salario = str_replace(['.', ','], '', $_POST['salario']);
+      $salario = $_POST['salario'];
       $cargo = $_POST['cargo'];
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
