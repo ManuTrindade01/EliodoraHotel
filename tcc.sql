@@ -4,7 +4,11 @@
 --
 -- Host: 127.0.0.1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 -- Tempo de geração: 20/11/2023 às 13:10
+=======
+-- Tempo de geração: 18-Nov-2023 às 18:21
+>>>>>>> Stashed changes
 =======
 -- Tempo de geração: 18-Nov-2023 às 18:21
 >>>>>>> Stashed changes
@@ -85,7 +89,11 @@ CREATE TABLE `funcionario` (
 
 INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`) VALUES
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 (27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465439, 'Administração', '08:00:00', '17:00:00');
+=======
+(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465.45, 'Administração', '08:00:00', '17:00:00');
+>>>>>>> Stashed changes
 =======
 (27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465.45, 'Administração', '08:00:00', '17:00:00');
 >>>>>>> Stashed changes
@@ -192,7 +200,11 @@ CREATE TABLE `quarto` (
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 (1, '', 1, 'Solteiro', 2, 1200.00);
+=======
+(1, '', 1, 'Solteiro', 2, 120.00);
+>>>>>>> Stashed changes
 =======
 (1, '', 1, 'Solteiro', 2, 120.00);
 >>>>>>> Stashed changes
@@ -223,7 +235,11 @@ CREATE TABLE `reserva` (
 
 INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 (1, 2, '2023-11-18', '2023-11-19', 12008.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
+=======
+(1, 2, '2023-11-18', '2023-11-19', 120.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
+>>>>>>> Stashed changes
 =======
 (1, 2, '2023-11-18', '2023-11-19', 120.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
 >>>>>>> Stashed changes

@@ -155,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
               <input name="dataNascimento" type="date" class="form-control" id="dataNascimento"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
                 required>
+              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento" min="1900-01-01" required
+                max="2100-12-31" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
+                onclick="validarIdade()">
             </div>
             <div class="mb-3 col-md">
               <label for="genero" class="form-label">Gênero:</label>

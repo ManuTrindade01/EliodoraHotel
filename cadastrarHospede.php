@@ -146,9 +146,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 value="<?php echo isset($cpf) ? $cpf : ''; ?>">
 
             </div>
-            <div class="mb-3 col-md-2">
-              <label for="dataNascimento" class="form-label">Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control w-100" name="dataNascimento"
+            <div class="mb-3 col-md">
+              <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+              <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
                 value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
             </div>
             <div class="mb-3 col-md-2">
