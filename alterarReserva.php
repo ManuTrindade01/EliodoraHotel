@@ -17,7 +17,7 @@ if (isset($_POST['salvar'])) {
     $valorTotalReserva = $_POST['valorTotalReserva'];
     /*
     $valorTotalReserva = floatval($valorTotalReservaText);
-    $valorTotalReserva = number_format($valorTotalReserva, 2, '.', ''); */
+    $valorTotalReserva = number_ormat($valorTotalReserva, 2, '.', ''); */
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
     var_dump($valorTotalReserva);
@@ -138,14 +138,9 @@ $linha = mysqli_fetch_array($resultado);
 
                         <div class="mb-3 col-md">
                             <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
-                            <?php      
-                            
-                            /*
-    $valorTotalReserve = str_replace(['.', ','], '', $linha['valorTotalReserva']);
-    $valorTotalReserve = floatval( $valorTotalReserve);
-    $valorTotalReserve = number_format($valorTotalReserve, 2, '.', '');*/?>
+                           
                             <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva"
-                                value="<?php echo $valorTotalReserve; ?>">
+                            value="<?= $linha['valorTotalReserva'] ?>">
                         </div>
 
                         <div class="mb-3 col-md">
@@ -184,10 +179,7 @@ $linha = mysqli_fetch_array($resultado);
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
             integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-            $('#valorConsumo').mask("#.##0,00", { reverse: true });
-            $('#valorReserva').mask("#.###,##", { reverse: true });
-        </script>
+        
         <script>
         // Função para exibir a mensagem de confirmação
         window.onbeforeunload = function() {

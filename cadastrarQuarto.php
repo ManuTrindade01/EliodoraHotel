@@ -11,7 +11,7 @@ if (isset($_POST['cadastrar'])) {
   $numero = $_POST['numero'];
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
-  $valorDiaria = str_replace(['.', ','], '', $_POST['valorDiaria']);
+  $valorDiaria = $_POST['valorDiaria'];
   //3. Preparar a SQL
   $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
@@ -98,9 +98,7 @@ if (isset($_POST['cadastrar'])) {
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
         integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script>
-        $('#valorDiaria').mask("#.###,##", { reverse: true });
-      </script>
+      
 
 
       <script>

@@ -242,12 +242,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </select>
             </div>
             <div class="mb-3 col-md">
-              <label for="horarioEntrada" class="form-label">Horário de Entrada:</label>
+              <label for="horarioEntrada" class="form-label">Horário Entrada:</label>
               <input name="horarioEntrada" type="time" class="form-control" required
                 value="<?php echo isset($horarioEntrada) ? $horarioEntrada : ''; ?>">
             </div>
             <div class="mb-3 col-md">
-              <label for="horarioSaida" class="form-label">Horário de Saída:</label>
+              <label for="horarioSaida" class="form-label">Horário Saída:</label>
               <input name="horarioSaida" type="time" class="form-control" required
                 value="<?php echo isset($horarioSaida) ? $horarioSaida : ''; ?>">
             </div>
