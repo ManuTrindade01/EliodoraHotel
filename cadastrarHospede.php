@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-  <div class="container-fluid p-4">
+  <div class="container p-4">
     <div class="card">
       <div class="card-header">
         <h2>Cadastrar Hóspede</h2>

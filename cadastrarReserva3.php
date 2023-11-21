@@ -19,7 +19,7 @@ $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
 $valorDiaria = $quarto['valorDiaria'];
 
-
+var_dump($valorDiaria);
 // Calcular o valor total da reserva
 $valorTotalReserva = $valorDiaria * $diferencaDias;
 
@@ -143,11 +143,6 @@ if (isset($_POST['cadastrar'])) {
         </div>
     </div>
     </div>
-    <script>
-        $('#valorTotalReserva').mask("#.##0,00", {
-            reverse: true
-        });
-    </script>
     <script>
       // Função para exibir a mensagem de confirmação
       window.onbeforeunload = function () {

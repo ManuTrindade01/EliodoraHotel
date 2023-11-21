@@ -14,10 +14,13 @@ if (isset($_POST['salvar'])) {
     $id_quarto = $_POST['id_quarto'];
     $dataEntrada = $_POST['dataEntrada'];
     $dataSaida = $_POST['dataSaida'];
-    $valorTotalReserva = str_replace(['.', ','], '', $_POST['valorTotalReserva']);
+    $valorTotalReserva = $_POST['valorTotalReserva'];
+    /*
+    $valorTotalReserva = floatval($valorTotalReservaText);
+    $valorTotalReserva = number_format($valorTotalReserva, 2, '.', ''); */
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
-
+    var_dump($valorTotalReserva);
     // Preparar a SQL para inserir os dados da reserva
     $sql = "update reserva
                 set id_hospede  = '$id_hospede',
@@ -135,8 +138,14 @@ $linha = mysqli_fetch_array($resultado);
 
                         <div class="mb-3 col-md">
                             <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
+                            <?php      
+                            
+                            /*
+    $valorTotalReserve = str_replace(['.', ','], '', $linha['valorTotalReserva']);
+    $valorTotalReserve = floatval( $valorTotalReserve);
+    $valorTotalReserve = number_format($valorTotalReserve, 2, '.', '');*/?>
                             <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva"
-                                value="<?= $linha['valorTotalReserva'] ?>">
+                                value="<?php echo $valorTotalReserve; ?>">
                         </div>
 
                         <div class="mb-3 col-md">
@@ -177,8 +186,7 @@ $linha = mysqli_fetch_array($resultado);
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $('#valorConsumo').mask("#.##0,00", { reverse: true });
-            $('#valorReserva').mask("#.##0,00", { reverse: true });
-            $('#valorR').mask("#.##0,00", { reverse: true });
+            $('#valorReserva').mask("#.###,##", { reverse: true });
         </script>
         <script>
         // Função para exibir a mensagem de confirmação
