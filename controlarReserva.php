@@ -4,7 +4,7 @@ function getStatusName($statusNumber)
 {
     switch ($statusNumber) {
         case 1:
-            return ['Futuro', 'info'];
+            return ['Futuro', 'secondary'];
         case 2:
             return ['Em andamento', 'primary'];
         case 3:
@@ -114,6 +114,7 @@ require_once("conexao.php");
                 $sql .= " AND hospede.nome LIKE '%$filtroNomeHospede%'";
             }
 
+            $sql .= " ORDER BY ABS(DATEDIFF(CURDATE(), dataEntrada)) ASC;";
 
             $resultado = mysqli_query($conexao, $sql);
 
@@ -163,7 +164,7 @@ require_once("conexao.php");
                                 </ul>
 
                                 <a href="alterarReserva.php?id=<?= $reserva['id'] ?>" class="btn btn-warning">
-                                    <i class="fa-solid fa-pen-to-square"></i>Alterar
+                                    <i class="fa-solid fa-pen-to-square"></i>Editar
                                 </a>
                                 
                             </div>

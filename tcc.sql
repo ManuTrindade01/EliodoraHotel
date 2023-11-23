@@ -3,15 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
--- Tempo de geração: 20/11/2023 às 13:10
-=======
--- Tempo de geração: 18-Nov-2023 às 18:21
->>>>>>> Stashed changes
-=======
--- Tempo de geração: 18-Nov-2023 às 18:21
->>>>>>> Stashed changes
+-- Tempo de geração: 23-Nov-2023 às 02:06
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -77,7 +69,7 @@ CREATE TABLE `funcionario` (
   `senha` varchar(100) NOT NULL,
   `confirma` varchar(100) NOT NULL,
   `dataAdmissao` date NOT NULL,
-  `salario` double NOT NULL,
+  `salario` double(11,2) NOT NULL,
   `cargo` varchar(45) NOT NULL,
   `horarioEntrada` time NOT NULL,
   `horarioSaida` time NOT NULL
@@ -88,15 +80,7 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`) VALUES
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465439, 'Administração', '08:00:00', '17:00:00');
-=======
-(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465.45, 'Administração', '08:00:00', '17:00:00');
->>>>>>> Stashed changes
-=======
-(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'Selecione Estado', 'Selecione Cidade', '', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 465.45, 'Administração', '08:00:00', '17:00:00');
->>>>>>> Stashed changes
+(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 2000.00, 'Administração', '08:00:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -127,7 +111,9 @@ CREATE TABLE `hospede` (
 
 INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
 (1, 'Tereza Manuela da Luz', '780.367.190-02', '1931-11-30', 'F', 'PR', 'Iporã', 'Centro', 'Rua das Flores', 1022, '87560-000', 'tereza@gmail.com', '(43) 97846-3286', '(22) 93274-8377'),
-(2, 'Maria Francisca de Souza Trindade', '943.413.600-86', '1924-06-01', 'F', 'PR', 'Umuarama', 'Zona III', 'Rua das Flores', 9876, '87502-000', 'francisca@gmail.com', '(43) 97846-3286', '(22) 93274-8377');
+(2, 'Maria Francisca de Souza Trindade', '943.413.600-86', '1924-06-01', 'F', 'PR', 'Umuarama', 'Zona III', 'Rua das Flores', 9876, '87502-000', 'francisca@gmail.com', '(43) 97846-3286', '(22) 93274-8377'),
+(3, 'Maria Pereira de Azevedo ', '947.667.245-50', '1930-08-28', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Rio Grande do Norte', 764, '87565-000', 'maria@gmail.com', '(22) 96666-6633', '(33) 93335-3465'),
+(4, 'Maria Amélia de Jesus', '947.667.245-50', '1906-01-01', 'F', 'SE', 'Itabaiana', 'Centro', 'Rua Amélia', 986, '49500-970', 'amelia@gmail.com', '(44) 96767-8687', '(44) 98673-2673');
 
 -- --------------------------------------------------------
 
@@ -199,15 +185,10 @@ CREATE TABLE `quarto` (
 --
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-(1, '', 1, 'Solteiro', 2, 1200.00);
-=======
-(1, '', 1, 'Solteiro', 2, 120.00);
->>>>>>> Stashed changes
-=======
-(1, '', 1, 'Solteiro', 2, 120.00);
->>>>>>> Stashed changes
+(1, '', 1, 'Solteiro', 3, 120.00),
+(2, '', 2, 'Casal', 4, 200.00),
+(3, '', 3, 'Solteiro', 2, 120.00),
+(4, '', 4, 'Casal', 4, 120.00);
 
 -- --------------------------------------------------------
 
@@ -228,21 +209,6 @@ CREATE TABLE `reserva` (
   `id_funcionario` int(11) DEFAULT NULL,
   `datacadastro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Extraindo dados da tabela `reserva`
---
-
-INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-(1, 2, '2023-11-18', '2023-11-19', 12008.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
-=======
-(1, 2, '2023-11-18', '2023-11-19', 120.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
->>>>>>> Stashed changes
-=======
-(1, 2, '2023-11-18', '2023-11-19', 120.00, 1, '', 1, 1, NULL, '2023-11-18 14:13:10');
->>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -334,13 +300,13 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de tabela `hospede`
 --
 ALTER TABLE `hospede`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `marca`
@@ -358,13 +324,13 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `quarto`
 --
 ALTER TABLE `quarto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tipo`

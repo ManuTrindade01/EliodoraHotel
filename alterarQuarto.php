@@ -24,7 +24,6 @@ if (isset($_POST['salvar'])) {
   //4. Executar a SQL
   mysqli_query($conexao, $sql);
 
-  var_dump($valorDiaria);
   //5. Mostrar uma mensagem ao usuário
   $mensagem = "Registro salvo com sucesso.";
 
@@ -64,10 +63,21 @@ $linha = mysqli_fetch_array($resultado);
           <label for="numero" class="form-label">Número:</label>
           <input type="text" class="form-control" name="numero" value="<?= $linha['numero'] ?>">
         </div>
-        <div class="mb-3 col-md">
-          <label for="tipo" class="form-label">Tipo:</label>
-          <input type="text" class="form-control" name="tipo" value="<?= $linha['tipo'] ?>">
-        </div>
+        
+            <div class="mb-3 col-md">
+            <label for="tipo" class="form-label">Tipo:</label>
+            <select name="tipo" class="form-select" aria-label="Default select example" id="tipo"
+              value="<?= $linha['tipo'] ?>">
+              <option value="" disabled selected>Selecione</option>
+              <option value="Solteiro" <?= ($linha['tipo'] == 'Solteiro') ? 'selected' : '' ?>>Solteiro
+              </option>
+              <option value="Casal" <?= ($linha['tipo'] == 'Casal') ? 'selected' : '' ?>>Casal</option>
+            </select>
+          </div>
+
+
+
+
         <div class="mb-3 col-md">
           <label for="capacidade" class="form-label">Capacidade:</label>
           <input type="text" class="form-control" name="capacidade" id="capacidade" value="<?= $linha['capacidade'] ?>">

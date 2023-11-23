@@ -126,7 +126,7 @@ if (isset($_POST['cadastrar'])) {
                             <br>
                         </div>
                         <div class="mb-3 col-md">
-                            Valor total da reserva:
+                            Valor Reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
                                 R$ <?= $valorTotalReserva ?>
                             </label>

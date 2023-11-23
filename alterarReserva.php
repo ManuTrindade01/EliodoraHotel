@@ -23,9 +23,9 @@ if (isset($_POST['salvar'])) {
 
 
     $dataAtual = date('Y-m-d');
-
-    if ($dataAtual < $dataEntrada) {
-        $status = 1 or 2; // "Futuro" se a data atual for anterior à data de entrada
+    if($status == 5){
+    } elseif ($dataAtual < $dataEntrada) {
+        $status = 1; // "Futuro" se a data atual for anterior à data de entrada
     } elseif ($dataAtual >= $dataEntrada && $dataAtual <= $dataSaida) {
         $status = 2; // "Em andamento" se a data atual estiver entre entrada e saída
     } else {
@@ -34,12 +34,12 @@ if (isset($_POST['salvar'])) {
             $status = 2; // Manter como "Em andamento"
         }
     }
-
     // Restrição para evitar atualizar o status para "Finalizado" se a data atual for anterior à data de saída
     if (($status == 3 || $status == 4) && $dataAtual < $dataSaida) {
         // Define como "Em andamento" se o status for finalizado e a data atual for anterior à data de saída
         $status = 2;
     }
+
     
     // Preparar a SQL para inserir os dados da reserva
     $sql = "update reserva
@@ -165,7 +165,7 @@ $linha = mysqli_fetch_array($resultado);
                         </div>
 
                         <div class="mb-3 col-md">
-                            <label for="valorTotalReserva" class="form-label">Valor Total da Reserva:</label>
+                            <label for="valorTotalReserva" class="form-label">Valor Reserva:</label>
                            
                             <input type="text" class="form-control" name="valorTotalReserva" id="valorReserva"
                             value="<?= $linha['valorTotalReserva'] ?>">
