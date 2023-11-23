@@ -40,7 +40,13 @@
       </div>
       <div class="mb-3">
         <label for="senha" class="form-label">Senha</label>
-        <input name="senha" type="password" class="form-control" id="senha">
+        <div class="input-group">
+          <input name="senha" type="password" class="form-control" id="senha">
+          <span class="input-group-text">
+            <img id="olho" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" 
+            style="color: #a70162;"/>
+          </span>
+        </div>
       </div>
       <button name="entrar" type="submit" class="btn"
         style="background-color: #a70162; color: #fff;">Entrar</button>
@@ -49,6 +55,26 @@
     </form>
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var senha = $('#senha');
+      var olho = $("#olho");
+
+      olho.mousedown(function () {
+        senha.attr("type", "text");
+      });
+
+      olho.mouseup(function () {
+        senha.attr("type", "password");
+      });
+
+      // para evitar o problema de arrastar a imagem e a senha continuar exposta
+      olho.mouseout(function () {
+        senha.attr("type", "password");
+      });
+    });
+  </script>
 </body>
 
 </html>
