@@ -18,10 +18,11 @@ if (isset($_POST['pesquisar'])) {
   $V_WHERE = " AND hospede.nome like '%" . $_POST['hospede_nome'] . "%' ";
 }
 //2. Preparar a SQL
-$sql = "select reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
+$sql = "select reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero, funcionario.nome as funcionario_nome
  from reserva
  left join hospede on hospede.id = reserva.id_hospede
  left join quarto on quarto.id = reserva.id_quarto
+ left join funcionario on funcionario.id = reserva.id_funcionario
  WHERE 1 = 1 " . $V_WHERE;
 
 
@@ -99,6 +100,7 @@ $resultado = mysqli_query($conexao, $sql);
           <td>
             <?= $linha['id'] ?>
             </th>
+         
           <td>
             <?= $linha['hospede_nome'] ?>
           </td>

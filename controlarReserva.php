@@ -4,11 +4,11 @@ function getStatusName($statusNumber)
 {
     switch ($statusNumber) {
         case 1:
-            return ['Futuro', 'warning'];
+            return ['Futuro', 'info'];
         case 2:
             return ['Em andamento', 'primary'];
         case 3:
-            return ['Finalizado - A pagar', 'secondary'];
+            return ['Finalizado - A pagar', 'warning'];
         case 4:
             return ['Finalizado - Pago', 'success'];
         case 5:
@@ -114,7 +114,6 @@ require_once("conexao.php");
                 $sql .= " AND hospede.nome LIKE '%$filtroNomeHospede%'";
             }
 
-            $sql .= " ORDER BY reserva.dataEntrada ASC";
 
             $resultado = mysqli_query($conexao, $sql);
 

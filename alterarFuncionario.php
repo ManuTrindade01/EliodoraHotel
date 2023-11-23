@@ -72,7 +72,6 @@ if (isset($_POST['salvar'])) {
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];
-var_dump($salario);
   //3. Preparar a SQL
   $sql = "UPDATE funcionario
                 set nome  = '$nome',

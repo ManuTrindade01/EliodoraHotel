@@ -20,7 +20,27 @@ if (isset($_POST['salvar'])) {
     $valorTotalReserva = number_ormat($valorTotalReserva, 2, '.', ''); */
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
-    var_dump($valorTotalReserva);
+
+
+    $dataAtual = date('Y-m-d');
+
+    if ($dataAtual < $dataEntrada) {
+        $status = 1 or 2; // "Futuro" se a data atual for anterior à data de entrada
+    } elseif ($dataAtual >= $dataEntrada && $dataAtual <= $dataSaida) {
+        $status = 2; // "Em andamento" se a data atual estiver entre entrada e saída
+    } else {
+        // Verificar se o status não é finalizado e se a data atual não é posterior à data de saída
+        if ($status != 4 && $status != 3 && $dataAtual <= $dataSaida) {
+            $status = 2; // Manter como "Em andamento"
+        }
+    }
+
+    // Restrição para evitar atualizar o status para "Finalizado" se a data atual for anterior à data de saída
+    if (($status == 3 || $status == 4) && $dataAtual < $dataSaida) {
+        // Define como "Em andamento" se o status for finalizado e a data atual for anterior à data de saída
+        $status = 2;
+    }
+    
     // Preparar a SQL para inserir os dados da reserva
     $sql = "update reserva
                 set id_hospede  = '$id_hospede',
@@ -117,10 +137,18 @@ $linha = mysqli_fetch_array($resultado);
                         <div class="mb-3 col-md">
                             <label for="id_quarto" class="form-label">Quarto:</label>
                             <select name="id_quarto" id="id_quarto" class="form-select">
-                                <option value="">-- Selecione--</option>
+                                <option value="" disabled>-- Selecione--</option>
 
                                 <?php
-                                $sql = "select * from quarto order by numero";
+                                $sql = "select quarto.* 
+                                from quarto
+                               where quarto.id not in (
+                                      select reserva.id_quarto 
+                                        from reserva 
+                                       where dataEntrada BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
+                                          or dataSaida BETWEEN '{$_POST['dataEntrada']}' and '{$_POST['dataSaida']}'
+                                      )
+                            order by quarto.numero";
                                 $resultado = mysqli_query($conexao, $sql);
 
                                 while ($linhaTU = mysqli_fetch_array($resultado)):

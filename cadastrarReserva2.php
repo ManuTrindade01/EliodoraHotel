@@ -145,8 +145,8 @@ if (isset($_POST['cadastrar'])) {
               while ($linha = mysqli_fetch_array($resultado)) {
                 ?>
 
-                <option value="<?= $linha['id'] ?>">
-                  <?= $linha['numero'] . " - " . $linha['tipo'] ?>
+                <option value="<?= $linha['id'] ?>">N°
+                  <?= $linha['numero'] . " - Tipo: " . $linha['tipo'] . " - Capacidade: " . $linha['capacidade']?>
                 </option>
 
               <?php } ?>

@@ -19,7 +19,6 @@ $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
 $valorDiaria = $quarto['valorDiaria'];
 
-var_dump($valorDiaria);
 // Calcular o valor total da reserva
 $valorTotalReserva = $valorDiaria * $diferencaDias;
 
@@ -71,6 +70,7 @@ if (isset($_POST['cadastrar'])) {
                 <h2>Cadastrar Reserva</h2>
 
             </div>
+            <div class="card-body">
             <?php if (isset($mensagem)) { ?>
                 <div class="alert alert-success" role="alert">
                     <i class="fa-solid fa-square-check"></i>
@@ -78,7 +78,6 @@ if (isset($_POST['cadastrar'])) {
                 </div>
 
             <?php } ?>
-            <div class="card-body">
                 <form method="post" id="form" name="form">
                     <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
                     <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
@@ -129,7 +128,7 @@ if (isset($_POST['cadastrar'])) {
                         <div class="mb-3 col-md">
                             Valor total da reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
-                                <?= $valorTotalReserva ?>
+                                R$ <?= $valorTotalReserva ?>
                             </label>
                         </div>
                         <br>
