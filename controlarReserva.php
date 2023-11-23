@@ -114,7 +114,7 @@ require_once("conexao.php");
                 $sql .= " AND hospede.nome LIKE '%$filtroNomeHospede%'";
             }
 
-            $sql .= " ORDER BY ABS(DATEDIFF(CURDATE(), dataEntrada)) ASC;";
+            $sql .= " ORDER BY dataEntrada ASC;";
 
             $resultado = mysqli_query($conexao, $sql);
 
