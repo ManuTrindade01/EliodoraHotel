@@ -2,6 +2,7 @@
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
 
+
 ?>
 
 <?php require_once("cabecalho.php"); ?>
@@ -36,7 +37,7 @@ require_once("conexao.php");
             <?= $mensagem ?>
           </div>
         <?php } ?>
-
+        
         <form method="post" id="form" name="form" action="cadastrarReserva2.php" onsubmit="return validaForm(form)">
           <div class="row">
             <div class="mb-3 col-md">

@@ -1,5 +1,7 @@
 <?php
 require_once("verificaAutenticacao.php");
+require_once("verificaAdministrador.php");
+
 
 require_once("conexao.php");
 
@@ -186,12 +188,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="bairro" type="text" class="form-control" id="bairro" required
                 value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
-            <div class="mb-3 col-md">
+            <div class="mb-3 col-md-3">
               <label for="endereco" class="form-label">Endereço:</label>
               <input name="endereco" type="text" class="form-control" id="endereco" required
                 value="<?php echo isset($endereco) ? $endereco : ''; ?>">
             </div>
-            <div class="mb-3 col-md-2">
+            <div class="mb-3 col-md">
               <label for="numeroEndereco" class="form-label">Número:</label>
               <input name="numeroEndereco" type="number" class="form-control" id="numeroEndereco" required
                 value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
@@ -236,8 +238,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <select name="cargo" class="form-select" aria-label="Default select example" id="cargo" required
                 value="<?php echo isset($cargo) ? $cargo : ''; ?>">
                 <option value="" disabled selected>Selecione</option>
-                <option value="Administração" <?php echo (isset($cargo) && $cargo == "Administração") ? "selected" : ""; ?>>Administração</option>
-                <option value="Recepção" <?php echo (isset($cargo) && $cargo == "Recepção") ? "selected" : ""; ?>>Recepção
+                <option value="1" <?php echo (isset($cargo) && $cargo == "1") ? "selected" : ""; ?>>Administração</option>
+                <option value="2" <?php echo (isset($cargo) && $cargo == "2") ? "selected" : ""; ?>>Recepção
                 </option>
               </select>
             </div>

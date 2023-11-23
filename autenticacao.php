@@ -28,6 +28,7 @@ if (isset($_POST['entrar'])) {
         $_SESSION['id'] = $funcionario['id'];
         $_SESSION['nome'] = $funcionario['nome'];
         $_SESSION['email'] = $funcionario['email'];
+        $_SESSION['cargo'] = $funcionario['cargo'];
 
         // Redireciona para a página principal
         header("location: principal.php");

@@ -1,5 +1,5 @@
 <?php
-
+require_once("verificaAdministrador.php");
 require_once("verificaAutenticacao.php");
 //1. Conectar no BD (IP, usuario, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
@@ -228,9 +228,9 @@ $linha = mysqli_fetch_array($resultado);
             <select name="cargo" class="form-select" aria-label="Default select example" id="cargo"
               value="<?= $linha['cargo'] ?>">
               <option value="" disabled selected>Selecione</option>
-              <option value="Administração" <?= ($linha['cargo'] == 'Administração') ? 'selected' : '' ?>>Administração
+              <option value="1" <?= ($linha['cargo'] == '1') ? 'selected' : '' ?>>Administração
               </option>
-              <option value="Recepção" <?= ($linha['cargo'] == 'Recepção') ? 'selected' : '' ?>>Recepção</option>
+              <option value="2" <?= ($linha['cargo'] == '2') ? 'selected' : '' ?>>Recepção</option>
             </select>
           </div>
           <div class="mb-3 col-md">

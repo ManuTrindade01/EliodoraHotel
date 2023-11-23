@@ -38,10 +38,21 @@
             ?>
             Seja bem vindo(a),
             <?= $nome?>.
-    <br><br>
+    <br>
     </div>
-
+    <div class="container">
+    <?php if (isset($_GET['mensagem'])) { ?>
+        <div class="d-flex justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <div class="alert alert-warning mb-3" role="alert">
+                    <?= $_GET['mensagem'] ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
     <div class="container1">
+        
         <div class="box">
             <div class="boxContent">
                 <i class="fa fa-user icon"></i>
