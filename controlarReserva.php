@@ -77,7 +77,7 @@ require_once("conexao.php");
                 </label>
 
                 <label for="nome">Nome do Hóspede:
-                    <input type="text" id="nome" name="nome" class="form-control mr-sm-2">
+                    <input type="text" id="nome" name="nome" class="form-control mr-sm-2" value="<?= $_GET['nome'] ?>">
                 </label>
 
                 <button type="submit" class="filter-button"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -144,7 +144,7 @@ require_once("conexao.php");
                                         <?= $reserva['quarto_numero'] ?>
                                     </h5>
 
-                                    <label class="badge text-bg-<?= $statusClass ?>">
+                                    <label class="badge badge-pill text-bg-<?= $statusClass ?>">
                                         <?= $statusText ?>
                                     </label>
                                 </div>

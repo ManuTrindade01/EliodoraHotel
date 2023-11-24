@@ -68,7 +68,7 @@ require_once("conexao.php");
             <div class="mb-3 col-md">
               <label for="dataSaida" class="form-label">Data da Saída:</label>
               <input type="date" class="form-control" name="dataSaida" id="dataSaida"
-              min="<?php echo date('Y-m-d',strtotime('+1 days')) ?>" required>
+              min="<?php echo date('Y-m-d') ?>" required>
             </div>
           </div>
           <!--
@@ -146,7 +146,7 @@ require_once("conexao.php");
     }
 
     // Compara as datas
-    if (dataSaida <= dataEntrada) {
+    if (dataSaida < dataEntrada) {
         alert("A data de saída deve ser posterior à data de entrada.");
         return false; // Impede o envio do formulário
     }

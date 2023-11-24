@@ -12,15 +12,19 @@ if (isset($_POST['cadastrar'])) {
   $tipo = $_POST['tipo'];
   $capacidade = $_POST['capacidade'];
   $valorDiaria = $_POST['valorDiaria'];
-  //3. Preparar a SQL
-  $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
-  //4. Executar a SQL
-  mysqli_query($conexao, $sql);
+  if ($valorDiaria > 0) {
+    //3. Preparar a SQL
+    $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
-  //5. Mostrar uma mensagem ao usuário
-  $mensagem = "Registro salvo com sucesso.";
+    //4. Executar a SQL
+    mysqli_query($conexao, $sql);
 
+    //5. Mostrar uma mensagem ao usuário
+    $mensagem = "Registro salvo com sucesso.";
+  } else {
+    $mensagemErro = "Valor da diária deve ser maior que 0.";
+  }
 
 
 }
@@ -40,6 +44,12 @@ if (isset($_POST['cadastrar'])) {
         <h2>Cadastrar Quarto</h2>
       </div>
       <div class="card-body">
+        <?php if (isset($mensagemErro)) { ?>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa-solid fa-square-check"></i>
+            <?= $mensagemErro ?>
+          </div>
+        <?php } ?>
         <?php if (isset($mensagem)) { ?>
           <div class="alert alert-success" role="alert">
             <i class="fa-solid fa-square-check"></i>
@@ -79,7 +89,7 @@ if (isset($_POST['cadastrar'])) {
 
             <div class="mb-3 col-md">
               <label for="valorDiaria" class="form-label">Valor da Diária:</label>
-              <input type="text" class="form-control" name="valorDiaria" id="valorDiaria" required>
+              <input type="text" class="form-control" name="valorDiaria" id="valorDiaria" required min="1.0">
              
             </div>
           </div>

@@ -23,40 +23,47 @@ if (isset($_POST['salvar'])) {
 
 
     $dataAtual = date('Y-m-d');
-    if($status == 5){
-    } elseif ($dataAtual < $dataEntrada) {
-        $status = 1; // "Futuro" se a data atual for anterior à data de entrada
+    /*
+    if($status == 5) { //Cancelado
+        //Não faz nada
+    } elseif ($dataAtual < $dataEntrada) { // "Futuro" se a data atual for anterior à data de entrada
+        $status = 1;
+        $mensagemErro = "";
     } elseif ($dataAtual >= $dataEntrada && $dataAtual <= $dataSaida) {
         $status = 2; // "Em andamento" se a data atual estiver entre entrada e saída
     } else {
-        // Verificar se o status não é finalizado e se a data atual não é posterior à data de saída
-        if ($status != 4 && $status != 3 && $dataAtual <= $dataSaida) {
-            $status = 2; // Manter como "Em andamento"
-        }
+        */
+    // Verificar se o status não é finalizado e se a data atual não é posterior à data de saída
+    if (($status == 4 || $status == 3) && $dataAtual < $dataSaida) {
+        //$status = 2; // Manter como "Em andamento"
+        $mensagemErro = "Data de hoje não é posterior à data de saída.";
     }
+    
     // Restrição para evitar atualizar o status para "Finalizado" se a data atual for anterior à data de saída
     if (($status == 3 || $status == 4) && $dataAtual < $dataSaida) {
         // Define como "Em andamento" se o status for finalizado e a data atual for anterior à data de saída
-        $status = 2;
+        //$status = 2;
+        $mensagemErro = "Data de hoje não pode ser anterior à data de saída.";
     }
 
-    
-    // Preparar a SQL para inserir os dados da reserva
-    $sql = "update reserva
-                set id_hospede  = '$id_hospede',
-                    id_quarto = '$id_quarto',
-                    dataEntrada = '$dataEntrada',
-                    dataSaida = '$dataSaida',
-                    valorTotalReserva = '$valorTotalReserva',
-                    observacao = '$observacao',
-                    status = '$status'
-                where id  = $id";
+    if (!isset($mensagemErro)) {
+        // Preparar a SQL para inserir os dados da reserva
+        $sql = "update reserva
+                    set id_hospede  = '$id_hospede',
+                        id_quarto = '$id_quarto',
+                        dataEntrada = '$dataEntrada',
+                        dataSaida = '$dataSaida',
+                        valorTotalReserva = '$valorTotalReserva',
+                        observacao = '$observacao',
+                        status = '$status'
+                    where id  = $id";
 
-    // Executar a SQL para inserção
-    mysqli_query($conexao, $sql);
+        // Executar a SQL para inserção
+        mysqli_query($conexao, $sql);
 
-    //5. Mostrar uma mensagem ao usuário
-    $mensagem = "Registro salvo com sucesso.";
+        //5. Mostrar uma mensagem ao usuário
+        $mensagem = "Registro salvo com sucesso.";
+    }
 }
 
 $sql = "select * from reserva where id = " . $_GET['id'];
@@ -88,6 +95,12 @@ $linha = mysqli_fetch_array($resultado);
                 <h2>Alterar Reserva</h2>
             </div>
             <div class="card-body">
+                <?php if (isset($mensagemErro)) { ?>
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa-solid fa-square-check"></i>
+                        <?= $mensagemErro ?>
+                    </div>
+                <?php } ?>
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success" role="alert">
                         <i class="fa-solid fa-square-check"></i>
@@ -95,7 +108,7 @@ $linha = mysqli_fetch_array($resultado);
                     </div>
                 <?php } ?>
 
-                <form method="post">
+                <form method="post" action="alterarReserva.php?id=<?= $linha['id'] ?>">
                     <input type="hidden" name="id" value="<?= $linha['id'] ?>">
 
 

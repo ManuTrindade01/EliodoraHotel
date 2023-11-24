@@ -18,9 +18,12 @@ $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
 $valorDiaria = $quarto['valorDiaria'];
+if($diferencaDias <= 1){
+    $valorTotalReserva = $valorDiaria;
+}else{
+    $valorTotalReserva = $valorDiaria * $diferencaDias; 
+}
 
-// Calcular o valor total da reserva
-$valorTotalReserva = $valorDiaria * $diferencaDias;
 
 if (isset($_POST['cadastrar'])) {
     // Receber os dados para inserir no BD
