@@ -1,3 +1,5 @@
+<?php
+            session_start();?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,21 +26,22 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
         integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
-    <link rel="stylesheet" href="Principal.css" type="text/css">
+    <link rel="stylesheet" href="css/Principal.css" type="text/css">
+
+   
 
 </head>
-
 <body>
     <?php require_once("menu.html"); ?>
-    <div class="container">
+    <div class="welcome">
         <h2 class="mt-3">
             <?php
-            session_start();
             $nome = $_SESSION['nome'];
             ?>
-            Seja bem vindo(a),
+             Seja bem vindo(a),
             <?= $nome?>.
     <br>
+
     </div>
     <div class="container">
     <?php if (isset($_GET['mensagem'])) { ?>

@@ -62,7 +62,7 @@ require_once("conexao.php");
                     <select name="status" id="statusSelect" class="form-control mr-sm-2">
                         <option value="">Todos</option>
                         <option value="1">Futuro</option>
-                        <option value="2">Em andamento</option>
+                        <option value="2" selected>Em andamento</option>
                         <option value="3">Finalizado - A pagar</option>
                         <option value="4">Finalizado - Pago</option>
                         <option value="5">Cancelado</option>
