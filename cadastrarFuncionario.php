@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         <?php } ?>
 
-        <form method="post" id="form" name="form">
+        <form method="post" id="form" name="form" onsubmit="return validarHorario()">
 
           <div class="row">
             <div class="mb-3 col-md-4">
@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
+              <input name="dataNascimento" type="date" class="form-control" id="dataNascimento" min="1923-01-01" max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('Por favor, selecione uma data válida.')" onchange="this.setCustomValidity('')" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"
                 required>
             </div>
             <div class="mb-3 col-md">
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="telefone" class="form-label">Telefone:</label>
-              <input name="telefone" type="text" class="form-control" id="telefone" required
+              <input name="telefone" type="text" class="form-control" id="telefone" required pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
                 value="<?php echo isset($telefone) ? $telefone : ''; ?>">
             </div>
             <div class="mb-3 col-md">
@@ -224,8 +224,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col-md">
               <label for="dataAdmissao" class="form-label">Data Admissão:</label>
-              <input name="dataAdmissao" type="date" class="form-control" 
-                max="<?php echo date('Y-m-d') ?>" required
+              <input name="dataAdmissao" type="date" class="form-control" min="2000-01-01"
+                max="<?php echo date('Y-m-d') ?>" oninvalid="this.setCustomValidity('Por favor, selecione uma data válida.')" onchange="this.setCustomValidity('')" required
                 value="<?php echo isset($dataAdmissao) ? $dataAdmissao : ''; ?>">
             </div>
             <div class="mb-3 col-md">
@@ -245,12 +245,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="horarioEntrada" class="form-label">Horário Entrada:</label>
-              <input name="horarioEntrada" type="time" class="form-control" required
+              <input name="horarioEntrada" type="time" class="form-control" id="horarioEntrada"
                 value="<?php echo isset($horarioEntrada) ? $horarioEntrada : ''; ?>">
             </div>
             <div class="mb-3 col-md">
               <label for="horarioSaida" class="form-label">Horário Saída:</label>
-              <input name="horarioSaida" type="time" class="form-control" required
+              <input name="horarioSaida" type="time" class="form-control" id="horarioSaida"
                 value="<?php echo isset($horarioSaida) ? $horarioSaida : ''; ?>">
             </div>
           </div>
@@ -267,6 +267,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <script type="text/javascript" src="js/app.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script>
+    function validarHorario() {
+        var horarioEntrada = document.getElementById("horarioEntrada").value;
+        var horarioSaida = document.getElementById("horarioSaida").value;
+
+        if (horarioEntrada >= horarioSaida) {
+            alert("O horário de saída deve ser posterior ao horário de entrada.");
+            return false; // Impede o envio do formulário se a validação falhar
+        }
+
+        return true; // Permite o envio do formulário se a validação for bem-sucedida
+    }
+</script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
     integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="

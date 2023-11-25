@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Função para retornar o nome do status com base no número
 function getStatusName($statusNumber)
 {
@@ -51,7 +53,6 @@ require_once("conexao.php");
 </head>
 
 <?php require_once("cabecalho.php"); ?>
-
 <body>
     <br>
     <div class="container">
@@ -60,6 +61,7 @@ require_once("conexao.php");
             <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <label for="statusSelect">Filtrar por status:
                     <select name="status" id="statusSelect" class="form-control mr-sm-2">
+                        
                         <option value="">Todos</option>
                         <option value="1">Futuro</option>
                         <option value="2" selected>Em andamento</option>
@@ -68,6 +70,7 @@ require_once("conexao.php");
                         <option value="5">Cancelado</option>
                     </select>
                 </label>
+                
                 <label for="dataEntrada">Data de Entrada:
                     <input type="date" id="dataEntrada" name="dataEntrada" class="form-control mr-sm-2">
                 </label>
@@ -77,7 +80,7 @@ require_once("conexao.php");
                 </label>
 
                 <label for="nome">Nome do Hóspede:
-                    <input type="text" id="nome" name="nome" class="form-control mr-sm-2" value="<?= $_GET['nome'] ?>">
+                    <input type="text" id="nome" name="nome" class="form-control mr-sm-2" value="<?= isset($_GET['nome']) ? $_GET['nome'] : '' ?>">
                 </label>
 
                 <button type="submit" class="filter-button"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -86,7 +89,7 @@ require_once("conexao.php");
     
         <div class="row row-cols 1 row-cols-md-4 g-4">
             <?php
-            // Reutilização da variável $conexao do arquivo conexão.php
+            
             $filtroStatus = isset($_GET['status']) ? $_GET['status'] : '';
             $filtroDataEntrada = isset($_GET['dataEntrada']) ? $_GET['dataEntrada'] : '';
             $filtroDataSaida = isset($_GET['dataSaida']) ? $_GET['dataSaida'] : '';

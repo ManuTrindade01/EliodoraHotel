@@ -1,5 +1,6 @@
 <?php
-            session_start();?>
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -28,20 +29,18 @@
         integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/Principal.css" type="text/css">
 
-   
-
 </head>
+<?php require_once("cabecalho.php");?>
 <body>
-    <?php require_once("menu.html"); ?>
     <div class="welcome">
+    <center>
         <h2 class="mt-3">
             <?php
             $nome = $_SESSION['nome'];
             ?>
              Seja bem vindo(a),
-            <?= $nome?>.
-    <br>
-
+            <?= $nome?>.</h2>
+            </center>
     </div>
     <div class="container">
     <?php if (isset($_GET['mensagem'])) { ?>

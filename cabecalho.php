@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,4 +19,4 @@ integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQS
     <link rel="shortcut icon" href="barbara.ico" type="image/x-icon">
 </head>
 <body>
-<?php require_once("menu.html");?>
+<?php require_once("menu.php");?>

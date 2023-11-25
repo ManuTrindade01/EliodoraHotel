@@ -14,6 +14,7 @@ if (isset($_POST['cadastrar'])) {
   $valorDiaria = $_POST['valorDiaria'];
 
   if ($valorDiaria > 0) {
+
     //3. Preparar a SQL
     $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 

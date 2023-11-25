@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once("verificaAutenticacao.php");
 ?>
 <!DOCTYPE html>
@@ -22,9 +24,9 @@ require_once("verificaAutenticacao.php");
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Principal.css">
 </head>
-
-<body style="background-color: ;">
-    <?php require_once("menu.html"); ?>
+<?php require_once("cabecalho.php");?>
+<body>
+    
     <br> <br>
     <div class="container1">
         <div class="box">

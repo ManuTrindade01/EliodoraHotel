@@ -149,9 +149,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3 col-md">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
               <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
-                value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
+                value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('O hóspede responsável deve ter pelo menos 18 anos.')" onchange="this.setCustomValidity('')">
             </div>
-            <div class="mb-3 col-md-2">
+            
+          </div>
+          <div class="row">
+          <div class="mb-3 col-md-2">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
                 <option value="" disabled selected>Selecione</option>
@@ -160,9 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </select>
 
             </div>
-            
-          </div>
-          <div class="row">
             <div class="mb-3 col-md-2">
               <label for="cep" class="form-label">CEP:</label>
               <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
@@ -184,7 +184,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="bairro" type="text" class="form-control" id="bairro" required
                 value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
-            <div class="mb-3 col-md">
+          </div>
+
+          <div class="row">
+          <div class="mb-3 col-md">
               <label for="endereco" class="form-label">Endereço:</label>
               <input name="endereco" type="text" class="form-control" required
                 value="<?php echo isset($endereco) ? $endereco : ''; ?>">
@@ -194,17 +197,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input name="numeroEndereco" type="number" class="form-control" required
                 value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
             </div>
-          </div>
-
-          <div class="row">
             <div class="mb-3 col-md">
               <label for="email" class="form-label">Email:</label>
-              <input name="email" type="email" class="form-control" id="email" required
+              <input name="email" type="email" class="form-control" id="email" 
                 value="<?php echo isset($email) ? $email : ''; ?>">
             </div>
             <div class="mb-3 col-md">
               <label for="telefone" class="form-label">Telefone:</label>
-              <input name="telefone" type="text" class="form-control" id="telefone" required
+              <input name="telefone" type="text" class="form-control" id="telefone"
                 pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
                 value="<?php echo isset($telefone) ? $telefone : ''; ?>">
             </div>
@@ -272,7 +272,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $('#contatoEmergencia').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
   </script>
+<script>
+  document.getElementById('form').addEventListener('submit', function(event) {
+    var telefone = document.getElementById('telefone').value;
+    var email = document.getElementById('email').value;
 
+    if (!telefone && !email) {
+      event.preventDefault(); // Impede o envio do formulário
+      alert('Por favor, preencha pelo menos um entre telefone ou e-mail.');
+      return false;
+    }
+  });
+</script>
   <script>
     // Função para exibir a mensagem de confirmação
     window.onbeforeunload = function () {
