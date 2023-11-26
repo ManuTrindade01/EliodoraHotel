@@ -54,11 +54,12 @@ header {
 }
 
 
-.login-button button {
+.login-button {
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #a70162;
+    color: #fff;
 }
 
 .login-button button a {

@@ -22,7 +22,7 @@ require_once("verificaAutenticacao.php");
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Principal.css">
+    <link rel="stylesheet" href="css/Principal.css">
 </head>
 <?php require_once("cabecalho.php");?>
 <body>

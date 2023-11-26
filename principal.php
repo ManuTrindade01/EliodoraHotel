@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once("verificaAutenticacao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,6 +43,7 @@
             <?= $nome?>.</h2>
             </center>
     </div>
+    
     <div class="container">
     <?php if (isset($_GET['mensagem'])) { ?>
         <div class="d-flex justify-content-center">
