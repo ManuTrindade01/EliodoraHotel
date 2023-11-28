@@ -13,10 +13,11 @@ $diferencaSegundos = $dataSaida - $dataEntrada;
 $diferencaDias = intval($diferencaSegundos / (60 * 60 * 24));
 
 // Obter o valor da diária do quarto
-$sqlQuarto = "SELECT valorDiaria FROM quarto WHERE id = " . $_POST['id_quarto'];
+$sqlQuarto = "SELECT numero, valorDiaria FROM quarto WHERE id = " . $_POST['id_quarto'];
 $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
+$numero = $quarto['numero'];
 $valorDiaria = $quarto['valorDiaria'];
 if($diferencaDias <= 1){
     $valorTotalReserva = $valorDiaria;
@@ -124,7 +125,8 @@ if (isset($_POST['cadastrar'])) {
                         <div class="mb-3 col-md">
                             Quarto:
                             <label for="id_quarto" class="form-control">
-                                <?= $_POST['id_quarto'] ?>
+                                <?= $numero ?>
+                                
                             </label>
                             <br>
                         </div>
