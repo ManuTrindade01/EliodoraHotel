@@ -19,10 +19,10 @@ $resultadoQuarto = mysqli_query($conexao, $sqlQuarto);
 $quarto = mysqli_fetch_assoc($resultadoQuarto);
 $numero = $quarto['numero'];
 $valorDiaria = $quarto['valorDiaria'];
-if($diferencaDias <= 1){
+if ($diferencaDias <= 1) {
     $valorTotalReserva = $valorDiaria;
-}else{
-    $valorTotalReserva = $valorDiaria * $diferencaDias; 
+} else {
+    $valorTotalReserva = $valorDiaria * $diferencaDias;
 }
 
 
@@ -35,11 +35,17 @@ if (isset($_POST['cadastrar'])) {
     $quantHospede = $_POST['quantHospede'];
     $observacao = $_POST['observacao'];
 
+    $status = "1"; //futuro
+    $formaPagamento = "";
+    if (isset($_POST['formaPagamento'])) {
+        $formaPagamento = $_POST['formaPagamento']; //Futuro
+        $status = "2"; //futuro pago
+    }
 
     // Preparar a SQL para inserir os dados da reserva
     $sql = "INSERT INTO reserva 
-    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva) VALUES 
-    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva')";
+    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva, formapagamento, status) VALUES 
+    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva', '$formaPagamento', '$status')";
 
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);
@@ -63,10 +69,11 @@ if (isset($_POST['cadastrar'])) {
 
 <body>
     <div class="container p-4">
-    <div class="progress">
-  <div class="progress-bar progress-bar-striped" style="background-color:#a70162; width: 100%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<br>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped" style="background-color:#a70162; width: 100%"
+                role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
         <div class="card">
 
 
@@ -75,13 +82,13 @@ if (isset($_POST['cadastrar'])) {
 
             </div>
             <div class="card-body">
-            <?php if (isset($mensagem)) { ?>
-                <div class="alert alert-success" role="alert">
-                    <i class="fa-solid fa-square-check"></i>
-                    <?= $mensagem ?>
-                </div>
+                <?php if (isset($mensagem)) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <i class="fa-solid fa-square-check"></i>
+                        <?= $mensagem ?>
+                    </div>
 
-            <?php } ?>
+                <?php } ?>
                 <form method="post" id="form" name="form">
                     <input type="hidden" name="id_hospede" value="<?= $_POST['id_hospede'] ?>">
                     <input type="hidden" name="dataEntrada" value="<?= $_POST['dataEntrada'] ?>">
@@ -90,7 +97,7 @@ if (isset($_POST['cadastrar'])) {
                     <input type="hidden" name="observacao" value="<?= $_POST['observacao'] ?>">
                     <input type="hidden" name="id_quarto" value="<?= $_POST['id_quarto'] ?>">
                     <div class="row">
-                    
+
                         <div class="mb-3 col-md">
                             Data de Entrada:
                             <label for="dataEntrada" class="form-control">
@@ -126,15 +133,25 @@ if (isset($_POST['cadastrar'])) {
                             Quarto:
                             <label for="id_quarto" class="form-control">
                                 <?= $numero ?>
-                                
+
                             </label>
                             <br>
                         </div>
                         <div class="mb-3 col-md">
                             Valor Reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
-                                R$ <?= $valorTotalReserva ?>
+                                R$
+                                <?= $valorTotalReserva ?>
                             </label>
+                        </div>
+
+                        <div class="mb-3 col-md">
+                            <select class="form-select" aria-label="Default select example">Forma Pagamento:
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
                         </div>
                         <br>
                     </div>
@@ -148,15 +165,15 @@ if (isset($_POST['cadastrar'])) {
     </div>
     </div>
     <script>
-      // Função para exibir a mensagem de confirmação
-      window.onbeforeunload = function () {
-        return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
-      };
+        // Função para exibir a mensagem de confirmação
+        window.onbeforeunload = function () {
+            return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
+        };
 
-      // Lógica para remover a mensagem de confirmação quando o formulário for enviado
-      document.querySelector('form').addEventListener('submit', function () {
-        window.onbeforeunload = null;
-      });
+        // Lógica para remover a mensagem de confirmação quando o formulário for enviado
+        document.querySelector('form').addEventListener('submit', function () {
+            window.onbeforeunload = null;
+        });
     </script>
 
 </html>

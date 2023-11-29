@@ -70,6 +70,7 @@ require_once("conexao.php");
               <input type="date" class="form-control" name="dataSaida" id="dataSaida"
               min="<?php echo date('Y-m-d') ?>" required>
             </div>
+            
           </div>
           <!--
           <div class="row">
