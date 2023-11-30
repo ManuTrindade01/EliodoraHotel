@@ -1,76 +1,152 @@
-/* Reset de estilos para garantir consistência */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
 * {
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Estilos para o cabeçalho */
+body {
+    background-color: #f4dde3;
+}
+
 header {
-    background-color: #b97c8c; /* Cor de fundo do cabeçalho */
-    color: #ffffff; /* Cor do texto no cabeçalho */
-    padding: 15px 20px; /* Espaçamento interno do cabeçalho */
+    background-color: #b97c8c;
+    box-shadow: 0px 3px 10px #563f3f;
 }
 
-/* Estilos para o logotipo */
-.logo h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; /* Tamanho da fonte do logotipo */
-}
-
-/* Estilos para a lista de navegação */
-.nav-list ul {
-    list-style: none; /* Remover os marcadores da lista */
+.nav-bar {
     display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+}
+
+.logo h2 {
+    color: #fff;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
 }
 
 .nav-item {
-    margin-right: 20px; /* Espaçamento entre os itens do menu */
+    margin: 0 15px;
 }
 
 .nav-link {
-    text-decoration: none; /* Remover decoração do link */
-    color: #ffffff; /* Cor do texto do link */
-    font-weight: bold; /* Fonte em negrito para os links */
-    transition: color 0.3s ease; /* Transição suave da cor ao passar o mouse */
+    text-decoration: none;
+    font-size: 1.15rem;
+    color: #ffffff;
+    font-weight: 400;
 }
 
 .nav-link:hover {
-    color: #a70162; /* Cor do texto ao passar o mouse */
+    color: #a70162;
 }
 
-/* Estilos para o menu mobile */
+
+.login-button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.login-button button a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+.login-button .dropdown-item :hover{
+    color: #a70162;
+
+}
+
+.mobile-menu-icon {
+    display: none;
+}
+
 .mobile-menu {
-    display: none; /* Ocultar menu mobile por padrão */
+    display: none;
 }
 
-/* Media query para exibir o menu mobile em telas menores */
-@media screen and (max-width: 768px) {
-    .nav-list ul {
-        display: none; /* Ocultar a lista no modo mobile */
+.containercard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 730px) {
+    .nav-bar {
+        padding: 1.5rem 4rem;
     }
 
-    .mobile-menu {
-        display: block; /* Exibir menu mobile */
+    .nav-item {
+        display: none;
     }
 
-    /* Estilos para os links do menu mobile */
+    .login-button {
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
     .mobile-menu ul {
-        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
     }
 
     .mobile-menu .nav-item {
-        margin-bottom: 10px;
-    }
-
-    .mobile-menu .nav-link {
-        color: #ffffff;
-        text-decoration: none;
         display: block;
-        padding: 10px;
+        padding-top: 1.2rem;
     }
 
-    .mobile-menu .nav-link:hover {
-        background-color: #a70162;
+    .mobile-menu .login-button {
+        display: block;
+        padding: 1rem 2rem;
+        color: #a70162;
     }
+
+    .mobile-menu .login-button button {
+        width: 100%;
+    }
+
+    .open {
+        display: block;
+    }
+}
+
+.containercard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.h5 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #a70162;
 }

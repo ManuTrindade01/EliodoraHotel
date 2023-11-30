@@ -136,25 +136,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group row">
             <div class="mb-3 col-md-5">
               <label for="nome" class="form-label">Nome Completo:</label>
-              <input type="text" class="form-control" name="nome" id="nome"
-                pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10"
-                value="<?php echo isset($nome) ? $nome : ''; ?>">
+              <input type="text" class="form-control" name="nome" id="nome" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required minlength="10" value="<?php echo isset($nome) ? $nome : ''; ?>">
             </div>
             <div class="mb-3 col-md-3">
               <label for="cpf" class="form-label">CPF:</label>
-              <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                value="<?php echo isset($cpf) ? $cpf : ''; ?>">
+              <input type="text" class="form-control" name="cpf" id="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="<?php echo isset($cpf) ? $cpf : ''; ?>">
 
             </div>
             <div class="mb-3 col-md">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control" name="dataNascimento"
-                value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('O hóspede responsável deve ter pelo menos 18 anos.')" onchange="this.setCustomValidity('')">
+              <input name="dataNascimento" type="date" class="form-control" name="dataNascimento" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>" max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('O hóspede responsável deve ter pelo menos 18 anos.')" onchange="this.setCustomValidity('')">
             </div>
-            
+
           </div>
           <div class="row">
-          <div class="mb-3 col-md-2">
+            <div class="mb-3 col-md-2">
               <label for="genero" class="form-label">Gênero:</label>
               <select name="genero" class="form-select" aria-label="Default select example" id="generoSelect" required>
                 <option value="" disabled selected>Selecione</option>
@@ -165,55 +161,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md-2">
               <label for="cep" class="form-label">CEP:</label>
-              <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}"
-                value="<?php echo isset($cep) ? $cep : ''; ?>">
+              <input name="cep" type="text" class="form-control" id="cep" required pattern="\d{5}-?\d{3}" value="<?php echo isset($cep) ? $cep : ''; ?>">
             </div>
             <div class="mb-3 col-md-1">
               <label for="estado" class="form-label">UF</label>
-              <input name="estado" type="text" id="uf" class="form-control" required
-                value="<?php echo isset($estado) ? $estado : ''; ?>">
+              <input name="estado" type="text" id="uf" class="form-control" required value="<?php echo isset($estado) ? $estado : ''; ?>">
 
             </div>
             <div class="mb-3 col-md">
               <label for="cidade" class="form-label">Cidade</label>
-              <input name="cidade" type="text" id="cidade" class="form-control" required
-                value="<?php echo isset($cidade) ? $cidade : ''; ?>">
+              <input name="cidade" type="text" id="cidade" class="form-control" required value="<?php echo isset($cidade) ? $cidade : ''; ?>">
             </div>
             <div class="mb-3 col-md">
               <label for="bairro" class="form-label">Bairro:</label>
-              <input name="bairro" type="text" class="form-control" id="bairro" required
-                value="<?php echo isset($bairro) ? $bairro : ''; ?>">
+              <input name="bairro" type="text" class="form-control" id="bairro" required value="<?php echo isset($bairro) ? $bairro : ''; ?>">
             </div>
           </div>
 
           <div class="row">
-          <div class="mb-3 col-md">
+            <div class="mb-3 col-md">
               <label for="endereco" class="form-label">Endereço:</label>
-              <input name="endereco" type="text" class="form-control" required
-                value="<?php echo isset($endereco) ? $endereco : ''; ?>">
+              <input name="endereco" type="text" class="form-control" required value="<?php echo isset($endereco) ? $endereco : ''; ?>">
             </div>
             <div class="mb-3 col-md-2">
               <label for="numeroEndereco" class="form-label">Número:</label>
-              <input name="numeroEndereco" type="number" class="form-control" required
-                value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
+              <input name="numeroEndereco" type="number" class="form-control" required value="<?php echo isset($numeroEndereco) ? $numeroEndereco : ''; ?>">
             </div>
             <div class="mb-3 col-md">
               <label for="email" class="form-label">Email:</label>
-              <input name="email" type="email" class="form-control" id="email" 
-                value="<?php echo isset($email) ? $email : ''; ?>">
+              <input name="email" type="email" class="form-control" id="email" value="<?php echo isset($email) ? $email : ''; ?>">
             </div>
             <div class="mb-3 col-md">
               <label for="telefone" class="form-label">Telefone:</label>
-              <input name="telefone" type="text" class="form-control" id="telefone"
-                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
-                value="<?php echo isset($telefone) ? $telefone : ''; ?>">
+              <input name="telefone" type="text" class="form-control" id="telefone" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" value="<?php echo isset($telefone) ? $telefone : ''; ?>">
             </div>
 
             <div class="mb-3 col-md">
               <label for="contatoEmergencia" class="form-label">Contato de Emergência:</label>
-              <input name="contatoEmergencia" type="text" class="form-control" id="contatoEmergencia"
-                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
-                value="<?php echo isset($contatoEmergencia) ? $contatoEmergencia : ''; ?>">
+              <input name="contatoEmergencia" type="text" class="form-control" id="contatoEmergencia" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" value="<?php echo isset($contatoEmergencia) ? $contatoEmergencia : ''; ?>">
             </div>
           </div>
           <button name="cadastrar" type="submit" class="btn" style="background-color: #a70162; color: #fff;">Cadastrar
@@ -229,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script>
-    $("#cep").blur(function () {
+    $("#cep").blur(function() {
       // Remove tudo o que não é número para fazer a pesquisa
       var cep = this.value.replace(/[^0-9]/, "");
 
@@ -248,22 +233,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // caso ocorra algum erro (o cep pode não existir, por exemplo) a
       // usabilidade não seja afetada, assim o usuário pode continuar//
       // preenchendo os campos normalmente
-      $.getJSON(url, function (dadosRetorno) {
+      $.getJSON(url, function(dadosRetorno) {
         try {
           // Preenche os campos de acordo com o retorno da pesquisa
           $("#endereco").val(dadosRetorno.logradouro);
           $("#bairro").val(dadosRetorno.bairro);
           $("#cidade").val(dadosRetorno.localidade);
           $("#uf").val(dadosRetorno.uf);
-        } catch (ex) { }
+        } catch (ex) {}
       });
     });
   </script>
   <script type="text/javascript" src="js/cep.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
-    integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $('#cpf').mask('000.000.000-00', {
       reverse: true
@@ -272,30 +255,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $('#contatoEmergencia').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
   </script>
-<script>
-  document.getElementById('form').addEventListener('submit', function(event) {
-    var telefone = document.getElementById('telefone').value;
-    var email = document.getElementById('email').value;
+  <script>
+    document.getElementById('form').addEventListener('submit', function(event) {
+      var telefone = document.getElementById('telefone').value;
+      var email = document.getElementById('email').value;
 
-    if (!telefone && !email) {
-      event.preventDefault(); // Impede o envio do formulário
-      alert('Por favor, preencha pelo menos um entre telefone ou e-mail.');
-      return false;
-    }
-  });
-</script>
+      if (!telefone && !email) {
+        event.preventDefault(); // Impede o envio do formulário
+        alert('Por favor, preencha pelo menos um entre telefone ou e-mail.');
+        return false;
+      }
+    });
+  </script>
   <script>
     // Função para exibir a mensagem de confirmação
-    window.onbeforeunload = function () {
+    window.onbeforeunload = function() {
       return "Você tem certeza que deseja sair desta página? Suas informações não serão salvas.";
     };
 
     // Lógica para remover a mensagem de confirmação quando o formulário for enviado
-    document.querySelector('form').addEventListener('submit', function () {
+    document.querySelector('form').addEventListener('submit', function() {
       window.onbeforeunload = null;
     });
   </script>
- 
+
 </body>
 
 </html>

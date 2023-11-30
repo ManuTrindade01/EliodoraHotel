@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="barbara.ico" type="image/x-icon">
 
-    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
     <header>
@@ -36,18 +37,15 @@
                 </ul>
             </div>
 
-
             <div class="login-button">
-                <button type="button" class="btn btn dropdown-toggle" style="color:aliceblue;"      data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-user"></i> <?php echo $_SESSION['nome']; ?>
+                <button type="button" class="btn btn dropdown-toggle" style="color:aliceblue;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $_SESSION['nome']; ?> <i class="fa-regular fa-user"></i>
                 </button>
                 <ul class="dropdown-menu">
-                        <hr class="dropdown-divider">
                     </li>
                     <li><a class="dropdown-item" href="sair.php">Sair</a></li>
                 </ul>
             </div>
-
 
             <div class="mobile-menu-icon">
                 <button onclick="menuShow()"><img class="icon" src="img/menu_white_36dp.svg" alt=""></button>
@@ -60,7 +58,7 @@
                 <li class="nav-item"><a href="relatorios.php" class="nav-link">Relatórios</a></li>
             </ul>
 
-            <div class="login-button">
+            <div class="login-button-2">
                 <button><a href="sair.php">Sair</a></button>
             </div>
         </div>

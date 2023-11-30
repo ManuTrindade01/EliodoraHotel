@@ -62,10 +62,15 @@ header {
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
+    color: #fff;
+}
+.login-button :hover {
+    color: #a70162;
+}
+.dropdown-menu :hover{
     background-color: #a70162;
     color: #fff;
 }
-
 .login-button button a {
     text-decoration: none;
     color: #fff;
@@ -145,54 +150,4 @@ header {
 .h5 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #a70162;
-}
-
-/* Estilos personalizados para o dropdown */
-
-/* Estilizando a lista de opções do dropdown */
-.dropdown-menu {
-    background-color: #fff;
-    /* Cor de fundo */
-    border: none;
-    /* Remover borda */
-    border-radius: 5px;
-    /* Borda arredondada */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    /* Sombra */
-    padding: 8px 0;
-    /* Espaçamento interno */
-}
-
-/* Estilizando os itens do dropdown */
-.dropdown-item {
-    color: #333;
-    /* Cor do texto */
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: #f5f5f5;
-    /* Cor de fundo ao passar o mouse/foco */
-}
-
-.dropdown-divider {
-    border-top: 1px solid #ccc;
-    /* Estilo do separador */
-}
-
-/* Estilizando o botão do dropdown */
-.dropdown-toggle {
-    background-color: transparent;
-    /* Botão transparente */
-    border: none;
-    /* Remover borda */
-    color: #fff;
-    /* Cor do texto */
-}
-
-.dropdown-toggle:focus {
-    outline: none;
-    /* Remover contorno ao focar */
-    box-shadow: none;
-    /* Remover sombra ao focar */
 }
