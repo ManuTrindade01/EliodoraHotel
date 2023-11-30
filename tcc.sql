@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Nov-2023 às 00:20
+-- Tempo de geração: 30/11/2023 às 14:54
 -- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `tcc`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `consumo`
+-- Estrutura para tabela `consumo`
 --
 
 CREATE TABLE `consumo` (
@@ -39,7 +39,7 @@ CREATE TABLE `consumo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `consumo`
+-- Despejando dados para a tabela `consumo`
 --
 
 INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, `id_produto`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionario`
+-- Estrutura para tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -76,7 +76,7 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `funcionario`
+-- Despejando dados para a tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `gen
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `hospede`
+-- Estrutura para tabela `hospede`
 --
 
 CREATE TABLE `hospede` (
@@ -110,7 +110,7 @@ CREATE TABLE `hospede` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `hospede`
+-- Despejando dados para a tabela `hospede`
 --
 
 INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
@@ -119,13 +119,12 @@ INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`
 (3, 'Maria Pereira de Azevedo ', '947.667.245-50', '1930-08-28', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Rio Grande do Norte', 764, '87565-000', 'maria@gmail.com', '(22) 96666-6633', '(33) 93335-3465'),
 (4, 'Maria Amélia de Jesus', '947.667.245-50', '1906-01-01', 'F', 'SE', 'Itabaiana', 'Centro', 'Rua Amélia', 986, '49500-970', 'amelia@gmail.com', '(44) 96767-8687', '(44) 98673-2673'),
 (7, 'Marcela Aimee Alves ', '133.325.989-10', '2005-11-16', 'F', 'PR', 'Cruzeiro do Oeste', 'Sul Brasileira 1 ', 'Rua Timoneira ', 245, '87400-000', 'aimee@gmail.com', '(44) 99833-6792', ''),
-(8, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Getúlio Vargas', 654, '87565-000', 'manuifpr@gmail.com', '', ''),
 (9, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Getúlio Vargas', 654, '87565-000', 'manuifpr@gmail.com', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `marca`
+-- Estrutura para tabela `marca`
 --
 
 CREATE TABLE `marca` (
@@ -134,7 +133,7 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `marca`
+-- Despejando dados para a tabela `marca`
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
@@ -149,7 +148,7 @@ INSERT INTO `marca` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto`
+-- Estrutura para tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -163,7 +162,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `produto`
+-- Despejando dados para a tabela `produto`
 --
 
 INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`, `id_tipo`, `id_marca`) VALUES
@@ -175,7 +174,7 @@ INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `quarto`
+-- Estrutura para tabela `quarto`
 --
 
 CREATE TABLE `quarto` (
@@ -188,7 +187,7 @@ CREATE TABLE `quarto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `quarto`
+-- Despejando dados para a tabela `quarto`
 --
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
@@ -202,7 +201,7 @@ INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiar
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `reserva`
+-- Estrutura para tabela `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -213,6 +212,7 @@ CREATE TABLE `reserva` (
   `valorTotalReserva` double(11,2) NOT NULL,
   `quantHospede` int(1) NOT NULL,
   `observacao` varchar(200) NOT NULL,
+  `formaPagamento` varchar(45) NOT NULL,
   `id_hospede` int(11) DEFAULT NULL,
   `id_quarto` int(11) DEFAULT NULL,
   `id_funcionario` int(11) DEFAULT NULL,
@@ -220,19 +220,18 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `reserva`
+-- Despejando dados para a tabela `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
-(2, 3, '2023-11-12', '2023-11-13', 120.00, 1, '', 3, 3, NULL, '2023-11-23 08:42:39'),
-(3, 1, '2023-11-23', '2023-11-24', 120.00, 1, '', 3, 3, NULL, '2023-11-23 09:09:44'),
-(4, 1, '2023-12-20', '2024-02-20', 7440.00, 1, '', 7, 3, NULL, '2023-11-24 16:47:23'),
-(5, 2, '2023-11-25', '2023-11-25', 120.00, 1, '', 7, 3, NULL, '2023-11-25 17:05:40');
+INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `formaPagamento`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
+(3, 3, '2023-11-30', '2023-11-30', 233.00, 1, '', '', 4, 5, NULL, '2023-11-30 10:02:01'),
+(4, 4, '2023-11-30', '2023-11-30', 233.00, 2, '', 'Pix', 7, 6, NULL, '2023-11-30 10:19:46'),
+(5, 2, '2024-01-01', '2024-01-02', 233.00, 1, '', '', 2, 1, NULL, '2023-11-30 10:31:32');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo`
+-- Estrutura para tabela `tipo`
 --
 
 CREATE TABLE `tipo` (
@@ -241,7 +240,7 @@ CREATE TABLE `tipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tipo`
+-- Despejando dados para a tabela `tipo`
 --
 
 INSERT INTO `tipo` (`id`, `nome`) VALUES
@@ -256,7 +255,7 @@ INSERT INTO `tipo` (`id`, `nome`) VALUES
 --
 
 --
--- Índices para tabela `consumo`
+-- Índices de tabela `consumo`
 --
 ALTER TABLE `consumo`
   ADD PRIMARY KEY (`id`),
@@ -264,25 +263,25 @@ ALTER TABLE `consumo`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices para tabela `funcionario`
+-- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `hospede`
+-- Índices de tabela `hospede`
 --
 ALTER TABLE `hospede`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `marca`
+-- Índices de tabela `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `produto`
+-- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id`),
@@ -291,13 +290,13 @@ ALTER TABLE `produto`
   ADD KEY `produto_marca` (`id_marca`);
 
 --
--- Índices para tabela `quarto`
+-- Índices de tabela `quarto`
 --
 ALTER TABLE `quarto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `reserva`
+-- Índices de tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
@@ -306,13 +305,13 @@ ALTER TABLE `reserva`
   ADD KEY `reserva_quarto` (`id_quarto`);
 
 --
--- Índices para tabela `tipo`
+-- Índices de tabela `tipo`
 --
 ALTER TABLE `tipo`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -358,25 +357,25 @@ ALTER TABLE `tipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `consumo`
+-- Restrições para tabelas `consumo`
 --
 ALTER TABLE `consumo`
   ADD CONSTRAINT `consumo_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`),
   ADD CONSTRAINT `consumo_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id`);
 
 --
--- Limitadores para a tabela `produto`
+-- Restrições para tabelas `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_marca` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id`),
   ADD CONSTRAINT `produto_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipo` (`id`);
 
 --
--- Limitadores para a tabela `reserva`
+-- Restrições para tabelas `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_funcionario` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`),
