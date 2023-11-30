@@ -129,7 +129,7 @@ if (isset($_POST['cadastrar'])) {
                         </div>
                         <br>
                         <br>
-                        <div class="mb-3 col-md">
+                        <div class="mb-3 col-md-2">
                             Quarto:
                             <label for="id_quarto" class="form-control">
                                 <?= $numero ?>
@@ -137,6 +137,8 @@ if (isset($_POST['cadastrar'])) {
                             </label>
                             <br>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="mb-3 col-md">
                             Valor Reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
@@ -146,15 +148,16 @@ if (isset($_POST['cadastrar'])) {
                         </div>
 
                         <div class="mb-3 col-md">
-                            <select class="form-select" aria-label="Default select example">Forma Pagamento:
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <label for="formaPagamento">Forma de Pagamento:</label>
+                            <select class="form-select" aria-label="Default select example" name="formaPagamento">
+                                <option selected disabled>Selecione</option>
+                                <option value="Cartão">Cartão de Crédito/Débito</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Dinheiro">Dinheiro</option>
                             </select>
                         </div>
                         <br>
-                    </div>
+                        </div>
                     <button name="cadastrar" type="submit" class="btn"
                         style="background-color: #a70162; color: #fff;">Confirmar reserva
                         <i class="fa-solid fa-check"></i>

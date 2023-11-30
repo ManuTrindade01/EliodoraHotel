@@ -188,8 +188,8 @@ $linha = mysqli_fetch_array($resultado);
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select">
                                 <option value="1" <?= ($linha['status'] == '1') ? 'selected' : '' ?>>Futuro</option>
-                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Em andamento</option>
-                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Finalizado - A pagar</option>
+                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Futuro - Pago</option>
+                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Em andamento</option>
                                 <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Finalizado - Pago</option>
                                 <option value="5" <?= ($linha['status'] == '5') ? 'selected' : '' ?>>Cancelado</option>
                             </select>

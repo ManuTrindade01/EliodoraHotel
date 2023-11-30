@@ -8,9 +8,9 @@ function getStatusName($statusNumber)
         case 1:
             return ['Futuro', 'secondary'];
         case 2:
-            return ['Em andamento', 'primary'];
+            return ['Futuro - Pago', 'secondary'];
         case 3:
-            return ['Finalizado - A pagar', 'warning'];
+            return ['Em andamento', 'primary'];
         case 4:
             return ['Finalizado - Pago', 'success'];
         case 5:
@@ -64,8 +64,8 @@ require_once("conexao.php");
                         
                         <option value="">Todos</option>
                         <option value="1">Futuro</option>
-                        <option value="2" selected>Em andamento</option>
-                        <option value="3">Finalizado - A pagar</option>
+                        <option value="2">Futuro - Pago</option>
+                        <option value="3" selected>Em andamento</option>
                         <option value="4">Finalizado - Pago</option>
                         <option value="5">Cancelado</option>
                     </select>
