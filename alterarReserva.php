@@ -66,7 +66,7 @@ if (isset($_POST['salvar'])) {
     }
 }
 
-$sql = "select * from reserva where id = " . $_GET['id'];
+$sql = "SELECT * from reserva where id = " . $_GET['id'];
 $resultado = mysqli_query($conexao, $sql);
 $linha = mysqli_fetch_array($resultado);
 // Seu HTML e o restante do código devem continuar aqui

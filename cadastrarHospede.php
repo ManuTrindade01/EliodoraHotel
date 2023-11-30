@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="mb-3 col-md">
               <label for="endereco" class="form-label">Endereço:</label>
-              <input name="endereco" type="text" class="form-control" required value="<?php echo isset($endereco) ? $endereco : ''; ?>">
+              <input name="endereco" type="text" class="form-control" id="endereco" required value="<?php echo isset($endereco) ? $endereco : ''; ?>">
             </div>
             <div class="mb-3 col-md-2">
               <label for="numeroEndereco" class="form-label">Número:</label>
