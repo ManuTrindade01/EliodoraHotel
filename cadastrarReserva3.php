@@ -34,6 +34,7 @@ if (isset($_POST['cadastrar'])) {
     $dataSaida = $_POST['dataSaida'];
     $quantHospede = $_POST['quantHospede'];
     $observacao = $_POST['observacao'];
+    $idFuncionario = $_SESSION['id'];
 
     $status = "1"; //futuro
     $formaPagamento = "";
@@ -44,8 +45,8 @@ if (isset($_POST['cadastrar'])) {
 
     // Preparar a SQL para inserir os dados da reserva
     $sql = "INSERT INTO reserva 
-    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva, formapagamento, status) VALUES 
-    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva', '$formaPagamento', '$status')";
+    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva, formapagamento, status, id_funcionario) VALUES 
+    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva', '$formaPagamento', '$status', '$idFuncionario')";
 
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);

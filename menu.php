@@ -61,8 +61,15 @@
                 <li class="nav-item"><a href="relatorios.php" class="nav-link">Relatórios</a></li>
             </ul>
 
-            <div class="login-button-2">
-                <button><a href="sair.php">Sair</a></button>
+            <div class="login-button">
+                <button type="button" class="btn btn dropdown-toggle" style="color:aliceblue;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $_SESSION['nome']; ?>
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <!-- O restante do seu código do menu dropdown -->
+                    <li><a class="dropdown-item" href="sair.php">Sair</a></li>
+                </ul>
             </div>
         </div>
     </header>

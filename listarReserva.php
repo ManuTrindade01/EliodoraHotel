@@ -18,11 +18,13 @@ if (isset($_POST['pesquisar'])) {
   $V_WHERE = " AND hospede.nome like '%" . $_POST['hospede_nome'] . "%' ";
 }
 //2. Preparar a SQL
-$sql = "select reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero
- from reserva
- left join hospede on hospede.id = reserva.id_hospede
- left join quarto on quarto.id = reserva.id_quarto
- WHERE 1 = 1 " . $V_WHERE;
+$sql = "SELECT reserva.*, hospede.nome as hospede_nome, quarto.numero as quarto_numero, funcionario.nome as         nome_funcionario
+        FROM reserva
+        LEFT JOIN hospede ON hospede.id = reserva.id_hospede
+        LEFT JOIN quarto ON quarto.id = reserva.id_quarto
+        LEFT JOIN funcionario ON funcionario.id = reserva.id_funcionario
+        WHERE 1 = 1 " . $V_WHERE;
+
 
 
 //3. Executar a SQL
@@ -46,8 +48,7 @@ $resultado = mysqli_query($conexao, $sql);
 
     <div class="card-body">
       <h2 class="card-title">Reservas
-        <a href="cadastrarReserva.php" class="btn btn-sn" style="background-color: #a70162; color: #fff;"><i
-            class="fa-solid fa-plus"></i>
+        <a href="cadastrarReserva.php" class="btn btn-sn" style="background-color: #a70162; color: #fff;"><i class="fa-solid fa-plus"></i>
         </a>
       </h2>
     </div>
@@ -55,11 +56,9 @@ $resultado = mysqli_query($conexao, $sql);
 
   <form method="post">
     <div class="input-group mb-3">
-      <input type="text" name="hospede_nome" id="id_hospede" class="form-control"
-        placeholder="Pesquisar por nome do hóspede" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <input type="text" name="hospede_nome" id="id_hospede" class="form-control" placeholder="Pesquisar por nome do hóspede" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit"><i
-            class="fa-solid fa-magnifying-glass"></i> </button>
+        <button name="pesquisar" class="btn" style="background-color: #a70162; color: #fff;" type="submit"><i class="fa-solid fa-magnifying-glass"></i> </button>
   </form>
 </div>
 </div>
@@ -90,6 +89,7 @@ $resultado = mysqli_query($conexao, $sql);
         <th scope="col">Data Entrada</th>
         <th scope="col">Data Saída</th>
         <th scope="col">Valor Total</th>
+        <th scope="col">Funcionário</th>
         <th scope="col">Ação</th>
       </tr>
     </thead>
@@ -99,7 +99,7 @@ $resultado = mysqli_query($conexao, $sql);
           <td>
             <?= $linha['id'] ?>
             </th>
-         
+
           <td>
             <?= $linha['hospede_nome'] ?>
           </td>
@@ -120,6 +120,9 @@ $resultado = mysqli_query($conexao, $sql);
             <?= number_format($linha['valorTotalReserva'], 2, ',', '.') ?>
           </td>
           <td>
+          <?= $linha['nome_funcionario'];?>
+          </td>
+          <td>
 
             <div class="btn-group">
               <a href="alterarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-warning">
@@ -127,8 +130,7 @@ $resultado = mysqli_query($conexao, $sql);
               </a>
               <!--BOTÃO EXCLUIR-->
 
-              <a href="listarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-danger"
-                onclick="return confirm('Confirma exclusão')">
+              <a href="listarReserva.php?id=<?= $linha['id'] ?>" class="btn btn-danger" onclick="return confirm('Confirma exclusão')">
                 <i class="fa-solid fa-trash-can"></i>
               </a>
 

@@ -74,12 +74,8 @@ header {
 
 /* Estilo de hover para o botão e seu conteúdo */
 .login-button button:hover {
-    color: #a70162; /* Cor ao passar o mouse */
-}
+    background-color: #a70162; /* Cor ao passar o mouse */
 
-.dropdown-menu :hover{
-    background-color: #a70162;
-    color: #fff;
 }
 .login-button button a {
     text-decoration: none;
@@ -142,6 +138,7 @@ header {
         display: block;
         padding: 1rem 2rem;
     }
+
 
     .mobile-menu .login-button button {
         width: 100%;
