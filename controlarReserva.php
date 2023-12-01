@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("verificaAutenticacao.php");
 
 // Função para retornar o nome do status com base no número
 function getStatusName($statusNumber)
