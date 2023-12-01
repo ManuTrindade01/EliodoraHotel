@@ -66,6 +66,7 @@ $resultado = mysqli_query($conexao, $sql);
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
+      <th scope="col">Data Cadastro</th>
       <th scope="col">Email</th>
       <th scope="col">Telefone</th>
       <th scope="col">Horário Entrada</th>
@@ -80,6 +81,7 @@ $resultado = mysqli_query($conexao, $sql);
 
         <td><?= $linha['id'] ?></th>
         <td><?= $linha['nome'] ?></td>
+        <td><?= date('d/m/Y', strtotime($linha['dataCadastro'])) ?></td>
         <td><?= $linha['email'] ?></td>
         <td><?= $linha['telefone'] ?></td>
         <td><?= $linha['horarioEntrada'] ?></td>

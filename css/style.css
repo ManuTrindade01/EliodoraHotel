@@ -6,6 +6,8 @@
     font-family: 'Inter', sans-serif;
 }
 
+
+
 body {
     background-color: #f4dde3;
 }
@@ -18,7 +20,7 @@ header {
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 6rem;
+    padding: 0.8rem 6rem;
 }
 
 .logo {
@@ -34,6 +36,7 @@ header {
 .nav-list {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .nav-list ul {
@@ -64,9 +67,16 @@ header {
     border-radius: 5px;
     color: #fff;
 }
-.login-button :hover {
-    color: #a70162;
+/* Estilo para o botão de login e seu conteúdo */
+.login-button button {
+    color: aliceblue; /* Cor padrão */
 }
+
+/* Estilo de hover para o botão e seu conteúdo */
+.login-button button:hover {
+    color: #a70162; /* Cor ao passar o mouse */
+}
+
 .dropdown-menu :hover{
     background-color: #a70162;
     color: #fff;
@@ -77,6 +87,7 @@ header {
     font-weight: 500;
     font-size: 1.1rem;
 }
+
 
 .mobile-menu-icon {
     display: none;

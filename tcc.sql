@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/11/2023 às 14:54
+-- Tempo de geração: 01-Dez-2023 às 01:39
 -- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `tcc`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `consumo`
+-- Estrutura da tabela `consumo`
 --
 
 CREATE TABLE `consumo` (
@@ -39,7 +39,7 @@ CREATE TABLE `consumo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `consumo`
+-- Extraindo dados da tabela `consumo`
 --
 
 INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, `id_produto`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `consumo` (`id`, `quantidadeProduto`, `data`, `hora`, `id_reserva`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -72,24 +72,25 @@ CREATE TABLE `funcionario` (
   `salario` double(11,2) NOT NULL,
   `cargo` int(1) NOT NULL,
   `horarioEntrada` time NOT NULL,
-  `horarioSaida` time NOT NULL
+  `horarioSaida` time NOT NULL,
+  `dataCadastro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `funcionario`
+-- Extraindo dados da tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`) VALUES
-(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 2000.00, 1, '08:00:00', '17:00:00'),
-(43, 1, 'Sandra Maria dos Santos Trindade', '021.972.939-58', '1975-09-26', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 654, '87565-000', 'sandramanulucas@gmail.com', '(44) 97386-4782', '123456', '123456', '0067-05-31', 5000.00, 2, '08:10:00', '15:00:00'),
-(44, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2000-09-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 876, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2000-07-09', 5000.00, 2, '09:09:00', '16:00:00'),
-(45, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 7654, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2023-06-01', 5000.00, 1, '07:07:00', '01:01:00'),
-(46, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 7654, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2023-06-01', 5000.00, 1, '07:07:00', '01:01:00');
+INSERT INTO `funcionario` (`id`, `status`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `senha`, `confirma`, `dataAdmissao`, `salario`, `cargo`, `horarioEntrada`, `horarioSaida`, `dataCadastro`) VALUES
+(27, 1, 'Emanuely Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 561, '87565-000', 'manuifpr@gmail.com', '(44) 96543-4567', '1234', '0', '2023-10-01', 2000.00, 1, '08:00:00', '17:00:00', '2023-11-30'),
+(43, 1, 'Sandra Maria dos Santos Trindade', '021.972.939-58', '1975-09-26', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Argentina', 654, '87565-000', 'sandramanulucas@gmail.com', '(44) 97386-4782', '123456', '123456', '0067-05-31', 5000.00, 2, '08:10:00', '15:00:00', '2023-11-30'),
+(44, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2000-09-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 876, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2000-07-09', 5000.00, 2, '09:09:00', '16:00:00', '2023-11-30'),
+(45, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 7654, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2023-06-01', 5000.00, 1, '07:07:00', '01:01:00', '2023-11-30'),
+(46, 1, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Guaiporã', 'Rua Getúlio Vargas', 7654, '87567-000', 'sandramanulucas@gmail.com', '(44) 97386-478', '123456', '123456', '2023-06-01', 5000.00, 2, '07:07:00', '01:01:00', '2023-11-30');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `hospede`
+-- Estrutura da tabela `hospede`
 --
 
 CREATE TABLE `hospede` (
@@ -106,25 +107,27 @@ CREATE TABLE `hospede` (
   `cep` varchar(15) NOT NULL,
   `email` varchar(45) NOT NULL,
   `telefone` varchar(20) NOT NULL,
-  `contatoEmergencia` varchar(20) NOT NULL
+  `contatoEmergencia` varchar(20) NOT NULL,
+  `dataCadastro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `hospede`
+-- Extraindo dados da tabela `hospede`
 --
 
-INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`) VALUES
-(1, 'Tereza Manuela da Luz', '780.367.190-02', '1931-11-30', 'F', 'PR', 'Iporã', 'Centro', 'Rua das Flores', 1022, '87560-000', 'tereza@gmail.com', '(43) 97846-3286', '(22) 93274-8377'),
-(2, 'Maria Francisca de Souza Trindade', '943.413.600-86', '1924-06-01', 'F', 'PR', 'Umuarama', 'Zona III', 'Rua das Flores', 9876, '87502-000', 'francisca@gmail.com', '(43) 97846-3286', '(22) 93274-8377'),
-(3, 'Maria Pereira de Azevedo ', '947.667.245-50', '1930-08-28', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Rio Grande do Norte', 764, '87565-000', 'maria@gmail.com', '(22) 96666-6633', '(33) 93335-3465'),
-(4, 'Maria Amélia de Jesus', '947.667.245-50', '1906-01-01', 'F', 'SE', 'Itabaiana', 'Centro', 'Rua Amélia', 986, '49500-970', 'amelia@gmail.com', '(44) 96767-8687', '(44) 98673-2673'),
-(7, 'Marcela Aimee Alves ', '133.325.989-10', '2005-11-16', 'F', 'PR', 'Cruzeiro do Oeste', 'Sul Brasileira 1 ', 'Rua Timoneira ', 245, '87400-000', 'aimee@gmail.com', '(44) 99833-6792', ''),
-(9, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Getúlio Vargas', 654, '87565-000', 'manuifpr@gmail.com', '', '');
+INSERT INTO `hospede` (`id`, `nome`, `cpf`, `dataNascimento`, `genero`, `estado`, `cidade`, `bairro`, `endereco`, `numeroEndereco`, `cep`, `email`, `telefone`, `contatoEmergencia`, `dataCadastro`) VALUES
+(1, 'Tereza Manuela da Luz', '780.367.190-02', '1931-11-30', 'F', 'PR', 'Iporã', 'Centro', 'Rua das Flores', 1022, '87560-000', 'tereza@gmail.com', '(43) 97846-3286', '(22) 93274-8377', '2023-11-30'),
+(2, 'Maria Francisca de Souza Trindade', '943.413.600-86', '1924-06-01', 'F', 'PR', 'Umuarama', 'Zona III', 'Rua das Flores', 9876, '87502-000', 'francisca@gmail.com', '(43) 97846-3286', '(22) 93274-8377', '2023-11-30'),
+(3, 'Maria Pereira de Azevedo ', '947.667.245-50', '1930-08-28', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Rio Grande do Norte', 764, '87565-000', 'maria@gmail.com', '(22) 96666-6633', '(33) 93335-3465', '2023-11-30'),
+(4, 'Maria Amélia de Jesus', '947.667.245-50', '1906-01-01', 'F', 'SE', 'Itabaiana', 'Centro', 'Rua Amélia', 986, '49500-970', 'amelia@gmail.com', '(44) 96767-8687', '(44) 98673-2673', '2023-11-30'),
+(7, 'Marcela Aimee Alves ', '133.325.989-10', '2005-11-16', 'F', 'PR', 'Cruzeiro do Oeste', 'Sul Brasileira 1 ', 'Rua Timoneira ', 245, '87400-000', 'aimee@gmail.com', '(44) 99833-6792', '', '2023-11-30'),
+(8, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Getúlio Vargas', 654, '87565-000', 'manuifpr@gmail.com', '', '', '2023-11-30'),
+(9, 'Sandra Maria dos Santos Trindade', '081.674.089-57', '2005-06-01', 'F', 'PR', 'Cafezal do Sul', 'Centro', 'Rua Getúlio Vargas', 654, '87565-000', 'manuifpr@gmail.com', '', '', '2023-11-30');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `marca`
+-- Estrutura da tabela `marca`
 --
 
 CREATE TABLE `marca` (
@@ -133,7 +136,7 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `marca`
+-- Extraindo dados da tabela `marca`
 --
 
 INSERT INTO `marca` (`id`, `nome`) VALUES
@@ -148,7 +151,7 @@ INSERT INTO `marca` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -162,7 +165,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`, `id_tipo`, `id_marca`) VALUES
@@ -174,7 +177,7 @@ INSERT INTO `produto` (`id`, `nome`, `quantidade`, `valorUnitario`, `id_consumo`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `quarto`
+-- Estrutura da tabela `quarto`
 --
 
 CREATE TABLE `quarto` (
@@ -187,7 +190,7 @@ CREATE TABLE `quarto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `quarto`
+-- Extraindo dados da tabela `quarto`
 --
 
 INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiaria`) VALUES
@@ -201,7 +204,7 @@ INSERT INTO `quarto` (`id`, `status`, `numero`, `tipo`, `capacidade`, `valorDiar
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `reserva`
+-- Estrutura da tabela `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -220,18 +223,19 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `reserva`
+-- Extraindo dados da tabela `reserva`
 --
 
 INSERT INTO `reserva` (`id`, `status`, `dataEntrada`, `dataSaida`, `valorTotalReserva`, `quantHospede`, `observacao`, `formaPagamento`, `id_hospede`, `id_quarto`, `id_funcionario`, `datacadastro`) VALUES
-(3, 3, '2023-11-30', '2023-11-30', 233.00, 1, '', '', 4, 5, NULL, '2023-11-30 10:02:01'),
-(4, 4, '2023-11-30', '2023-11-30', 233.00, 2, '', 'Pix', 7, 6, NULL, '2023-11-30 10:19:46'),
-(5, 2, '2024-01-01', '2024-01-02', 233.00, 1, '', '', 2, 1, NULL, '2023-11-30 10:31:32');
+(2, 5, '2023-11-12', '2023-11-13', 120.00, 1, '', '', 3, 3, NULL, '2023-11-23 08:42:39'),
+(3, 1, '2023-11-23', '2023-11-24', 120.00, 1, '', '', 3, 3, NULL, '2023-11-23 09:09:44'),
+(4, 1, '2023-12-20', '2024-02-20', 7440.00, 1, '', '', 7, 3, NULL, '2023-11-24 16:47:23'),
+(5, 2, '2023-11-25', '2023-11-25', 120.00, 1, '', '', 7, 3, NULL, '2023-11-25 17:05:40');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo`
+-- Estrutura da tabela `tipo`
 --
 
 CREATE TABLE `tipo` (
@@ -240,7 +244,7 @@ CREATE TABLE `tipo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tipo`
+-- Extraindo dados da tabela `tipo`
 --
 
 INSERT INTO `tipo` (`id`, `nome`) VALUES
@@ -255,7 +259,7 @@ INSERT INTO `tipo` (`id`, `nome`) VALUES
 --
 
 --
--- Índices de tabela `consumo`
+-- Índices para tabela `consumo`
 --
 ALTER TABLE `consumo`
   ADD PRIMARY KEY (`id`),
@@ -263,25 +267,25 @@ ALTER TABLE `consumo`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices de tabela `funcionario`
+-- Índices para tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `hospede`
+-- Índices para tabela `hospede`
 --
 ALTER TABLE `hospede`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `marca`
+-- Índices para tabela `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `produto`
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id`),
@@ -290,13 +294,13 @@ ALTER TABLE `produto`
   ADD KEY `produto_marca` (`id_marca`);
 
 --
--- Índices de tabela `quarto`
+-- Índices para tabela `quarto`
 --
 ALTER TABLE `quarto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `reserva`
+-- Índices para tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
@@ -305,13 +309,13 @@ ALTER TABLE `reserva`
   ADD KEY `reserva_quarto` (`id_quarto`);
 
 --
--- Índices de tabela `tipo`
+-- Índices para tabela `tipo`
 --
 ALTER TABLE `tipo`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -357,25 +361,25 @@ ALTER TABLE `tipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `consumo`
+-- Limitadores para a tabela `consumo`
 --
 ALTER TABLE `consumo`
   ADD CONSTRAINT `consumo_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`),
   ADD CONSTRAINT `consumo_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id`);
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_marca` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id`),
   ADD CONSTRAINT `produto_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipo` (`id`);
 
 --
--- Restrições para tabelas `reserva`
+-- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_funcionario` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`),

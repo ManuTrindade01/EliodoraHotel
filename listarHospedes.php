@@ -69,7 +69,7 @@ $resultado = mysqli_query($conexao, $sql);
         <th scope="col">ID</th>
         <th scope="col">Hóspede</th>
         <th scope="col">CPF</th>
-        <th scope="col">Data Nascimento</th>
+        <th scope="col">Data Cadatro</th>
         <th scope="col">Email</th>
         <th scope="col">Telefone</th>
         <th scope="col">Contato Emergência</th>
@@ -89,7 +89,7 @@ $resultado = mysqli_query($conexao, $sql);
             <?= $linha['cpf'] ?>
           </td>
           <td>
-            <?= date('d/m/Y', strtotime($linha['dataNascimento'])) ?>
+            <?= date('d/m/Y', strtotime($linha['dataCadastro'])) ?>
           </td>
           <td>
             <?= $linha['email'] ?>

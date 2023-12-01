@@ -21,12 +21,12 @@
 <body>
 
     <header>
-        <nav class="nav-bar">
+        <nav class="nav-bar p-4">
             <div class="logo" style="font-family: 'Charmonman', cursive;">
                 <h2 style="font-family: 'Cormorant Garamond', serif;">Eliodora</h2>
             </div>
             <div class="nav-list">
-                <ul>
+                <ul class="mb-0">
                     <li class="nav-item"><a href="principal.php" class="nav-link"><i class="fa-solid fa-house"></i>
                             Principal</a></li>
                     <li class="nav-item"><a href="controlarReserva.php" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Reservas</a></li>
@@ -39,13 +39,16 @@
 
             <div class="login-button">
                 <button type="button" class="btn btn dropdown-toggle" style="color:aliceblue;" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo $_SESSION['nome']; ?> <i class="fa-regular fa-user"></i>
+                    <?php echo $_SESSION['nome']; ?>
+                    <i class="fa-regular fa-user"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    </li>
+                    <!-- O restante do seu código do menu dropdown -->
                     <li><a class="dropdown-item" href="sair.php">Sair</a></li>
                 </ul>
             </div>
+
+
 
             <div class="mobile-menu-icon">
                 <button onclick="menuShow()"><img class="icon" src="img/menu_white_36dp.svg" alt=""></button>

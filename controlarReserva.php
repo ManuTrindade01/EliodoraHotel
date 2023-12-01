@@ -53,6 +53,7 @@ require_once("conexao.php");
 </head>
 
 <?php require_once("cabecalho.php"); ?>
+<?php require_once("menu.php");?>
 <body>
     <br>
     <div class="container">
