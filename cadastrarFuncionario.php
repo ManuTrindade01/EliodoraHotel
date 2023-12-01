@@ -98,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $horarioEntrada = $_POST['horarioEntrada'];
       $horarioSaida = $_POST['horarioSaida'];
 
+      if ($numeroEndereco > 0) {
       //3. Preparar a SQL
       $sql = "INSERT INTO funcionario (nome, cpf, dataNascimento, genero, estado, cidade, bairro, endereco, numeroEndereco, cep, email, telefone, senha, confirma, dataAdmissao, salario, cargo, horarioEntrada, horarioSaida) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$bairro', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$senha', '$confirma', '$dataAdmissao', '$salario', '$cargo', '$horarioEntrada', '$horarioSaida')";
 
@@ -106,6 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       //5. Mostrar uma mensagem ao usuário
       $mensagem = "Registro salvo com sucesso.";
+    } else {
+      $mensagemErro = "O número do endereço não pode ser negativo.";
+    }
     }
   }
 }

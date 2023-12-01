@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
+      if ($numeroEndereco > 0) {
       //3. Preparar a SQL
       $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, bairro, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$bairro', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
 
@@ -96,9 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       //6. Mostrar uma mensagem ao usuário
       $mensagem = "Registro salvo com sucesso.";
+    } else {
+      $mensagemErro = "O número do endereço não pode ser negativo.";
     }
+  
+  }}
   }
-}
+
 
 ?>
 
