@@ -14,10 +14,8 @@ if (isset($_POST['salvar'])) {
     $id_quarto = $_POST['id_quarto'];
     $dataEntrada = $_POST['dataEntrada'];
     $dataSaida = $_POST['dataSaida'];
+    $quantHospede = $_POST['quantHospede'];
     $valorTotalReserva = str_replace(',', '.', $_POST['valorTotalReserva']);
-    /*
-    $valorTotalReserva = floatval($valorTotalReservaText);
-    $valorTotalReserva = number_ormat($valorTotalReserva, 2, '.', ''); */
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
 
@@ -51,6 +49,7 @@ if (isset($_POST['salvar'])) {
                         id_quarto = '$id_quarto',
                         dataEntrada = '$dataEntrada',
                         dataSaida = '$dataSaida',
+                        quantHospede = '$quantHospede',
                         valorTotalReserva = '$valorTotalReserva',
                         observacao = '$observacao',
                         status = '$status'
@@ -206,6 +205,18 @@ $linha = mysqli_fetch_array($resultado);
                         <div class="mb-3 col-md">
                             <label for="observacao" class="form-label">Observação:</label>
                             <input class="form-control" id="observacao" name="observacao" value="<?= $linha['observacao'] ?>">
+                        </div>
+                        <div class="mb-3 col-md">
+                            <label for="quantHospede" class="form-label">Quantidade:</label>
+                            <select class="form-control" id="quantHospede" name="quantHospede">
+                                <option value="" disabled>Selecione</option>
+                                <option value="1" <?= ($linha['quantHospede'] == '1') ? 'selected' : '' ?>>1</option>
+                                <option value="2" <?= ($linha['quantHospede'] == '2') ? 'selected' : '' ?>>2</option>
+                                <option value="3" <?= ($linha['quantHospede'] == '3') ? 'selected' : '' ?>>3</option>
+                                <option value="4" <?= ($linha['quantHospede'] == '4') ? 'selected' : '' ?>>4</option>
+                                <option value="5" <?= ($linha['quantHospede'] == '5') ? 'selected' : '' ?>>5</option>
+                            </select>
+
                         </div>
                     </div>
 
