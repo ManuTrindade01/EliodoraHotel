@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mb-3 col-md">
               <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-              <input name="dataNascimento" type="date" class="form-control" name="dataNascimento" value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>" max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('O hóspede responsável deve ter pelo menos 18 anos.')" onchange="this.setCustomValidity('')">
+              <input name="dataNascimento" type="date" class="form-control" name="dataNascimento" required value="<?php echo isset($dataNascimento) ? $dataNascimento : ''; ?>" max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" oninvalid="this.setCustomValidity('O hóspede responsável deve ter pelo menos 18 anos.')" onchange="this.setCustomValidity('')">
             </div>
 
           </div>
