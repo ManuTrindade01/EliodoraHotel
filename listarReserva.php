@@ -5,7 +5,7 @@ require_once("conexao.php");
 
 //Exclusão //
 if (isset($_GET['id'])) { //Verifica se foi clicado no botão excluir
-  $sql = "delete from reserva where id = " . $_GET['id'];
+  $sql = "DELETE FROM reserva where id = " . $_GET['id'];
   mysqli_query($conexao, $sql);
   $mensagem = "Exclusão realizada com sucesso";
 }
@@ -89,7 +89,7 @@ $resultado = mysqli_query($conexao, $sql);
         <th scope="col">Data Entrada</th>
         <th scope="col">Data Saída</th>
         <th scope="col">Valor Total</th>
-        <th scope="col">Funcionário</th>
+        <th scope="col">Cadastrante</th>
         <th scope="col">Ação</th>
       </tr>
     </thead>

@@ -1,35 +1,40 @@
 <?php
-
 require_once("verificaAutenticacao.php");
 
-//1. Conectar no BD (IP, usuario, senha, nome do banco)
+// 1. Conectar no BD (IP, usuário, senha, nome do banco)
 $conexao = mysqli_connect('127.0.0.1', 'root', '', 'tcc');
 
-
 if (isset($_POST['cadastrar'])) {
-  //2. Receber os dados para inserir no BD
-  $numero = $_POST['numero'];
-  $tipo = $_POST['tipo'];
-  $capacidade = $_POST['capacidade'];
-  $valorDiaria = $_POST['valorDiaria'];
+    // 2. Receber os dados para inserir no BD
+    $numero = $_POST['numero'];
+    $tipo = $_POST['tipo'];
+    $capacidade = $_POST['capacidade'];
+    $valorDiaria = $_POST['valorDiaria'];
 
-  if ($valorDiaria > 0) {
+    if ($numero > 0 && $valorDiaria > 0) {
+        // Verifica se o número do quarto já existe
+        $verificaNumero = mysqli_query($conexao, "SELECT numero FROM quarto WHERE numero = '$numero'");
+        if (mysqli_num_rows($verificaNumero) > 0) {
+            $mensagemErro = "Este número de quarto já está em uso.";
+        } else {
+            // 3. Preparar a SQL
+            $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) VALUES ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
 
-    //3. Preparar a SQL
-    $sql = "INSERT INTO quarto (numero, tipo, capacidade, valorDiaria) values ('$numero', '$tipo', '$capacidade', '$valorDiaria')";
-
-    //4. Executar a SQL
-    mysqli_query($conexao, $sql);
-
-    //5. Mostrar uma mensagem ao usuário
-    $mensagem = "Registro salvo com sucesso.";
-  } else {
-    $mensagemErro = "Valor da diária deve ser maior que 0.";
-  }
-
-
+            // 4. Executar a SQL
+            if (mysqli_query($conexao, $sql)) {
+                // 5. Mostrar uma mensagem ao usuário
+                $mensagem = "Registro salvo com sucesso.";
+            } else {
+                $mensagemErro = "Erro ao inserir no banco de dados: " . mysqli_error($conexao);
+            }
+        }
+    } else {
+        $mensagemErro = "Número do quarto e valor da diária devem ser maiores que 0.";
+    }
 }
 ?>
+
+
 
 <?php require_once("cabecalho.php"); ?>
 
