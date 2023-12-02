@@ -78,9 +78,7 @@ a.button {
     transition: background-color 0.3s ease; /* Transição suave */
 }
 
-.login-button a.button:hover {
-    background-color: #d94f8b; /* Alterando cor de fundo no hover */
-}
+
 
 .mobile-menu-icon {
     display: none;

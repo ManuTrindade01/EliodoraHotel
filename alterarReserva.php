@@ -21,26 +21,33 @@ if (isset($_POST['salvar'])) {
 
 
     $dataAtual = date('Y-m-d');
-    /*
-    if($status == 5) { //Cancelado
-        //Não faz nada
-    } elseif ($dataAtual < $dataEntrada) { // "Futuro" se a data atual for anterior à data de entrada
-        $status = 1;
-        $mensagemErro = "";
-    } elseif ($dataAtual >= $dataEntrada && $dataAtual <= $dataSaida) {
-        $status = 2; // "Em andamento" se a data atual estiver entre entrada e saída
-    } else {
-        */
-    // Verificar se o status não é finalizado e se a data atual não é posterior à data de saída
-    if (($status == 1 || $status == 2) && $dataAtual >= $dataEntrada) {
-        $mensagemErro = "Data de hoje é posterior à data de Entrada.";
-    }
-    if (($status == 4) && $dataAtual < $dataSaida) {
-        //$status = 2; // Manter como "Em andamento"
-        $mensagemErro = "Data de hoje não é posterior à data de saída.";
-    }
 
-    // Restrição para evitar atualizar o status para "Finalizado" se a data atual for anterior à data de saída
+
+if (($status == 1) && $dataAtual >= $dataEntrada) {
+    $mensagemErro = "Data de hoje é posterior à data de Entrada.";
+}
+if (($status == 3) && $dataAtual < $dataSaida) {
+    //$status = 2; // Manter como "Em andamento"
+    $mensagemErro = "Data de hoje não é posterior à data de saída.";
+}
+if (($status == 2) && $dataAtual > $dataSaida) {
+    $mensagemErro = "Data de hoje é posterior à de saída.";
+}
+if (($status == 3) && $dataAtual < $dataEntrada) {
+    $mensagemErro = "Essa data é anterior à de check-in.";
+}
+
+if ($status == 1 && $dataAtual >= $dataEntrada) {
+    $mensagemErro = "Status 'Futuro' não pode ter data de entrada no passado.";
+}
+if ($status == 2 && !($dataAtual >= $dataEntrada && $dataAtual <= $dataSaida)) {
+    $mensagemErro = "Status 'Em andamento' deve estar entre a data de entrada e a data de saída.";
+}
+if ($status == 3 && $dataAtual < $dataSaida) {
+    $mensagemErro = "Status 'Finalizado' não pode ser antes da data de saída.";
+}
+
+//...
 
     if (!isset($mensagemErro)) {
         // Preparar a SQL para inserir os dados da reserva
@@ -192,13 +199,12 @@ $linha = mysqli_fetch_array($resultado);
                         </div>
 
                         <div class="mb-3 col-md">
-                            <label for="status" class="form-label">Status</label>
+                            <label for="status" class="form-label">Status:</label>
                             <select name="status" id="status" class="form-select">
                                 <option value="1" <?= ($linha['status'] == '1') ? 'selected' : '' ?>>Futuro</option>
-                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?>>Futuro - Pago</option>
-                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Em andamento</option>
-                                <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Finalizado - Pago</option>
-                                <option value="5" <?= ($linha['status'] == '5') ? 'selected' : '' ?>>Cancelado</option>
+                                <option value="2" <?= ($linha['status'] == '2') ? 'selected' : '' ?> >Em andamento</option>
+                                <option value="3" <?= ($linha['status'] == '3') ? 'selected' : '' ?>>Finalizado</option>
+                                <option value="4" <?= ($linha['status'] == '4') ? 'selected' : '' ?>>Cancelado</option>
                             </select>
                         </div>
 

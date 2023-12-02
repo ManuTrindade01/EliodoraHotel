@@ -5,7 +5,6 @@ require_once("conexao.php");
 
 
 // Calcular a quantidade de dias da reserva
-//Arrumar só a diferença de dias
 
 $dataEntrada = strtotime($_POST['dataEntrada']);
 $dataSaida = strtotime($_POST['dataSaida']);
@@ -25,7 +24,6 @@ if ($diferencaDias <= 1) {
     $valorTotalReserva = $valorDiaria * $diferencaDias;
 }
 
-
 if (isset($_POST['cadastrar'])) {
     // Receber os dados para inserir no BD
     $id_hospede = $_POST['id_hospede'];
@@ -35,17 +33,16 @@ if (isset($_POST['cadastrar'])) {
     $quantHospede = $_POST['quantHospede'];
     $observacao = $_POST['observacao'];
 
-    $status = "1"; //futuro
-    $formaPagamento = "";
-    if (isset($_POST['formaPagamento'])) {
-        $formaPagamento = $_POST['formaPagamento']; //Futuro
-        $status = "2"; //futuro pago
+
+    $dataAtual = date('Y-m-d');
+    if ($dataAtual == $dataEntrada){
+        $status = "2"; //Em andamento
     }
 
     // Preparar a SQL para inserir os dados da reserva
     $sql = "INSERT INTO reserva 
-    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva, formapagamento, status) VALUES 
-    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva', '$formaPagamento', '$status')";
+    (dataEntrada, dataSaida, quantHospede, observacao, id_hospede, id_quarto, valorTotalReserva, status) VALUES 
+    ('$dataEntrada', '$dataSaida', '$quantHospede', '$observacao', '$id_hospede', '$id_quarto', '$valorTotalReserva', '$status')";
 
     // Executar a SQL para inserção
     mysqli_query($conexao, $sql);
@@ -153,10 +150,7 @@ if (isset($_POST['cadastrar'])) {
                                 <?= $numero ?>
 
                             </label>
-                            <br>
                         </div>
-                        </div>
-                        <div class="row">
                         <div class="mb-3 col-md">
                             Valor Reserva:
                             <label for="" class="form-control" id="valorTotalReserva">
@@ -165,15 +159,9 @@ if (isset($_POST['cadastrar'])) {
                             </label>
                         </div>
 
-                        <div class="mb-3 col-md">
-                            <label for="formaPagamento">Forma de Pagamento:</label>
-                            <select class="form-select" aria-label="Default select example" name="formaPagamento">
-                                <option selected disabled>Selecione</option>
-                                <option value="Cartão">Cartão de Crédito/Débito</option>
-                                <option value="Pix">Pix</option>
-                                <option value="Dinheiro">Dinheiro</option>
-                            </select>
-                        </div>
+                        
+                    
+
                         <br>
                         </div>
                     <button name="cadastrar" type="submit" class="btn"

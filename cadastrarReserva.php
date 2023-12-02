@@ -2,11 +2,6 @@
 session_start();
 require_once("verificaAutenticacao.php");
 require_once("conexao.php");
-if(isset($_SESSION['nome'])) {
-  $nomeFuncionarioLogado = $_SESSION['nome'];
-  echo "Funcionário Logado: $nomeFuncionarioLogado";
-  // Pode exibir o nome do funcionário onde desejar na página
-}
 ?>
 
 

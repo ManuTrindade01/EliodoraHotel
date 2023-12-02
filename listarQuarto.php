@@ -105,7 +105,7 @@ $resultado = mysqli_query($conexao, $sql);
         <td>
           <?= $linha['capacidade'] ?>
         </td>
-        <td>
+        <td>R$
             <?= number_format($linha['valorDiaria'], 2, ',', '.') ?>
           </td>
         
