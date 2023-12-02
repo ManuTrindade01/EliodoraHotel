@@ -18,34 +18,37 @@ header {
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    padding: 0.6rem 4rem; /* Reduzindo o preenchimento */
-    align-items: center; /* Centralizando verticalmente */
+    padding: 1.5rem 6rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
+
 }
 
 .logo h2 {
     color: #fff;
-    font-size: 1.5rem; /* Tamanho menor para o título */
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
 }
 
 .nav-list ul {
     display: flex;
+    justify-content: center;
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 .nav-item {
-    margin: 0 10px; /* Reduzindo a margem entre os itens do menu */
+    margin: 0 15px;
 }
 
 .nav-link {
     text-decoration: none;
-    font-size: 1rem; /* Tamanho menor para os links */
+    font-size: 1.15rem;
     color: #ffffff;
     font-weight: 400;
 }
@@ -54,47 +57,151 @@ header {
     color: #a70162;
 }
 
+
 .login-button {
     border: none;
-    padding: 8px 12px; /* Reduzindo o preenchimento */
+    padding: 10px 15px;
     border-radius: 5px;
     color: #fff;
 }
-
-.login-button button {
-    color: aliceblue;
-    font-size: 0.9rem; /* Tamanho menor para o texto do botão */
-    padding: 6px 10px; /* Reduzindo o preenchimento interno do botão */
+.login-button:hover{
+    background-color: #a70162;
+}
+a.button {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.1rem;
+    background-color: #a70162;
+    padding: 8px 15px; /* Ajuste o preenchimento conforme desejado */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease; /* Transição suave */
 }
 
-.mobile-menu-icon button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 6px; /* Ajustando o preenchimento do ícone do menu */
+.login-button a.button:hover {
+    background-color: #d94f8b; /* Alterando cor de fundo no hover */
+}
+
+.mobile-menu-icon {
+    display: none;
 }
 
 .mobile-menu {
     display: none;
 }
 
-.mobile-menu ul {
+.containercard {
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding-bottom: 1rem;
-    margin: 0; /* Removendo margem */
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.mobile-menu .nav-item {
-    padding-top: 0.8rem; /* Ajustando o espaçamento dos itens do menu no modo mobile */
+@media screen and (max-width: 730px) {
+    .nav-bar {
+        padding: 1.5rem 4rem;
+    }
+
+    .nav-item {
+        display: none;
+    }
+
+    .login-button {
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .mobile-menu .nav-item {
+        display: block;
+        padding-top: 1.2rem;
+    }
+
+    .mobile-menu .login-button {
+        display: block;
+        padding: 1rem 2rem;
+    }
+
+    .mobile-menu .login-button button {
+        width: 100%;
+    }
+
+    .open {
+        display: block;
+    }
 }
 
-.mobile-menu .login-button {
-    padding: 0.8rem 1.6rem; /* Ajustando o preenchimento do botão no modo mobile */
+.containercard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .h5 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #a70162;
+}
+
+/* Estilos personalizados para o dropdown */
+
+/* Estilizando a lista de opções do dropdown */
+.dropdown-menu {
+    background-color: #fff;
+    /* Cor de fundo */
+    border: none;
+    /* Remover borda */
+    border-radius: 5px;
+    /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+    padding: 8px 0;
+    /* Espaçamento interno */
+}
+
+/* Estilizando os itens do dropdown */
+.dropdown-item {
+    color: #333;
+    /* Cor do texto */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f5f5f5;
+    /* Cor de fundo ao passar o mouse/foco */
+}
+
+.dropdown-divider {
+    border-top: 1px solid #ccc;
+    /* Estilo do separador */
+}
+
+/* Estilizando o botão do dropdown */
+.dropdown-toggle {
+    background-color: transparent;
+    /* Botão transparente */
+    border: none;
+    /* Remover borda */
+    color: #fff;
+    /* Cor do texto */
+}
+
+.dropdown-toggle:focus {
+    outline: none;
+    /* Remover contorno ao focar */
+    box-shadow: none;
+    /* Remover sombra ao focar */
 }

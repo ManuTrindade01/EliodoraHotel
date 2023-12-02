@@ -68,7 +68,7 @@ if (isset($_POST['salvar'])) {
   $telefone = $_POST['telefone'];
   $senha = $_POST['senha'];
   $dataAdmissao = $_POST['dataAdmissao'];
-  $salario = $_POST['salario'];
+  $salario = str_replace(',', '.', $_POST['salario']);
   $cargo = $_POST['cargo'];
   $horarioEntrada = $_POST['horarioEntrada'];
   $horarioSaida = $_POST['horarioSaida'];

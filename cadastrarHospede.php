@@ -1,6 +1,5 @@
 <?php
 require_once("verificaAutenticacao.php");
-
 require_once("conexao.php");
 
 function validarCPF($cpf)
@@ -42,17 +41,11 @@ function validarCPF($cpf)
   }
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-
-
   if (isset($_POST['cadastrar'])) {
-
     $cpf = $_POST["cpf"];
 
-    if (!validarCPF($cpf)) { //Se o CPF for inválido
+    if (!validarCPF($cpf)) { // Se o CPF for inválido
       $mensagemErro = "CPF inválido.";
       $nome = $_POST['nome'];
       $dataNascimento = $_POST['dataNascimento'];
@@ -67,10 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $telefone = $_POST['telefone'];
       $contatoEmergencia = $_POST['contatoEmergencia'];
     } else {
-      //prossegue com o cadastro pq o CPF está válido
-
-
-      //2. Receber os dados para inserir no BD
+      //prossegue com o cadastro porque o CPF está válido
+      // Receber os dados para inserir no BD
       $nome = $_POST['nome'];
       $cpf = $_POST['cpf'];
       $dataNascimento = $_POST['dataNascimento'];
@@ -85,26 +76,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $telefone = $_POST['telefone'];
       $contatoEmergencia = $_POST['contatoEmergencia'];
 
-
-
       if ($numeroEndereco > 0) {
-      //3. Preparar a SQL
-      $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, bairro, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$bairro', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
+        $verificaCPF = mysqli_query($conexao, "SELECT cpf FROM hospede WHERE cpf = '$cpf'");
+        
+        if (mysqli_num_rows($verificaCPF) > 0) {
+          $mensagemErro = "Este CPF já possui cadastro.";
+        } else {
+          // Preparar a SQL
+          $sql = "INSERT INTO hospede (nome, cpf, dataNascimento, genero, estado, cidade, bairro, endereco, numeroEndereco, cep, email, telefone, contatoEmergencia) values ('$nome', '$cpf', '$dataNascimento', '$genero', '$estado', '$cidade', '$bairro', '$endereco', '$numeroEndereco', '$cep', '$email', '$telefone', '$contatoEmergencia')";
 
-      //5. Executar a SQL
-      mysqli_query($conexao, $sql);
+          // Executar a SQL
+          mysqli_query($conexao, $sql);
 
-      //6. Mostrar uma mensagem ao usuário
-      $mensagem = "Registro salvo com sucesso.";
-    } else {
-      $mensagemErro = "O número do endereço não pode ser negativo.";
+          // Mostrar uma mensagem ao usuário
+          $mensagem = "Registro salvo com sucesso.";
+        }
+      } else {
+        $mensagemErro = "O número do endereço não pode ser negativo.";
+      }
     }
-  
-  }}
   }
-
-
+}
 ?>
+
 
 <?php require_once("cabecalho.php"); ?>
 
